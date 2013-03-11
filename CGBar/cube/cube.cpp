@@ -1,6 +1,6 @@
 #include <GL/glut.h>
-#include <cores.h>
 #include <math.h>
+#include <cores.h>
 
 float rotation;
 float rotationz;
@@ -11,11 +11,18 @@ bool cull;
 bool dragging;
 int dragx, dragy;
 
-float p1[] = {-1.0f, 0.0f, 1.0f};
-float p2[] = {1.0f, 0.0f, 1.0f};
-float p3[] = {1.0f, 0.0f, -1.0f};
-float p4[] = {-1.0f, 0.0f, -1.0f};
-float p5[] = {0.0f, 2.0f, 0.0f};
+float dim = 1 ;
+float n = dim/2  ;
+
+float A[] = {-n, -n, n};
+float B[] = {n, -n, n};
+float C[] = {n, -n, -n};
+float D[] = {-n, -n, -n};
+
+float E[] = {-n, n, n};
+float F[] = {n, n, n};
+float G[] = {n, n, -n};
+float H[] = {-n, n, -n};
 
 void changeSize(int w, int h) {
     
@@ -44,8 +51,8 @@ void changeSize(int w, int h) {
 
 
 
-void renderScene(void) {
-    
+void renderScene() {    
+	
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
@@ -67,36 +74,42 @@ void renderScene(void) {
     glRotatef(rotationz, 0.0f,0.0f,1.0f);
     
     glBegin(GL_TRIANGLES);
-    glColor3ub(100, 149, 237);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    
-    glColor3ub(135, 206, 250);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    
-    glColor3ub(224, 255, 255);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    
-    glColor3ub(224, 255, 255);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    
-    glColor3ub(135, 206, 250);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    
-    glColor3ub(100, 149, 237);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    
+		
+		/* base inferior */
+		glColor3f(AZUL) ;
+		glVertex3fv(C) ;
+		glVertex3fv(A) ;
+		glVertex3fv(B) ;
+
+		glColor3f(CINZNETO) ;
+		glVertex3fv(C) ;
+		glVertex3fv(D) ;
+		glVertex3fv(A) ;    
+
+		/* base superior */
+		glColor3f(AZUL) ;
+		glVertex3fv(G) ;
+		glVertex3fv(E) ;
+		glVertex3fv(F) ;
+
+		glColor3f(CINZNETO) ;
+		glVertex3fv(G) ;
+		glVertex3fv(H) ;
+		glVertex3fv(E) ;    
+
+		/* face  */
+		glColor3f(AZUL) ;
+		glVertex3fv(G) ;
+		glVertex3fv(E) ;
+		glVertex3fv(F) ;
+
+		glColor3f(CINZNETO) ;
+		glVertex3fv(G) ;
+		glVertex3fv(H) ;
+		glVertex3fv(E) ;    
+
+
+
     glEnd();
     
 	// End of frame
