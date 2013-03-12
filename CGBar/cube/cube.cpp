@@ -1,16 +1,28 @@
 #include <GL/glut.h>
-#include <cores.h>
 #include <math.h>
+#include <cores.h>
 
 float rotation;
 float rotationz;
 float px, pz;
+float camx, camy;
+int face, modo;
+bool cull;
+bool dragging;
+int dragx, dragy;
 
-float p1[] = {-1.0f, 0.0f, 1.0f};
-float p2[] = {1.0f, 0.0f, 1.0f};
-float p3[] = {1.0f, 0.0f, -1.0f};
-float p4[] = {-1.0f, 0.0f, -1.0f};
-float p5[] = {0.0f, 2.0f, 0.0f};
+float dim = 1 ;
+float n = dim/2  ;
+
+float A[] = {-n, -n, n};
+float B[] = {n, -n, n};
+float C[] = {n, -n, -n};
+float D[] = {-n, -n, -n};
+
+float E[] = {-n, n, n};
+float F[] = {n, n, n};
+float G[] = {n, n, -n};
+float H[] = {-n, n, -n};
 
 void changeSize(int w, int h) {
     
@@ -39,56 +51,65 @@ void changeSize(int w, int h) {
 
 
 
-void renderScene(void) {
-    
+void renderScene() {    
+	
 	// clear buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
 	// set the camera
 	glLoadIdentity();
-	gluLookAt(7.0f,0.0f,0.0f,
+    gluLookAt(5*sin(camx),camy,5*cos(camx), 
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     
     // por instrucoes de desenho aqui
     glutPostRedisplay();
-    glEnable(GL_CULL_FACE);
+    
+    glPolygonMode(face, modo);
+	if(cull) glEnable(GL_CULL_FACE);
+	else glDisable(GL_CULL_FACE);
     
     glTranslatef(px, 0.0f, pz);
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 0.0f,0.0f,1.0f);
     
     glBegin(GL_TRIANGLES);
-    glColor3ub(100, 149, 237);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    
-    glColor3ub(135, 206, 250);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    
-    glColor3ub(224, 255, 255);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    
-    glColor3ub(224, 255, 255);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    
-    glColor3ub(135, 206, 250);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    
-    glColor3ub(100, 149, 237);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    
+		
+		/* base inferior */
+		glColor3f(AZUL) ;
+		glVertex3fv(C) ;
+		glVertex3fv(A) ;
+		glVertex3fv(B) ;
+
+		glColor3f(CINZNETO) ;
+		glVertex3fv(C) ;
+		glVertex3fv(D) ;
+		glVertex3fv(A) ;    
+
+		/* base superior */
+		glColor3f(AZUL) ;
+		glVertex3fv(G) ;
+		glVertex3fv(E) ;
+		glVertex3fv(F) ;
+
+		glColor3f(CINZNETO) ;
+		glVertex3fv(G) ;
+		glVertex3fv(H) ;
+		glVertex3fv(E) ;    
+
+		/* face  */
+		glColor3f(AZUL) ;
+		glVertex3fv(G) ;
+		glVertex3fv(E) ;
+		glVertex3fv(F) ;
+
+		glColor3f(CINZNETO) ;
+		glVertex3fv(G) ;
+		glVertex3fv(H) ;
+		glVertex3fv(E) ;    
+
+
+
     glEnd();
     
 	// End of frame
@@ -155,10 +176,88 @@ void kb_normal(unsigned char key, int x, int y){
     }
 }
 
+void mouse_click_handler(int botao, int estado, int x, int y)
+{
+	if(botao == GLUT_LEFT_BUTTON)
+	{
+		switch(estado)
+		{
+            case GLUT_DOWN:
+			{
+				dragging = true;
+				dragx = x;
+				dragy = y;
+				break;
+			}
+            case GLUT_UP:
+			{
+				dragging = false;
+				break;
+			}
+		}
+	}
+}
+
+void mouse_motion_handler(int x, int y)
+{
+	if(dragging)
+	{
+		if(dragx != x) camx = camx + 0.1 * ( dragx < x ? -1 : 1 );
+        
+		if(dragy != y) camy = camy + 0.1 * ( dragy < y ? 1 : -1 );
+        
+		dragx = x;
+		dragy = y;
+        
+		glutPostRedisplay();
+	}
+}
 
 // escrever funcao de processamento do menu
 
-
+void menu_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			face = GL_FRONT;
+			break;
+		}
+        case 1:
+		{
+			face = GL_BACK;
+			break;
+		}
+        case 2:
+		{
+			face = GL_FRONT_AND_BACK;
+			break;
+		}
+        case 3:
+		{
+			modo = GL_FILL;
+			break;
+		}
+        case 4:
+		{
+			modo = GL_LINE;
+			break;
+		}
+        case 5:
+		{
+			cull = true;
+			break;
+		}
+        case 6:
+		{
+			cull = false;
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
 
 
 int main(int argc, char **argv) {
@@ -173,19 +272,37 @@ int main(int argc, char **argv) {
 	px = 0.0f; pz = 0.0f;
 	rotation = 0.0f;
     rotationz = 0.0f;
+    camx = 0;
+	camy = 1;
+	face = GL_FRONT;
+	modo = GL_FILL;
+	cull = true;
+	dragging = false;
+	dragx = 0; dragy = 0;
+
+    
     
     // registo de funcoes
 	glutDisplayFunc(renderScene);
-	glutIdleFunc(renderScene);
+	//glutIdleFunc(renderScene);
 	glutReshapeFunc(changeSize);
     
     // por aqui registo da funcoes do teclado e rato
 	glutSpecialFunc(kb_special);
     glutKeyboardFunc(kb_normal);
-    
+    glutMouseFunc(mouse_click_handler);
+	glutMotionFunc(mouse_motion_handler);
     
     // por aqui a criacao do menu
-    
+    glutCreateMenu(menu_handler);
+	glutAddMenuEntry("GL_FRONT", 0);
+	glutAddMenuEntry("GL_BACK", 1);
+	glutAddMenuEntry("GL_FRONT_AND_BACK", 2);
+	glutAddMenuEntry("GL_FILL", 3);
+	glutAddMenuEntry("GL_LINE", 4);
+	glutAddMenuEntry("Enable Cull Face", 5);
+	glutAddMenuEntry("Disable Cull Face", 6);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
     
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
