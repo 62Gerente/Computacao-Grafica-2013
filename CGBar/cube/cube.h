@@ -2,9 +2,4 @@
 #define _CUBE_H_
 
 void drawCube (float dim) ;
-
-
-
-
-
 #endif 
