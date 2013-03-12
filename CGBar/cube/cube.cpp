@@ -1,5 +1,3 @@
-#include "../cores.h"
-
 void drawCube (float dim) {
 
 	float n = dim/2  ;
