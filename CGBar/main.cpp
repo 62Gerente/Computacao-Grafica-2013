@@ -70,7 +70,7 @@ void renderScene(void) {
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     
     if (figura==1) {
-        drawCylinder(3, 5, 30);
+        drawCylinder(3, 5, 30, 20);
     }else if(figura==2){
         drawPlane(5, 5);
     }
