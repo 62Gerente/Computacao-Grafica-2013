@@ -1,5 +1,8 @@
 #include <GLUT/glut.h>
 #include <math.h>
+#include "cylinder/cylinder.h"
+#include "plane/plane.h"
+#include "cube/cube.h"
 
 float rotation;
 float rotationz;
@@ -9,6 +12,7 @@ int face, modo;
 bool cull;
 bool dragging;
 int dragx, dragy;
+int figura;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -50,7 +54,7 @@ void renderScene(void) {
     
 	// set the camera
 	glLoadIdentity();
-    gluLookAt(5*sin(camx),camy,5*cos(camx),
+    gluLookAt(15*sin(camx),camy,15*cos(camx),
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     
@@ -63,40 +67,14 @@ void renderScene(void) {
     
     glTranslatef(px, 0.0f, pz);
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
-    glRotatef(rotationz, 0.0f,0.0f,1.0f);
+    glRotatef(rotationz, 1.0f,0.0f,0.0f);
     
-    glBegin(GL_TRIANGLES);
-    glColor3ub(100, 149, 237);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    
-    glColor3ub(135, 206, 250);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    
-    glColor3ub(224, 255, 255);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    
-    glColor3ub(224, 255, 255);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    glVertex3f(p2[0], p2[1], p2[2]);
-    
-    glColor3ub(135, 206, 250);
-    glVertex3f(p1[0], p1[1], p1[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    
-    glColor3ub(100, 149, 237);
-    glVertex3f(p4[0], p4[1], p4[2]);
-    glVertex3f(p5[0], p5[1], p5[2]);
-    glVertex3f(p3[0], p3[1], p3[2]);
-    
-    glEnd();
+    if (figura==1) {
+        drawCylinder(3, 5, 30);
+    }else if(figura==2){
+        drawPlane(5, 5);
+    }
+
     
 	// End of frame
 	glutSwapBuffers();
@@ -108,22 +86,22 @@ void renderScene(void) {
 void kb_special(int key, int x, int y){
 	switch(key)
 	{
-        case GLUT_KEY_DOWN:
+        case GLUT_KEY_LEFT:
 		{
 			if(px > -2.0f) px -= 0.1f;
 			break;
 		}
-        case GLUT_KEY_UP:
+        case GLUT_KEY_RIGHT:
 		{
 			if(px < 2.0f) px += 0.1f;
 			break;
 		}
-        case GLUT_KEY_LEFT:
+        case GLUT_KEY_DOWN:
 		{
 			if(pz < 2.0f) pz += 0.1f;
 			break;
 		}
-        case GLUT_KEY_RIGHT:
+        case GLUT_KEY_UP:
 		{
 			if(pz > -2.0f) pz -= 0.1f;
 			break;
@@ -149,12 +127,12 @@ void kb_normal(unsigned char key, int x, int y){
 		}
         case 'w':
 		{
-			rotationz += 1.5f;
+			rotationz -= 1.5f;
 			break;
 		}
         case 's':
 		{
-			rotationz -= 1.5f;
+			rotationz += 1.5f;
 			break;
 		}
         default:
@@ -201,7 +179,7 @@ void mouse_motion_handler(int x, int y)
 
 // escrever funcao de processamento do menu
 
-void menu_handler(int op)
+void menu_opcoes_handler(int op)
 {
 	switch(op)
 	{
@@ -244,6 +222,42 @@ void menu_handler(int op)
 	}
 	glutPostRedisplay();
 }
+void menu_principal_handler(int op)
+{
+}
+void menu_figuras_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 1; // Cilindro
+			break;
+		}
+        case 1:
+		{
+			figura = 2; // Plano
+			break;
+		}
+        case 2:
+		{
+			figura = 3; // Cubo
+			break;
+		}
+        case 3:
+		{
+			figura = 4; // Esfera
+			break;
+		}
+        case 4:
+		{
+			figura = 5; // Cone
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
 
 
 int main(int argc, char **argv) {
@@ -265,6 +279,7 @@ int main(int argc, char **argv) {
 	cull = true;
 	dragging = false;
 	dragx = 0; dragy = 0;
+    figura = 1;
     
     
     
@@ -279,16 +294,31 @@ int main(int argc, char **argv) {
     glutMouseFunc(mouse_click_handler);
 	glutMotionFunc(mouse_motion_handler);
     
+    
+    
     // por aqui a criacao do menu
-    glutCreateMenu(menu_handler);
-	glutAddMenuEntry("GL_FRONT", 0);
-	glutAddMenuEntry("GL_BACK", 1);
-	glutAddMenuEntry("GL_FRONT_AND_BACK", 2);
-	glutAddMenuEntry("GL_FILL", 3);
-	glutAddMenuEntry("GL_LINE", 4);
-	glutAddMenuEntry("Enable Cull Face", 5);
-	glutAddMenuEntry("Disable Cull Face", 6);
-	glutAttachMenu(GLUT_RIGHT_BUTTON);
+    int mopcoes = glutCreateMenu(menu_opcoes_handler);
+        glutAddMenuEntry("GL_FRONT", 0);
+        glutAddMenuEntry("GL_BACK", 1);
+        glutAddMenuEntry("GL_FRONT_AND_BACK", 2);
+        glutAddMenuEntry("GL_FILL", 3);
+        glutAddMenuEntry("GL_LINE", 4);
+        glutAddMenuEntry("Enable Cull Face", 5);
+        glutAddMenuEntry("Disable Cull Face", 6);
+        glutAttachMenu(GLUT_RIGHT_BUTTON);
+    
+    int mfiguras = glutCreateMenu(menu_figuras_handler);
+        glutAddMenuEntry("CILINDRO", 0);
+        glutAddMenuEntry("PLANO", 1);
+        glutAddMenuEntry("CUBO", 2);
+        glutAddMenuEntry("ESFERA", 3);
+        glutAddMenuEntry("CONE", 4);
+    
+    
+    glutCreateMenu(menu_principal_handler);
+        glutAddSubMenu("Opções", mopcoes);
+        glutAddSubMenu("Figuras", mfiguras);
+        glutAttachMenu(GLUT_RIGHT_BUTTON);
     
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
