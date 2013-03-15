@@ -3,17 +3,17 @@
 
 void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
     
-    float angulo = (2*PI)/(float)nLados, i=0 ;
+    float angulo = (2*M_PI)/(float)nLados;
     float h = altura/(float)nCamadas ;
 
     for(float j=altura/2; j >= -altura/2 ; j-=h) {          
         float centro[] = {0, j, 0} ;
 
-        for(float i=0; i < 2*PI; i+= angulo) {
+        for(float i=0; i < 2*M_PI; i+= angulo) {
 
-            float A[] = {raio*sin(i), j, raio*cos(i)}, B[] = {raio*sin(i+angulo), j, raio*cos(i+angulo)} ;
+            float A[] = {raio*sinf(i), j, raio*cosf(i)}, B[] = {raio*sinf(i+angulo), j, raio*cosf(i+angulo)} ;
         
-            if(j-h <= -altura/(float)2) {               
+            if(j <= -altura/(float)2) {               
                 glBegin(GL_TRIANGLES) ;
                     glVertex3fv(A) ;
                     glVertex3fv(centro) ;
@@ -30,7 +30,7 @@ void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
         
 
             if(j-h >= -altura/2) {
-                float C[] = {raio*sin(i), j-h, raio*cos(i)}, D[] = {raio*sin(i+angulo), j-h, raio*cos(i+angulo)} ;
+                float C[] = {raio*sinf(i), j-h, raio*cosf(i)}, D[] = {raio*sinf(i+angulo), j-h, raio*cosf(i+angulo)} ;
                 
                 glBegin(GL_TRIANGLES) ;                 
                     glVertex3fv(A) ;
