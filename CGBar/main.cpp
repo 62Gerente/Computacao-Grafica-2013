@@ -70,8 +70,12 @@ void renderScene(void) {
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     
     if (figura==1) {
-        drawCylinder(3, 5, 30, 20);
+        drawCylinder(3, 5, 30, 10);
     }else if(figura==2){
+        drawPlane(5, 10, 10);
+    }else if (figura==6){
+        drawCylinder(3, 5, 30);
+    }else if (figura==7){
         drawPlane(5, 5);
     }
 
@@ -254,6 +258,16 @@ void menu_figuras_handler(int op)
 			figura = 5; // Cone
 			break;
 		}
+        case 5:
+		{
+			figura = 6; // Cilindro sem camadas
+			break;
+		}
+        case 6:
+		{
+			figura = 7; // Plano sem camadas
+			break;
+		}
         default: return;
 	}
 	glutPostRedisplay();
@@ -313,6 +327,8 @@ int main(int argc, char **argv) {
         glutAddMenuEntry("CUBO", 2);
         glutAddMenuEntry("ESFERA", 3);
         glutAddMenuEntry("CONE", 4);
+        glutAddMenuEntry("CILINDRO SEM CAMADAS", 5);
+        glutAddMenuEntry("PLANO SEM CAMADAS", 6);
     
     
     glutCreateMenu(menu_principal_handler);

@@ -48,7 +48,7 @@ void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
 }    
 
 
-/* void drawCylinder(float radius, float height, int vertex){
+ void drawCylinder(float radius, float height, int vertex){
     int i;
     float twoPi = 2.0f * M_PI;
     float angact = 0.0f;
@@ -77,4 +77,4 @@ void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
     }
     
     glEnd();
-} */
+} 
