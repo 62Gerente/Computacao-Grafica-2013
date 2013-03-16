@@ -133,6 +133,27 @@ void changeSize(int w, int h) {
 //    glEnd();
 //}
 
+void drawPlane(float x, float z, int layers){
+    float divx = x/layers;
+    float divz = z/layers;
+    
+    glBegin(GL_TRIANGLES);
+    
+    for(int i=0; i<layers; i++){
+        for(int j=0; j<layers; j++){
+            glVertex3f((-x/2) + i*divx , 0, z/2 - j*divz);
+            glVertex3f((-x/2) + (i+1)*divx, 0, (z/2) - (j+1)*divz);
+            glVertex3f((-x/2) + i*divx , 0, z/2 - (j+1)*divz);
+           
+            glVertex3f((-x/2) + i*divx , 0, z/2 - j*divz);
+            glVertex3f((-x/2) + (i+1)*divx , 0, z/2 - j*divz);
+            glVertex3f((-x/2) + (i+1)*divx, 0, (z/2) - (j+1)*divz);
+        }
+    }
+    
+    glEnd();
+}
+
 void drawAxis () {
 
 
@@ -153,6 +174,7 @@ void drawAxis () {
 	glEnd();
 
 }
+
 
 
 void renderScene(void) {
@@ -180,7 +202,8 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 0.0f,0.0f,1.0f);
     
-    drawCube(1, 5) ;
+    //drawCube(1, 5) ;
+	drawCube(1, 4) ;
 	drawAxis() ;
     
 	// End of frame
