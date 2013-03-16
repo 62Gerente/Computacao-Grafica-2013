@@ -2,6 +2,7 @@
 #include <math.h>
 #include "cores.h"
 #include "cube.h"
+#include "../utils/axis.h"
 
 float rotation;
 float rotationz;
@@ -154,29 +155,6 @@ void drawPlane(float x, float z, int layers){
     glEnd();
 }
 
-void drawAxis () {
-
-
-	glBegin(GL_LINES) ;
-		
-		//glColor3f(CINZNETO) ;
-		glVertex3fv(origem) ;
-		glVertex3fv(pZ) ;
-		
-		//glColor3f(CINZNETO) ;
-		glVertex3fv(origem) ;
-		glVertex3fv(pX) ;
-
-		//glColor3f(CINZNETO) ;
-		glVertex3fv(origem) ;
-		glVertex3fv(pY) ;
-
-	glEnd();
-
-}
-
-
-
 void renderScene(void) {
     
 	// clear buffers
@@ -204,7 +182,7 @@ void renderScene(void) {
     
     //drawCube(1, 5) ;
 	drawCube(1, 4) ;
-	drawAxis() ;
+	drawAxisFull(2, 2, 2) ;
     
 	// End of frame
 	glutSwapBuffers();
