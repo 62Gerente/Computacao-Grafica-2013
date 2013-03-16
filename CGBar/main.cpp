@@ -45,8 +45,6 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
-
-
 void renderScene(void) {
     
 	// clear buffers
