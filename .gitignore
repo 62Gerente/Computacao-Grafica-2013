@@ -1,6 +1,8 @@
 
 .DS_Store
 
+*.xcodeproj
+
 CGBar.xcodeproj/project.pbxproj
 
 CGBar.xcodeproj/project.xcworkspace/contents.xcworkspacedata
