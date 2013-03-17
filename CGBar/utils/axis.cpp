@@ -1,4 +1,4 @@
-#include <GL/glut.h>
+#include <GLUT/glut.h>
 #include "axis.h"
 
 void drawAxis (float dimX, float dimY, float dimZ) {	

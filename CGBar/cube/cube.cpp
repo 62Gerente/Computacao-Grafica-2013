@@ -1,5 +1,4 @@
-#include <GL/glut.h>
-#include <cores.h>
+#include <GLUT/glut.h>
 #include "cube.h"
 
 void drawCube (float dim, int layers) {

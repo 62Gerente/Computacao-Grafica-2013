@@ -71,6 +71,8 @@ void renderScene(void) {
         drawCylinder(3, 5, 30, 10);
     }else if(figura==2){
         drawPlane(5, 10, 10);
+    }else if(figura==3){
+        drawCube(5, 4);
     }else if (figura==6){
         drawCylinder(3, 5, 30);
     }else if (figura==7){
