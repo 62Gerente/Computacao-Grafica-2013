@@ -1,4 +1,4 @@
-#include <GL/glut.h>
+#include <GLUT/glut.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
