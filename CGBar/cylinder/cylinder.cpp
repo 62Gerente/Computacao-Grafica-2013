@@ -1,36 +1,40 @@
-#include <GLUT/glut.h>
+#include <GL/glut.h>
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
     
     float angulo = (2*M_PI)/(float)nLados;
     float h = altura/(float)nCamadas ;
+	float y = altura/2 ;    
 
-    for(float j=altura/2; j >= -altura/2 ; j-=h) {          
-        float centro[] = {0, j, 0} ;
+	for(float j = 0; j <= nCamadas ; j++) { 
 
-        for(float i=0; i < 2*M_PI; i+= angulo) {
+        float centro[] = {0, y, 0} ;
 
-            float A[] = {raio*sinf(i), j, raio*cosf(i)}, B[] = {raio*sinf(i+angulo), j, raio*cosf(i+angulo)} ;
-        
-            if(j <= -altura/(float)2) {               
-                glBegin(GL_TRIANGLES) ;
-                    glVertex3fv(A) ;
-                    glVertex3fv(centro) ;
-                    glVertex3fv(B) ;
-                glEnd() ;
-            }
-            else {              
-                glBegin(GL_TRIANGLES) ;
-                    glVertex3fv(B) ;
-                    glVertex3fv(centro) ;
-                    glVertex3fv(A) ;
-                glEnd() ;
-            }
-        
+		float i = 0 ;
 
-            if(j-h >= -altura/2) {
-                float C[] = {raio*sinf(i), j-h, raio*cosf(i)}, D[] = {raio*sinf(i+angulo), j-h, raio*cosf(i+angulo)} ;
+        for(int n=0; n < nLados; n++) {
+
+            float A[] = {raio*sinf(i), y, raio*cosf(i)}, B[] = {raio*sinf(i+angulo), y, raio*cosf(i+angulo)} ;            
+			
+				if(j == nCamadas) {               
+					glBegin(GL_TRIANGLES) ;
+						glVertex3fv(A) ;
+						glVertex3fv(centro) ;
+						glVertex3fv(B) ;
+					glEnd() ;
+				}
+				if(j == 0) {				          
+					glBegin(GL_TRIANGLES) ;
+						glVertex3fv(B) ;
+						glVertex3fv(centro) ;
+						glVertex3fv(A) ;
+					glEnd() ;
+				}       
+
+            if(j < nCamadas) {
+                float C[] = {raio*sinf(i), y-h, raio*cosf(i)}, D[] = {raio*sinf(i+angulo), y-h, raio*cosf(i+angulo)} ;
                 
                 glBegin(GL_TRIANGLES) ;                 
                     glVertex3fv(A) ;
@@ -42,8 +46,9 @@ void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
                     glVertex3fv(D) ;
                 glEnd() ;
             }
-
+			i = i + angulo ;
         }
+		y = y - h ;
     }
 }    
 
