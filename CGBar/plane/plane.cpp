@@ -36,15 +36,3 @@ void drawPlane(float width, float length){
     glEnd();
 }
 
-void drawPlaneRotated(float width, float length, float anglex, float angley, float anglez){
-    glPushMatrix();
-    
-    glRotatef(anglex, 1, 0, 0);
-    glRotatef(angley, 0, 1, 0);
-    glRotatef(anglez, 0, 0, 1);
-    
-    drawPlane(width, length);
-    
-    glPopMatrix();
-    
-}

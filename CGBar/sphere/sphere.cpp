@@ -1,5 +1,7 @@
 #include <GLUT/glut.h>
+#include <math.h>
 #include "sphere.h"
+
 
 void drawSphere(double r, int nlados, int ncamadas) {
     
