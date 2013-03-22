@@ -14,3 +14,7 @@ CGBar.xcodeproj/xcuserdata/gerente.xcuserdatad/xcschemes/CGBar.xcscheme
 CGBar.xcodeproj/xcuserdata/gerente.xcuserdatad/xcschemes/xcschememanagement.plist
 
 CGBar/CGBar.1
+
+*.o
+
+CGBar/primitivas
