@@ -4,28 +4,29 @@
 
 void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
     
-    float angulo = (2*M_PI)/(float)nLados;
-    float h = altura/(float)nCamadas ;
+    float incAngulo = (2*M_PI)/(float)nLados;
+    float incAltura = altura/(float)nCamadas ;
+	
 	float y = altura/2 ;    
 
-	for(float j = 0; j <= nCamadas ; j++) { 
+	for(float i = 0; i <= nCamadas ; i++) { 
 
         float centro[] = {0, y, 0} ;
 
-		float i = 0 ;
+		float alpha = 0 ;
 
-        for(int n=0; n < nLados; n++) {
+        for(int j=0; j < nLados; j++) {
 
-            float A[] = {raio*sinf(i), y, raio*cosf(i)}, B[] = {raio*sinf(i+angulo), y, raio*cosf(i+angulo)} ;            
+            float A[] = {raio*sinf(alpha), y, raio*cosf(alpha)}, B[] = {raio*sinf(alpha+incAngulo), y, raio*cosf(alpha+incAngulo)} ;            
 			
-				if(j == nCamadas) {               
+				if(i == nCamadas) {               
 					glBegin(GL_TRIANGLES) ;
 						glVertex3fv(A) ;
 						glVertex3fv(centro) ;
 						glVertex3fv(B) ;
 					glEnd() ;
 				}
-				if(j == 0) {				          
+				if(i == 0) {				          
 					glBegin(GL_TRIANGLES) ;
 						glVertex3fv(B) ;
 						glVertex3fv(centro) ;
@@ -33,8 +34,8 @@ void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
 					glEnd() ;
 				}       
 
-            if(j < nCamadas) {
-                float C[] = {raio*sinf(i), y-h, raio*cosf(i)}, D[] = {raio*sinf(i+angulo), y-h, raio*cosf(i+angulo)} ;
+            if(i < nCamadas) {
+                float C[] = {raio*sinf(alpha), y-incAltura, raio*cosf(alpha)}, D[] = {raio*sinf(alpha+incAngulo), y-incAltura, raio*cosf(alpha+incAngulo)} ;
                 
                 glBegin(GL_TRIANGLES) ;                 
                     glVertex3fv(A) ;
@@ -46,9 +47,9 @@ void drawCylinder (float raio, float altura, int nLados, int nCamadas) {
                     glVertex3fv(D) ;
                 glEnd() ;
             }
-			i = i + angulo ;
+			alpha += incAngulo ;
         }
-		y = y - h ;
+		y -= incAltura ;
     }
 }    
 
