@@ -1,9 +1,9 @@
 #include <GLUT/glut.h>
 #include <math.h>
-#include "cylinder/cylinder.h"
-#include "plane/plane.h"
-#include "cube/cube.h"
-#include "sphere/sphere.h"
+#include "primitives/cylinder/cylinder.h"
+#include "primitives/plane/plane.h"
+#include "primitives/cube/cube.h"
+#include "primitives/sphere/sphere.h"
 
 float rotation;
 float rotationz;
@@ -291,7 +291,7 @@ int main(int argc, char **argv) {
 	cull = true;
 	dragging = false;
 	dragx = 0; dragy = 0;
-    figura = 1;
+    figura = 0;
     
     
     
