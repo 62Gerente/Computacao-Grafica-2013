@@ -1,11 +1,7 @@
 #include <GLUT/glut.h>
-#define _USE_MATH_DEFINES
 #include <math.h>
-#include "../../primitives/cylinder/cylinder.h"
-
-void drawBeerCup(double alt ,  int nlados, int ncamadas) {
-
-}
+#define _USE_MATH_DEFINES
+#include "cone.h"
 
 void drawCone(float altura, float raio, int div,int fat){
     
