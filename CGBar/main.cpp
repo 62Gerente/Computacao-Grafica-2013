@@ -7,6 +7,7 @@
 #include "objects/cups/wineCup.h"
 #include "objects/cups/cocktailCup.h"
 #include "primitives/cone/cone.h"
+#include "objects/cups/beerCup.h"
 
 float rotation;
 float rotationz;
@@ -71,7 +72,7 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     if (figura==0) {
-        drawCone(5, 5, 20,20);
+        drawCocktailCup(5, 20,20);
     } else
     if (figura==1) {
         drawCylinder(3, 5, 30, 30);
@@ -85,6 +86,14 @@ void renderScene(void) {
         drawCylinder(3, 5, 30);
     }else if (figura==6){
         drawPlane(5, 5);
+    }else if (figura==7){
+        drawCone(3, 5, 30, 30);
+    }else if (figura==9){
+        drawWineCup(5, 30, 30);
+    }else if (figura==10){
+        drawCocktailCup(5, 30, 30);
+    }else if (figura==11){
+        drawBeerCup(5, 30, 30);
     }
 
     
@@ -246,12 +255,22 @@ void menu_copos_handler(int op)
 	{
         case 0:
 		{
-			figura = 1; // Cilindro
+			figura = 9; // Vinho
 			break;
 		}
         case 1:
 		{
-			figura = 2; // Plano
+			figura = 10; // Cocktail
+			break;
+		}
+        case 2:
+		{
+			figura = 11; // Fino
+			break;
+		}
+        case 3:
+		{
+			figura = 12; // Shot
 			break;
 		}
         default: return;
@@ -357,8 +376,10 @@ int main(int argc, char **argv) {
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	int mcopos = glutCreateMenu(menu_copos_handler);
-        glutAddMenuEntry("Copo de vinho", 0);
-        glutAddMenuEntry("Copo de cocktail", 1);
+        glutAddMenuEntry("Copo de Vinho", 0);
+        glutAddMenuEntry("Copo de Cocktail", 1);
+        glutAddMenuEntry("Copo de Fino", 2);
+        glutAddMenuEntry("Copo de Shot", 2);
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	int mobjectos=  glutCreateMenu(menu_objectos_handler);
