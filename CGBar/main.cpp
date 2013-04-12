@@ -6,6 +6,7 @@
 #include "primitives/sphere/sphere.h"
 #include "objects/cups/wineCup.h"
 #include "objects/cups/cocktailCup.h"
+#include "objects/bancos/banco.h"
 
 float rotation;
 float rotationz;
@@ -48,6 +49,7 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
+ 
 void renderScene(void) {
     
 	// clear buffers
@@ -70,10 +72,10 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     if (figura==0) {
-        drawCocktailCup(5, 20, 20);
+        drawBanco(3, 30, 30);
     } else
     if (figura==1) {
-        drawCylinder(3, 5, 30, 30);
+        drawCylinder(3, 10, 30, 30);
     }else if(figura==2){
         drawPlane(5, 7, 30);
     }else if(figura==3){
@@ -99,22 +101,22 @@ void kb_special(int key, int x, int y){
 	{
         case GLUT_KEY_LEFT:
 		{
-			if(px > -2.0f) px -= 0.1f;
+			if(px > -5.0f) px -= 0.1f;
 			break;
 		}
         case GLUT_KEY_RIGHT:
 		{
-			if(px < 2.0f) px += 0.1f;
+			if(px < 5.0f) px += 0.1f;
 			break;
 		}
         case GLUT_KEY_DOWN:
 		{
-			if(pz < 2.0f) pz += 0.1f;
+			if(pz < 5.0f) pz += 0.1f;
 			break;
 		}
         case GLUT_KEY_UP:
 		{
-			if(pz > -2.0f) pz -= 0.1f;
+			if(pz > -5.0f) pz -= 0.1f;
 			break;
 		}
             
