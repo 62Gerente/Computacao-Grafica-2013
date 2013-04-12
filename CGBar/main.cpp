@@ -4,6 +4,8 @@
 #include "primitives/plane/plane.h"
 #include "primitives/cube/cube.h"
 #include "primitives/sphere/sphere.h"
+#include "objects/cups/wineCup.h"
+#include "objects/cups/cocktailCup.h"
 
 float rotation;
 float rotationz;
@@ -67,7 +69,9 @@ void renderScene(void) {
     glTranslatef(px, 0.0f, pz);
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
-    
+    if (figura==0) {
+        drawCocktailCup(5, 20, 20);
+    } else
     if (figura==1) {
         drawCylinder(3, 5, 30, 30);
     }else if(figura==2){

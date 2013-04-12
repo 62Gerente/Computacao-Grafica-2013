@@ -177,8 +177,7 @@ void keyboard(unsigned char key, int x, int y)
 }
 
 int main ()
-{
-    glutInit();
+{    
 	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize (500,500);
 	glutInitWindowPosition (250,250);
