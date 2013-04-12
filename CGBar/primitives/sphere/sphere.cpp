@@ -2,13 +2,12 @@
 #include <math.h>
 #include "sphere.h"
 
-
 void drawSphere(double r, int nlados, int ncamadas) {
     
     int i, j;
     double passoH = (2*M_PI) / nlados;
-    double passoV = (2*r) / ncamadas;
-    double altura = r* sin(asin((r-passoV)/r));
+    double passoV = (M_PI) / ncamadas;
+    double altura = r* sin((M_PI/2)-passoV);
     double alturaCima = r;
     
     for(i = 0; i < nlados; i++) {
@@ -34,25 +33,24 @@ void drawSphere(double r, int nlados, int ncamadas) {
             cimaNexX = nextX * aux;
             cimaNexZ = nextZ * aux;
             
-                glBegin(GL_TRIANGLES);
-                glVertex3f(actX, altura, actZ);
-                glVertex3f(cimaActX, alturaCima, cimaActZ);
-                glVertex3f(nexX, altura, nexZ);
-                glEnd();
+            glBegin(GL_TRIANGLES);
+            glVertex3f(actX, altura, actZ);
+            glVertex3f(cimaActX, alturaCima, cimaActZ);
+            glVertex3f(nexX, altura, nexZ);
+            glEnd();
             
-                glBegin(GL_TRIANGLES);
-                glVertex3f(cimaActX, alturaCima, cimaActZ);
-                glVertex3f(cimaNexX, alturaCima, cimaNexZ);
-                glVertex3f(nexX, altura, nexZ);
-                glEnd();
+            glBegin(GL_TRIANGLES);
+            glVertex3f(cimaActX, alturaCima, cimaActZ);
+            glVertex3f(cimaNexX, alturaCima, cimaNexZ);
+            glVertex3f(nexX, altura, nexZ);
+            glEnd();
             
             alturaCima = altura;
-            altura = r* (r-(passoV*j))/r;
+            altura = r* sin((M_PI/2)-(passoV*j));
             
         }
         
-        
-        altura = r* (r-passoV)/r;
+        altura = r* sin((M_PI/2)-passoV);
         alturaCima = r;
         
         actualX = nextX;
