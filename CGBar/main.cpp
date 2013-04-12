@@ -232,6 +232,28 @@ void menu_opcoes_handler(int op)
 void menu_principal_handler(int op)
 {
 }
+
+void menu_objectos_handler(int op){
+}
+void menu_copos_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 1; // Cilindro
+			break;
+		}
+        case 1:
+		{
+			figura = 2; // Plano
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
+
 void menu_figuras_handler(int op)
 {
 	switch(op)
@@ -270,6 +292,7 @@ void menu_figuras_handler(int op)
 	}
 	glutPostRedisplay();
 }
+
 
 
 int main(int argc, char **argv) {
@@ -326,11 +349,22 @@ int main(int argc, char **argv) {
         glutAddMenuEntry("ESFERA", 3);
         glutAddMenuEntry("CILINDRO SEM CAMADAS", 4);
         glutAddMenuEntry("PLANO SEM CAMADAS", 5);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mcopos = glutCreateMenu(menu_copos_handler);
+        glutAddMenuEntry("Copo de vinho", 0);
+        glutAddMenuEntry("Copo de cocktail", 1);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mobjectos=  glutCreateMenu(menu_objectos_handler);
+		glutAddSubMenu("Copos", mcopos);
+        glutAttachMenu(GLUT_RIGHT_BUTTON);
     
     
     glutCreateMenu(menu_principal_handler);
         glutAddSubMenu("Opções", mopcoes);
-        glutAddSubMenu("Figuras", mfiguras);
+        glutAddSubMenu("Primitivas", mfiguras);
+		glutAddSubMenu("Objectos", mobjectos);
         glutAttachMenu(GLUT_RIGHT_BUTTON);
     
     // alguns settings para OpenGL
