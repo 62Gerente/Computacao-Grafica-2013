@@ -8,12 +8,12 @@ void drawBeer_base(float altura, float raio, int div,int fat,float perc);
 
 void drawBeerCup(double alt ,  int nlados, int ncamadas) {
     glPushMatrix();
-    glTranslatef(0, alt/2 + alt/14, 0);
+    glTranslatef(0, alt - alt/3.5, 0);
     glRotatef(180, 1, 0, 0);
-    drawBeer_top((3*alt)/4, alt/10, nlados, ncamadas,0.30);
+    drawBeer_top(alt*2, alt/9, nlados, ncamadas,0.65);
     glPopMatrix();
     
-    drawBeer_base(alt/6, alt/14, nlados, ncamadas, 0.40);
+    drawBeer_base(alt/6, alt/9, nlados, ncamadas, 0.5);
 }
 
 void drawBeer_top(float altura, float raio, int div,int fat, float perc){

@@ -74,7 +74,7 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     if (figura==0) {
-        drawVodkaCup(5, 30, 30);
+        drawBeerCup(5, 30, 30);
     } else
     if (figura==1) {
         drawCylinder(3, 5, 30, 30);
