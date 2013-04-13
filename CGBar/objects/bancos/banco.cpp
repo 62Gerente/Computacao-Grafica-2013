@@ -1,5 +1,5 @@
 #include <GLUT/glut.h>
-#include "primitives/cylinder/cylinder.h"
+#include "../../primitives/cylinder/cylinder.h"
 
 void drawBanco(double alt, int nlados, int ncamadas){
 	glPushMatrix();
