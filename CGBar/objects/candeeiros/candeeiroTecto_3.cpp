@@ -96,16 +96,16 @@ void drawCandeeiro_3(double alt, int nlados, int ncamadas){
 
 	glPushMatrix();
 	glTranslatef(0, alt/2.75, 0);
-	drawCand_aux(alt/10, alt, nlados, ncamadas/3);
+	drawCand_aux3(alt/10, alt, nlados, ncamadas/3);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(-alt/2.15, alt/2.75, 0);
-	drawCand_aux(alt/10, alt, nlados, ncamadas/3);
+	drawCand_aux3(alt/10, alt, nlados, ncamadas/3);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslatef(alt/2.15, alt/2.75, 0);
-	drawCand_aux(alt/10, alt, nlados, ncamadas/3);
+	drawCand_aux3(alt/10, alt, nlados, ncamadas/3);
 	glPopMatrix();
 }

@@ -6,14 +6,13 @@
 #include "primitives/sphere/sphere.h"
 #include "objects/cups/wineCup.h"
 #include "objects/cups/cocktailCup.h"
-<<<<<<< HEAD
-#include "objects/bancos/banco.h"
-=======
 #include "primitives/cone/cone.h"
 #include "objects/cups/beerCup.h"
 #include "objects/cups/shotCup.h"
 #include "objects/cups/vodkaCup.h"
->>>>>>> b782b645008c2cadc47ce6cef2f056a3debb7291
+#include "objects/bancos/banco.h"
+#include "objects/candeeiros/candeeiroTecto.h"
+#include "objects/candeeiros/candeeiroTecto_3.h"
 
 float rotation;
 float rotationz;
@@ -79,11 +78,7 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     if (figura==0) {
-<<<<<<< HEAD
-        drawBanco(3, 30, 30);
-=======
-        drawBeerCup(5, 30, 30);
->>>>>>> b782b645008c2cadc47ce6cef2f056a3debb7291
+        drawCandeeiro_3(3, 20, 20);
     } else
     if (figura==1) {
         drawCylinder(3, 10, 30, 30);
