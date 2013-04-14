@@ -11,14 +11,11 @@
 #include "objects/cups/beerCup.h"
 #include "objects/cups/shotCup.h"
 #include "objects/cups/vodkaCup.h"
-<<<<<<< HEAD
 #include "objects/sconces/simpleSconce.h"
 #include "objects/sconces/treeSconce.h"
-=======
 #include "objects/bancos/banco.h"
-#include "objects/candeeiros/candeeiroTecto.h"
-#include "objects/candeeiros/candeeiroTecto_3.h"
->>>>>>> fcedaa8027f3c8ba9e9179cf64093ab8a49c5e4d
+#include "objects/bottles/wineBottle.h"
+#include "objects/bottles/wiskyBottle.h"
 
 float rotation;
 float rotationz;
@@ -61,7 +58,6 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
-
 void renderScene(void) {
     
 	// clear buffers
@@ -84,12 +80,7 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     if (figura==0) {
-<<<<<<< HEAD
-        drawCylinder(5, 30, 30);
-
-=======
-        drawCandeeiro_3(3, 20, 20);
->>>>>>> fcedaa8027f3c8ba9e9179cf64093ab8a49c5e4d
+        drawWiskyBottle(5, 20, 20);
     } else
     if (figura==1) {
         drawCylinder(3, 10, 30, 30);
@@ -120,8 +111,6 @@ void renderScene(void) {
 	// End of frame
 	glutSwapBuffers();
 }
-
-
 
 // escrever funcao de processamento do teclado
 void kb_special(int key, int x, int y){
