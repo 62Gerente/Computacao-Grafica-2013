@@ -16,6 +16,8 @@
 #include "objects/bancos/banco.h"
 #include "objects/bottles/wineBottle.h"
 #include "objects/bottles/wiskyBottle.h"
+#include "objects/table/table.h"
+#include "objects/computer/computer.h"
 
 float rotation;
 float rotationz;
@@ -80,7 +82,7 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     if (figura==0) {
-        drawWiskyBottle(5, 20, 20);
+        drawComputer(5, 10, 10);
     } else
     if (figura==1) {
         drawCylinder(3, 10, 30, 30);
