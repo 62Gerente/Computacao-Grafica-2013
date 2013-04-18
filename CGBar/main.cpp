@@ -11,13 +11,14 @@
 #include "objects/cups/beerCup.h"
 #include "objects/cups/shotCup.h"
 #include "objects/cups/vodkaCup.h"
-#include "objects/sconces/simpleSconce.h"
-#include "objects/sconces/treeSconce.h"
+//#include "objects/sconces/simpleSconce.h"
+//#include "objects/sconces/treeSconce.h"
 #include "objects/bancos/banco.h"
 #include "objects/bottles/wineBottle.h"
 #include "objects/bottles/wiskyBottle.h"
 #include "objects/table/table.h"
 #include "objects/computer/computer.h"
+
 
 float rotation;
 float rotationz;

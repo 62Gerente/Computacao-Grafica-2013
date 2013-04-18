@@ -2,6 +2,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "../../primitives/cylinder/cylinder.h"
+#include "simpleSconce.h"
 
 void drawCand_aux(double r, double alt,  int nlados, int ncamadas) {
        
