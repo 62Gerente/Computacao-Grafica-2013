@@ -16,6 +16,9 @@
 #include "objects/bancos/banco.h"
 #include "objects/bottles/wineBottle.h"
 #include "objects/bottles/wiskyBottle.h"
+#include "objects/sconces/sconce1.h"
+#include "objects/sconces/sconce2.h"
+#include "objects/sconces/sconce3.h"
 
 float rotation;
 float rotationz;
@@ -58,6 +61,8 @@ void changeSize(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
+
+
 void renderScene(void) {
     
 	// clear buffers
@@ -80,7 +85,7 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     if (figura==0) {
-        drawWiskyBottle(5, 20, 20);
+        drawSconce3(4,30, 30);
     } else
     if (figura==1) {
         drawCylinder(3, 10, 30, 30);
