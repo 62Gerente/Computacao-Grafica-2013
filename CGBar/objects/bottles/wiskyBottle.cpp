@@ -2,6 +2,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "../../primitives/cylinder/cylinder.h"
+#include "../paralelepipedo/paralelepipedo.h"
 
 
 void drawWiskyBottle_body (float altura, float raio, int nLados, int nCamadas);
@@ -9,8 +10,9 @@ void drawWiskyBottle_top(double r, double alt,  int nlados, int ncamadas);
 
 void drawWiskyBottle(double alt,  int nlados, int ncamadas) {
     glPushMatrix();
+    glRotatef(45, 0, 1, 0);
     glTranslatef(0, ((2*alt)/9), 0);
-    drawWiskyBottle_body((2*alt)/3 - alt/10, alt/8, 4, ncamadas);
+    drawParalelepipedo((2*alt)/3 - alt/10, alt/5-alt/40,alt/5-alt/40, nlados);
     glPopMatrix();
 
     glPushMatrix();
@@ -86,47 +88,4 @@ void drawWiskyBottle_top(double raio, double altura,  int fat, int div) {
 		ang+=ang_inc;
 	}
 	glEnd();
-}
-void drawWiskyBottle_body (float altura, float raio, int nLados, int nCamadas) {
-    
-    float incAngulo = (2*M_PI)/(float)nLados;
-    float incAltura = altura/(float)nCamadas ;
-	
-	float y = altura/2 ;
-    
-	for(float i = 0; i <= nCamadas ; i++) {
-        
-        float centro[] = {0, y, 0} ;
-        
-		float alpha = 0 ;
-        
-        for(int j=0; j < nLados; j++) {
-            
-            float A[] = {raio*sinf(alpha), y, raio*cosf(alpha)}, B[] = {raio*sinf(alpha+incAngulo), y, raio*cosf(alpha+incAngulo)} ;
-            
-            if(i == nCamadas) {
-                glBegin(GL_TRIANGLES) ;
-                glVertex3fv(centro) ;
-                glVertex3fv(B) ;
-                glVertex3fv(A) ;
-                glEnd() ;
-            }
-            
-            if(i < nCamadas) {
-                float C[] = {raio*sinf(alpha), y-incAltura, raio*cosf(alpha)}, D[] = {raio*sinf(alpha+incAngulo), y-incAltura, raio*cosf(alpha+incAngulo)} ;
-                
-                glBegin(GL_TRIANGLES) ;
-                glVertex3fv(A) ;
-                glVertex3fv(C) ;
-                glVertex3fv(D) ;
-                
-                glVertex3fv(B) ;
-                glVertex3fv(A) ;
-                glVertex3fv(D) ;
-                glEnd() ;
-            }
-			alpha += incAngulo ;
-        }
-		y -= incAltura ;
-    }
 }
