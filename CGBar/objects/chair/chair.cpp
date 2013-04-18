@@ -10,16 +10,17 @@
 
 void drawChairClassica () {
 
-	float altura_assento = 0.1 ;
-	float comprimento_assento = 0.6 ;
-	float largura_assento = 0.6 ;
+	float altura_assento = 0.1*5 ;
+	float comprimento_assento = 0.6*5 ;
+	float largura_assento = 0.6*5 ;
 
-	float altura_pe = 0.4 ;
-	float raio_pe = 0.01 ;	
+	float altura_pe = 0.4*5 ;
+	float raio_pe = 0.01*5 ;	
 
-	float altura_encosto = 0.6 ;
-	float comprimento_encosto = 0.1 ;
-	float largura_encosto = 0.1 ;	
+	float altura_encosto = 0.6*5 ;
+	float comprimento_encosto = 0.1*5 ;
+	float largura_encosto = 0.1*5 ;	
+	float inclinacao_encosto = 5 ;
 
 	int	n_camadas = 5 ;
 	int n_vertices = 20 ;	
@@ -60,6 +61,7 @@ void drawChairClassica () {
 	glPushMatrix() ;
 	glTranslatef(-comprimento_assento/2 + largura_encosto/2, altura_assento/2 + altura_encosto/2, 0) ;
 	glRotatef(90, 0, 0, 1) ;	
+	glRotatef(inclinacao_encosto, 0, 0, 1) ;
 	drawParalelepipedo(largura_encosto, comprimento_assento, altura_encosto, n_camadas) ;
 	glPopMatrix() ;
 }

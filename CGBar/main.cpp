@@ -18,7 +18,7 @@
 #include "objects/bottles/wiskyBottle.h"
 #include "objects/table/table.h"
 #include "objects/computer/computer.h"
-
+#include "objects/chair/chair.h"
 
 float rotation;
 float rotationz;
@@ -73,7 +73,7 @@ void renderScene(void) {
 			  0.0f,1.0f,0.0f);
     
     // por instrucoes de desenho aqui
-    glutPostRedisplay();
+    //glutPostRedisplay();
     
     glPolygonMode(face, modo);
 	if(cull) glEnable(GL_CULL_FACE);
@@ -82,7 +82,10 @@ void renderScene(void) {
     glTranslatef(px, 0.0f, pz);
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
-    if (figura==0) {
+    
+	//drawChairClassica() ;	
+
+	if (figura==0) {
         drawComputer(5, 10, 10);
     } else
     if (figura==1) {
@@ -171,6 +174,7 @@ void kb_normal(unsigned char key, int x, int y){
         default:
             break;
     }
+	glutPostRedisplay();
 }
 
 void mouse_click_handler(int botao, int estado, int x, int y)
@@ -192,6 +196,7 @@ void mouse_click_handler(int botao, int estado, int x, int y)
 				break;
 			}
 		}
+		glutPostRedisplay();
 	}
 }
 
