@@ -74,14 +74,14 @@ void drawChairClassica2 (float tamanho, int n_vertices, int n_camadas) {
 
 	/* Variáveis do encosto */
 	float altura_encosto = 0.6*tamanho ;	
-	float largura_encosto = 0.05*tamanho ;
+//	float largura_encosto = 0.05*tamanho ;
 	float raio_encosto = 0.03*tamanho ;	
-	float inclinacao_encosto = 0 ;	
+//	float inclinacao_encosto = 0 ;
 
 	/* Variáveis dos braços */
-	float altura_braco = altura_encosto/3 ;
-	float comprimento_braco = (2*(largura_assento - largura_encosto))/3 ;
-	float raio_braco = raio_encosto ;	
+//	float altura_braco = altura_encosto/3 ;
+//	float comprimento_braco = (2*(largura_assento - largura_encosto))/3 ;
+//	float raio_braco = raio_encosto ;
 
 	/* Variáveis das barras do assento */
 	float altura_barra = altura_pe/5 ;
@@ -208,7 +208,7 @@ void drawChairClassica3 (float tamanho, int n_vertices, int n_camadas) {
 	float altura_encosto = 0.6*tamanho ;	
 	float largura_encosto = 0.05*tamanho ;
 	float raio_encosto = 0.03*tamanho ;	
-	float inclinacao_encosto = 0 ;	
+//	float inclinacao_encosto = 0 ;
 
 	/* Variáveis dos braços */
 	float altura_braco = altura_encosto/3 ;

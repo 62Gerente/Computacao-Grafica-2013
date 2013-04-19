@@ -74,7 +74,7 @@ void renderScene(void) {
     
 	// set the camera
 	glLoadIdentity();
-    gluLookAt(3*sin(camx),2*camy,3*cos(camx),
+    gluLookAt(20*sin(camx),2*camy,20*cos(camx),
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     
@@ -152,6 +152,9 @@ void renderScene(void) {
 		case 24:
 			drawChairClassica3(5,30,10);
 			break;
+        case 25:
+			drawTable2(1, 2, 0.05, 0.8, 0.05, 30, 10);
+			break;
 		case 18:
 			drawTableCircular(1.5, 2, 30, 10);
 			break;
@@ -159,13 +162,13 @@ void renderScene(void) {
 			drawTable(2, 1, 0.05, 0.8, 0.05, 30, 10);
 			break;
 		case 20:
-			drawSconce1(2, 30, 30) ;	
+			drawSconce1(5, 30, 30) ;
 			break;
 		case 21:
-			drawSconce2(2, 4, 30, 30);
+			drawSconce2(5, 3, 30, 30);
 			break;
 		case 22:
-			drawSconce3(2,30,30);
+			drawSconce3(5,30,30);
 		default:	
 			break;
 			}
@@ -466,6 +469,10 @@ void menu_mesas_handler(int op)
 			figura = 19; 
 			break;
 		}
+        case 2:{
+            figura=25;
+            break;
+        }
         default: return;
 	}
 	glutPostRedisplay();
@@ -579,12 +586,13 @@ int main(int argc, char **argv) {
 	int mmesas = glutCreateMenu(menu_mesas_handler);
         glutAddMenuEntry("Mesa Circular", 0);
 		glutAddMenuEntry("Mesa Rectangular", 1);
+        glutAddMenuEntry("Mesa Rectangular 2", 2);
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	int mcandeeiros = glutCreateMenu(menu_candeeiros_handler);
-        glutAddMenuEntry("Candeeiro", 0);
-		glutAddMenuEntry("Candeeiro", 1);
-		glutAddMenuEntry("Candeeiro", 2);
+        glutAddMenuEntry("Candeeiro 1", 0);
+		glutAddMenuEntry("Candeeiro 2", 1);
+		glutAddMenuEntry("Candeeiro 3", 2);
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 
@@ -601,7 +609,6 @@ int main(int argc, char **argv) {
         glutAddSubMenu("Opções", mopcoes);
         glutAddSubMenu("Primitivas", mfiguras);
 		glutAddSubMenu("Objectos", mobjectos);
-		glutAddSubMenu("Candeeiros", mcandeeiros);
 		glutAddMenuEntry("Estrutura", 5);
         glutAttachMenu(GLUT_RIGHT_BUTTON);
     
