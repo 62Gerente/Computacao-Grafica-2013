@@ -8,7 +8,7 @@
 void drawSconce2(double alt , double comp, int nlados, int ncamadas){
 
 		glPushMatrix();
-		glTranslatef(0,alt/2 + comp/2,0);
+		glTranslatef(0,alt/10,0);
 		glRotatef(90,1,0,0);
 		glRotatef(90,0,0,1);
 		glScalef(alt,comp,0.06);
@@ -17,7 +17,7 @@ void drawSconce2(double alt , double comp, int nlados, int ncamadas){
         glPopMatrix();
 
 		glPushMatrix();
-		glTranslatef(0,alt/2 + comp/2- 0.03,0);
+		glTranslatef(0,alt/10- 0.01,0);
 		glRotatef(90,1,0,0);
 		glRotatef(90,0,0,1);
 		glScalef(alt,comp,0.09);

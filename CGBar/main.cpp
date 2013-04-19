@@ -11,8 +11,7 @@
 #include "objects/cups/beerCup.h"
 #include "objects/cups/shotCup.h"
 #include "objects/cups/vodkaCup.h"
-//#include "objects/sconces/simpleSconce.h"
-//#include "objects/sconces/treeSconce.h"
+#include "objects/sconces/treeSconce.h"
 #include "objects/bancos/banco.h"
 #include "objects/bottles/wineBottle.h"
 #include "objects/bottles/wiskyBottle.h"
@@ -65,7 +64,6 @@ void changeSize(int w, int h) {
 }
 
 
-
 void renderScene(void) {
     
 	// clear buffers
@@ -88,38 +86,77 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     
-	drawSconce3(1, 1, 10) ;	
 
-	/*if (figura==0) {
-        drawComputer(5, 10, 10);
-    } else
-    if (figura==1) {
-        drawCylinder(3, 10, 30, 30);
-    }else if(figura==2){
-        drawPlane(5, 7, 30);
-    }else if(figura==3){
-        drawCube(5, 30);
-    }else if(figura==4){
-        drawSphere(3, 30, 30);
-    }else if (figura==5){
-        drawCylinder(3, 5, 30);
-    }else if (figura==6){
-        drawPlane(5, 5);
-    }else if (figura==7){
-        drawCone(3, 5, 30, 30);
-    }else if (figura==9){
-        drawWineCup(5, 30, 30);
-    }else if (figura==10){
-        drawCocktailCup(5, 30, 30);
-    }else if (figura==11){
-        drawBeerCup(5, 30, 30);
-    }else if (figura==12){
-        drawShotCup(5, 30, 30);
-    }else if (figura==13){
-        drawVodkaCup(5, 30, 30);
-    }*/
-    
-	// End of frame
+
+	switch(figura){
+		case 0:
+			//estrutura;
+		case 1:
+			drawCylinder(3, 10, 30, 30);
+			break;
+		case 2:
+			drawPlane(5, 7, 30);
+			break;
+		case 3:
+			drawCube(5, 30);;
+			break;
+		case 4:
+			drawSphere(3, 30, 30);
+			break;
+		case 5:
+			drawCylinder(3, 5, 30);
+			break;
+		case 6:
+			drawPlane(5, 5);
+			break;
+		case 7:
+			drawCone(3, 5, 30, 30);;
+			break;
+		case 9:
+			drawWineCup(5, 30, 30);;
+			break;
+		case 10:
+			drawCocktailCup(5, 30, 30);
+			break;
+		case 11:
+			drawBeerCup(5, 30, 30);
+			break;
+		case 12:
+			drawShotCup(5, 30, 30);
+			break;
+		case 13:
+			drawVodkaCup(5, 30, 30);
+			break;
+		case 14:
+			drawWineBottle(5,30,30);
+			break;
+		case 15:
+			drawWiskyBottle(5,30,30);
+			break;
+		case 16:
+			drawChairClassica(1,1,30,30) ;
+			break;
+		case 17:
+			//drawChairPub(1,1,30,30);
+			break;
+		case 18:
+			drawTableCircular(2, 0.1, 0.3, 1, 0.15, 0.01, 30, 30);
+			break;
+		case 19:
+			drawTable(2, 1, 0.05, 1, 0.01, 30, 30);
+			break;
+		case 20:
+			drawSconce(2, 30, 30) ;	
+			break;
+		case 21:
+			drawSconce2(2, 4, 30, 30);
+			break;
+		case 22:
+			drawSconce3(2,30,30);
+		default:	
+			break;
+			}
+   
 	glutSwapBuffers();
 }
 
@@ -147,7 +184,6 @@ void kb_special(int key, int x, int y){
 			if(pz > -5.0f) pz -= 0.1f;
 			break;
 		}
-            
             
         default: return;
 	}
@@ -267,42 +303,18 @@ void menu_opcoes_handler(int op)
 }
 void menu_principal_handler(int op)
 {
+	switch (op)
+	{
+		case 5:
+			//estrutura
+			break;
+
+		default:
+		break;
+	}
 }
 
 void menu_objectos_handler(int op){
-}
-void menu_copos_handler(int op)
-{
-	switch(op)
-	{
-        case 0:
-		{
-			figura = 9; // Vinho
-			break;
-		}
-        case 1:
-		{
-			figura = 10; // Cocktail
-			break;
-		}
-        case 2:
-		{
-			figura = 11; // Fino
-			break;
-		}
-        case 3:
-		{
-			figura = 12; // Shot
-			break;
-		}
-        case 4:
-        {
-            figura = 13; // Bebida Branca
-            break;
-        }
-        default: return;
-	}
-	glutPostRedisplay();
 }
 
 void menu_figuras_handler(int op)
@@ -343,8 +355,126 @@ void menu_figuras_handler(int op)
 	}
 	glutPostRedisplay();
 }
+void menu_copos_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 9; // Vinho
+			break;
+		}
+        case 1:
+		{
+			figura = 10; // Cocktail
+			break;
+		}
+        case 2:
+		{
+			figura = 11; // Fino
+			break;
+		}
+        case 3:
+		{
+			figura = 12; // Shot
+			break;
+		}
+        case 4:
+        {
+            figura = 13; // Bebida Branca
+            break;
+        }
+        default: return;
+	}
+	glutPostRedisplay();
+}
 
 
+void menu_garrafas_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 14; 
+			break;
+		}
+        case 1:
+		{
+			figura = 15; 
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
+
+void menu_cadeiras_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 16; 
+			break;
+		}
+        case 1:
+		{
+			figura = 17; 
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
+
+void menu_mesas_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 18; 
+			break;
+		}
+        case 1:
+		{
+			figura = 19; 
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
+
+void menu_candeeiros_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 20; 
+			break;
+		}
+        case 1:
+		{
+			figura = 21; 
+			break;
+		}
+		case 2:
+		{
+			figura = 22; 
+			break;
+		}
+        case 3:
+		{
+			figura = 23; 
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
 
 int main(int argc, char **argv) {
     
@@ -410,8 +540,34 @@ int main(int argc, char **argv) {
         glutAddMenuEntry("Codo de Bebida Branca", 4);
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
+	int mgarrafas = glutCreateMenu(menu_garrafas_handler);
+        glutAddMenuEntry("Garrafa de Vinho", 0);
+		glutAddMenuEntry("Garrafa de Whisky", 1);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mcadeiras = glutCreateMenu(menu_cadeiras_handler);
+        glutAddMenuEntry("Cadeira Clássica", 0);
+		glutAddMenuEntry("Cadeira de Pub", 1);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mmesas = glutCreateMenu(menu_mesas_handler);
+        glutAddMenuEntry("Mesa Circular", 0);
+		glutAddMenuEntry("Mesa Rectangular", 1);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mcandeeiros = glutCreateMenu(menu_candeeiros_handler);
+        glutAddMenuEntry("Candeeiro", 0);
+		glutAddMenuEntry("Candeeiro", 1);
+		glutAddMenuEntry("Candeeiro", 2);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+
 	int mobjectos=  glutCreateMenu(menu_objectos_handler);
 		glutAddSubMenu("Copos", mcopos);
+		glutAddSubMenu("Garrafas", mgarrafas);
+		glutAddSubMenu("Cadeiras", mcadeiras);
+		glutAddSubMenu("Mesas", mmesas);
+		glutAddSubMenu("Candeeiros", mcandeeiros);
         glutAttachMenu(GLUT_RIGHT_BUTTON);
     
     
@@ -419,6 +575,8 @@ int main(int argc, char **argv) {
         glutAddSubMenu("Opções", mopcoes);
         glutAddSubMenu("Primitivas", mfiguras);
 		glutAddSubMenu("Objectos", mobjectos);
+		glutAddSubMenu("Candeeiros", mcandeeiros);
+		glutAddMenuEntry("Estrutura", 5);
         glutAttachMenu(GLUT_RIGHT_BUTTON);
     
     // alguns settings para OpenGL
