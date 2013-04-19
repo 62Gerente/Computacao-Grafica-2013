@@ -1,9 +1,9 @@
 #include <GLUT/glut.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "primitives/cylinder/cylinder.h"  
-#include "primitives/sphere/sphere.h"
-#include "primitives/cube/cube.h"
+#include "../../primitives/cylinder/cylinder.h"  
+#include "../../primitives/sphere/sphere.h"
+#include "../../primitives/cube/cube.h"
 
 void drawSconce2(double alt , double comp, int nlados, int ncamadas){
 

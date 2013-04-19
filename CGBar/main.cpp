@@ -16,15 +16,12 @@
 #include "objects/bancos/banco.h"
 #include "objects/bottles/wineBottle.h"
 #include "objects/bottles/wiskyBottle.h"
-<<<<<<< HEAD
 #include "objects/sconces/sconce1.h"
 #include "objects/sconces/sconce2.h"
 #include "objects/sconces/sconce3.h"
-=======
 #include "objects/table/table.h"
 #include "objects/computer/computer.h"
 #include "objects/chair/chair.h"
->>>>>>> 691e9b061b0cdc70af938623a5623315976b86f5
 
 float rotation;
 float rotationz;
@@ -90,16 +87,11 @@ void renderScene(void) {
     glTranslatef(px, 0.0f, pz);
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
-<<<<<<< HEAD
-    if (figura==0) {
-        drawSconce3(4,30, 30);
-=======
     
-	drawChairClassica() ;	
+	drawSconce3(1, 1, 10) ;	
 
 	/*if (figura==0) {
         drawComputer(5, 10, 10);
->>>>>>> 691e9b061b0cdc70af938623a5623315976b86f5
     } else
     if (figura==1) {
         drawCylinder(3, 10, 30, 30);

@@ -1,11 +1,11 @@
 #include <GLUT/glut.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-#include "primitives/cylinder/cylinder.h"    
-#include "primitives/sphere/sphere.h"
+#include "../../primitives/cylinder/cylinder.h"   
+#include "../../primitives/sphere/sphere.h"
 
 
-void drawSconce(double alt ,  int nlados, int ncamadas) {
+void drawSconce1(double alt ,  int nlados, int ncamadas) {
 
         
 		glPushMatrix();
