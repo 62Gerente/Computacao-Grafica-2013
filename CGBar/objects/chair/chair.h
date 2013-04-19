@@ -1,11 +1,9 @@
 #ifndef _CHAIR_H_
 #define _CHAIR_H_
 
-void drawChairClassica(float altura_total, float altura_pe, int n_vertices, int n_camadas) ;
-void drawChairClassicaBarras(float altura_total, float altura_pe, int n_vertices, int n_camadas) ;
-void drawChair2() ;
-void drawChairPub() ;
-
-
+void drawChairClassica(float tamanho, int n_vertices, int n_camadas) ;
+void drawChairClassica2(float tamanho, int n_vertices, int n_camadas) ;
+void drawChairClassica3(float tamanho, int n_vertices, int n_camadas) ;
+void drawChairPub(float tamanho, int n_vertices, int n_camadas) ;
 
 #endif
