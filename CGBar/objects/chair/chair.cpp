@@ -354,7 +354,7 @@ void drawChairClassica3 (float tamanho, int n_vertices, int n_camadas) {
 
 void drawChairPub(float tamanho, int n_vertices, int n_camadas) {
 
-	float altura_assento = 0.1*tamanho ;
+	float altura_assento = 0.02*tamanho ;
 	float comprimento_assento = 0.6*tamanho ;
 	float largura_assento = 0.6*tamanho ;	
 

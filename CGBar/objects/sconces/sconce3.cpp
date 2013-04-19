@@ -5,10 +5,10 @@
 #include "../../primitives/sphere/sphere.h"
 
 
-void drawSconce3(double alt, int nlados, int ncamadas){
+ void drawSconce3(double alt, int nlados, int ncamadas){
 
 		glPushMatrix();
-		glTranslatef(0,alt,0);
+		glTranslatef(0,alt/10,0);
 		glRotatef(90,1,0,0);
 		glRotatef(90,0,0,1);
 		glScalef(alt,alt,0.06);
@@ -17,7 +17,7 @@ void drawSconce3(double alt, int nlados, int ncamadas){
         glPopMatrix();
 
 		glPushMatrix();
-		glTranslatef(0,alt - 0.03,0);
+		glTranslatef(0,alt/10- 0.01,0);
 		glRotatef(90,1,0,0);
 		glRotatef(90,0,0,1);
 		glScalef(alt,alt,0.09);
