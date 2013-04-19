@@ -95,7 +95,7 @@ void renderScene(void) {
 		case 0:
 			drawWallsX(1);
 			drawWallsZ(1);
-			drawTecto(1, 1) ;
+			drawTecto(1) ;
 			drawFloor(1) ;
 			break ;
 		case 1:
