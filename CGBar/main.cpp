@@ -141,19 +141,19 @@ void renderScene(void) {
 			drawWiskyBottle(5,30,30);
 			break;
 		case 16:
-			drawChairClassica(1,30,10) ;
+			drawChairClassica(5,30,10) ;
 			break;
 		case 17:
-			drawChairPub(1,30,10);
+			drawChairPub(5,30,10);
 			break;
 		case 23:
-			drawChairClassica2(1,30,10);
+			drawChairClassica2(5,30,10);
 			break;
 		case 24:
-			drawChairClassica3(1,30,10);
+			drawChairClassica3(5,30,10);
 			break;
 		case 18:
-			drawTableCircular(1, 0.05, 0.02, 1, 0.3, 0.01, 30, 10);
+			drawTableCircular(1.5, 2, 30, 10);
 			break;
 		case 19:
 			drawTable(2, 1, 0.05, 0.8, 0.05, 30, 10);

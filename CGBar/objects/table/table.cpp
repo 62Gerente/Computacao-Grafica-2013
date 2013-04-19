@@ -115,7 +115,36 @@ void drawTable2(float largura, float comprimento, float altura_tabua, float altu
 	int N_VERTICES: Número de vértices usado para desenhar o cilindros.
 	int N_CAMADAS: Número de camadas usadas para desenhar o cilindro ;	
 */
-void drawTableCircular(float raio_tabua, float altura_tabua, float raio_pe, float altura_pe, float raio_base, float altura_base, int n_vertices, int n_camadas)  {
+//void drawTableCircular(float raio_tabua, float altura_tabua, float raio_pe, float altura_pe, float raio_base, float altura_base, int n_vertices, int n_camadas)  {
+//
+//	/* Desenhar a tábua */
+//	glPushMatrix();
+//	glTranslatef(0, altura_pe/2+altura_tabua/2, 0) ;
+//	drawCylinder(raio_tabua, altura_tabua, n_vertices, n_camadas) ;
+//	glPopMatrix() ;
+//
+//	/* Desenhar o pé */
+//	glPushMatrix() ;
+//	glTranslatef(0, 0, 0);
+//	glRotatef(45, 0, 1, 0) ;
+//	drawCylinder(raio_pe, altura_pe, n_vertices, n_camadas) ;
+//	glPopMatrix() ;
+//
+//	/* Desenhar a base */
+//	glPushMatrix() ;
+//	glTranslatef(0, -altura_pe/2-altura_base/2, 0) ;
+//	drawCylinder(raio_base, altura_base, n_vertices, n_camadas) ;
+//	glPopMatrix();
+//}
+
+void drawTableCircular(float raio_tabua, float altura_pe, int n_vertices, int n_camadas)  {
+
+	float altura_tabua = altura_pe/20 ;
+	
+	float raio_pe = raio_tabua/50 ;
+
+	float altura_base = altura_tabua/5 ;
+	float raio_base = raio_tabua/3 ;
 
 	/* Desenhar a tábua */
 	glPushMatrix();

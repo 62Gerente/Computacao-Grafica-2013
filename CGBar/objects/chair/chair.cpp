@@ -17,12 +17,11 @@ void drawChairClassica (float tamanho, int n_vertices, int n_camadas) {
 	float raio_pe = 0.03*tamanho ;	
 
 	float altura_encosto = 0.6*tamanho ;	
-	float largura_encosto = 0.07*tamanho ;
+	float largura_encosto = 0.05*tamanho ;
 	float inclinacao_encosto = 0 ;
 	
 	/* Desenhar o assento da cadeira na origem */	
-	glPushMatrix() ;
-	//glTranslatef(0, altura_pe/2.0, 0);	
+	glPushMatrix() ;		
 	drawParalelepipedo(altura_assento, largura_assento, comprimento_assento, n_camadas) ;
 	glPopMatrix() ;
 
@@ -75,7 +74,7 @@ void drawChairClassica2 (float tamanho, int n_vertices, int n_camadas) {
 
 	/* Variáveis do encosto */
 	float altura_encosto = 0.6*tamanho ;	
-	float largura_encosto = largura_assento/10 ;
+	float largura_encosto = 0.05*tamanho ;
 	float raio_encosto = 0.03*tamanho ;	
 	float inclinacao_encosto = 0 ;	
 
@@ -207,7 +206,7 @@ void drawChairClassica3 (float tamanho, int n_vertices, int n_camadas) {
 
 	/* Variáveis do encosto */
 	float altura_encosto = 0.6*tamanho ;	
-	float largura_encosto = largura_assento/10 ;
+	float largura_encosto = 0.05*tamanho ;
 	float raio_encosto = 0.03*tamanho ;	
 	float inclinacao_encosto = 0 ;	
 

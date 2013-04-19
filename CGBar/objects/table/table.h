@@ -29,5 +29,7 @@ void drawTable2(float largura_tabua, float comprimento_tabua, float altura_tabua
 */
 void drawTableCircular(float raio_tabua, float altura_tabua, float raio_pe, float altura_pe, float raio_base, float altura_base, int n_vertices, int n_camadas) ;
 
+void drawTableCircular(float raio_tabua, float altura_pe, int n_vertices, int n_camadas) ;
+
 
 #endif
