@@ -26,7 +26,7 @@ void drawChairClassica (float altura_total, float altura_pe, int n_vertices, int
 
 	float altura_encosto = altura_total - altura_pe - altura_assento ;	
 	float largura_encosto = comprimento_assento/10 ;	
-	float inclinacao_encosto = 0 ;
+	float inclinacao_encosto = 5 ;
 	
 	/* Desenhar o assento da cadeira na origem*/	
 	glPushMatrix() ;
@@ -85,8 +85,8 @@ void drawChairClassicaBarras (float altura_total, float altura_pe, int n_vertice
 	
 	int n_barras = 3 ;
 
-	int	n_camadas = 5 ;
-	int n_vertices = 20 ;	
+	//int	n_camadas = 5 ;
+	//int n_vertices = 20 ;	
 
 	/* Desenhar o assento da cadeira na origem*/	
 	glPushMatrix() ;

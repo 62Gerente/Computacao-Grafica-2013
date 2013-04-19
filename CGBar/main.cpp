@@ -83,7 +83,7 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     
-	drawChairClassica(3, 1.4, 15, 10) ;	
+	drawChairClassica() ;	
 
 	/*if (figura==0) {
         drawComputer(5, 10, 10);
