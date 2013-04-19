@@ -68,7 +68,7 @@ void renderScene(void) {
     
 	// set the camera
 	glLoadIdentity();
-    gluLookAt(15*sin(camx),camy,15*cos(camx),
+    gluLookAt(3*sin(camx),camy,3*cos(camx),
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     
@@ -83,9 +83,9 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);
     
-	//drawChairClassica() ;	
+	drawChairClassica(3, 1.4, 15, 10) ;	
 
-	if (figura==0) {
+	/*if (figura==0) {
         drawComputer(5, 10, 10);
     } else
     if (figura==1) {
@@ -112,7 +112,7 @@ void renderScene(void) {
         drawShotCup(5, 30, 30);
     }else if (figura==13){
         drawVodkaCup(5, 30, 30);
-    }
+    }*/
     
 	// End of frame
 	glutSwapBuffers();

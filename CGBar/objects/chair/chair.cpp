@@ -7,24 +7,27 @@
 #include "../paralelepipedo/paralelepipedo.h"
 #include <stdio.h>
 
+//float altura_assento = 0.05*5 ;
+//	float comprimento_assento = 0.6*5 ;
+//	float largura_assento = 0.6*5 ;
+//
+//	float altura_pe = 0.4*5 ;
+//	float raio_pe = 0.03*5 ;	
+//
+//	float altura_encosto = 0.6*5 ;	
+//	float largura_encosto = 0.07*5 ;
+void drawChairClassica (float altura_total, float altura_pe, int n_vertices, int n_camadas) {
 
-void drawChairClassica () {
+	float altura_assento = (altura_total - altura_pe)/15 ;
+	float comprimento_assento = 0.6667 * altura_total ;
+	float largura_assento = comprimento_assento ;
+	
+	float raio_pe = altura_pe/15 ;	
 
-	float altura_assento = 0.1*5 ;
-	float comprimento_assento = 0.6*5 ;
-	float largura_assento = 0.6*5 ;
-
-	float altura_pe = 0.4*5 ;
-	float raio_pe = 0.01*5 ;	
-
-	float altura_encosto = 0.6*5 ;
-	float comprimento_encosto = 0.1*5 ;
-	float largura_encosto = 0.1*5 ;	
-	float inclinacao_encosto = 5 ;
-
-	int	n_camadas = 5 ;
-	int n_vertices = 20 ;	
-
+	float altura_encosto = altura_total - altura_pe - altura_assento ;	
+	float largura_encosto = comprimento_assento/10 ;	
+	float inclinacao_encosto = 0 ;
+	
 	/* Desenhar o assento da cadeira na origem*/	
 	glPushMatrix() ;
 	//glTranslatef(0, altura_pe/2.0, 0);	
@@ -66,14 +69,14 @@ void drawChairClassica () {
 	glPopMatrix() ;
 }
 
-void drawChairClassicaBarras () {
+void drawChairClassicaBarras (float altura_total, float altura_pe, int n_vertices, int n_camadas) {
+		
+	float altura_assento = (altura_total - altura_pe)/15 ;
+	float comprimento_assento = 0.6667 * altura_total ;
+	float largura_assento = comprimento_assento ;
 
-	float altura_assento = 0.1 ;
-	float comprimento_assento = 0.6 ;
-	float largura_assento = 0.6 ;
-
-	float altura_pe = 0.4 ;
-	float raio_pe = 0.01 ;	
+	//float altura_pe = 0.4 ;
+	float raio_pe = altura_pe/15 ;		
 
 	float altura_encosto = 0.6 ;
 	float comprimento_encosto = 0.1 ;
