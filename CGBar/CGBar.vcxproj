@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{171206FA-87F8-4A30-81A8-60C9B3C7C963}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>CGBar</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\toolkits\includes;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\toolkits\libs;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glew32.lib;glut32.lib;DevIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="objects\bancos\banco.cpp" />
+    <ClCompile Include="objects\bottles\wineBottle.cpp" />
+    <ClCompile Include="objects\bottles\wiskyBottle.cpp" />
+    <ClCompile Include="objects\chair\chair.cpp" />
+    <ClCompile Include="objects\computer\computer.cpp" />
+    <ClCompile Include="objects\cups\beerCup.cpp" />
+    <ClCompile Include="objects\cups\cocktailCup.cpp" />
+    <ClCompile Include="objects\cups\shotCup.cpp" />
+    <ClCompile Include="objects\cups\vodkaCup.cpp" />
+    <ClCompile Include="objects\cups\wineCup.cpp" />
+    <ClCompile Include="objects\estruturas\floor.cpp" />
+    <ClCompile Include="objects\estruturas\tecto.cpp" />
+    <ClCompile Include="objects\estruturas\walls.cpp" />
+    <ClCompile Include="objects\paralelepipedo\paralelepipedo.cpp" />
+    <ClCompile Include="objects\sconces\sconce1.cpp" />
+    <ClCompile Include="objects\sconces\sconce2.cpp" />
+    <ClCompile Include="objects\sconces\sconce3.cpp" />
+    <ClCompile Include="objects\sconces\simpleSconce.cpp" />
+    <ClCompile Include="objects\sconces\treeSconce.cpp" />
+    <ClCompile Include="objects\table\table.cpp" />
+    <ClCompile Include="Primitivas.cpp" />
+    <ClCompile Include="primitives\cone\cone.cpp" />
+    <ClCompile Include="primitives\cube\cube.cpp" />
+    <ClCompile Include="primitives\cylinder\cylinder.cpp" />
+    <ClCompile Include="primitives\plane\plane.cpp" />
+    <ClCompile Include="primitives\plane\PlaneVBO.cpp" />
+    <ClCompile Include="primitives\sphere\sphere.cpp" />
+    <ClCompile Include="utils\axis.cpp" />
+    <ClCompile Include="utils\cores.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="objects\bancos\banco.h" />
+    <ClInclude Include="objects\bottles\wineBottle.h" />
+    <ClInclude Include="objects\bottles\wiskyBottle.h" />
+    <ClInclude Include="objects\chair\chair.h" />
+    <ClInclude Include="objects\computer\computer.h" />
+    <ClInclude Include="objects\cups\beerCup.h" />
+    <ClInclude Include="objects\cups\cocktailCup.h" />
+    <ClInclude Include="objects\cups\shotCup.h" />
+    <ClInclude Include="objects\cups\vodkaCup.h" />
+    <ClInclude Include="objects\cups\wineCup.h" />
+    <ClInclude Include="objects\estruturas\floor.h" />
+    <ClInclude Include="objects\estruturas\tecto.h" />
+    <ClInclude Include="objects\estruturas\walls.h" />
+    <ClInclude Include="objects\paralelepipedo\paralelepipedo.h" />
+    <ClInclude Include="objects\sconces\sconce1.h" />
+    <ClInclude Include="objects\sconces\sconce2.h" />
+    <ClInclude Include="objects\sconces\sconce3.h" />
+    <ClInclude Include="objects\sconces\simpleSconce.h" />
+    <ClInclude Include="objects\sconces\treeSconce.h" />
+    <ClInclude Include="objects\table\table.h" />
+    <ClInclude Include="Primitivas.h" />
+    <ClInclude Include="primitives\cone\cone.h" />
+    <ClInclude Include="primitives\cube\cube.h" />
+    <ClInclude Include="primitives\cylinder\cylinder.h" />
+    <ClInclude Include="primitives\plane\plane.h" />
+    <ClInclude Include="primitives\plane\PlaneVBO.h" />
+    <ClInclude Include="primitives\sphere\sphere.h" />
+    <ClInclude Include="utils\axis.h" />
+    <ClInclude Include="utils\cores.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
