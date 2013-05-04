@@ -18,3 +18,13 @@ CGBar/CGBar.1
 *.o
 
 CGBar/primitivas
+
+*.sdf
+
+*.sln
+
+*.suo
+
+*.ilk
+
+*.pdb
