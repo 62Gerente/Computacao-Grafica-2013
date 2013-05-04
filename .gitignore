@@ -28,3 +28,7 @@ CGBar/primitivas
 *.ilk
 
 *.pdb
+
+CGBar/Debug
+
+.gitignore.swp
