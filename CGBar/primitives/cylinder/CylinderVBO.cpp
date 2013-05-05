@@ -14,8 +14,8 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers)
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 	nrIndex = 6*(vertex*layers) + 3*2;
-	int arraySize = 3*(vertex*layers+2)*sizeof(float);
-	int textSize = 2*(vertex*layers+2)*sizeof(float);
+	int arraySize = (3*(vertex*layers+2) + 3*2*vertex)*sizeof(float);
+	int textSize = (2*(vertex*layers+2)+ 2*2*vertex)*sizeof(float);
 
 	float* aVertex = (float*) malloc(arraySize);
 	float* aNormal = (float*) malloc(arraySize);
@@ -39,22 +39,20 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers)
 		float alpha = 0 ;
 
         for(int j=0; j < vertex; j++) {
-
 				aVertex[pos] = radius*sinf(alpha);
-				aNormal[pos] = cosf(alpha);
+				aNormal[pos] = sinf(alpha);
 				pos++;
 				aVertex[pos] = y;
 				aNormal[pos] = 0;
 				pos++;
 				aVertex[pos] = radius*cosf(alpha);
-				aNormal[pos] = sinf(alpha);
+				aNormal[pos] = cosf(alpha);
 				pos++;
             
 				aTexture[posTex] = i*texIncV;
 				posTex++;
 				aTexture[posTex] = j*texIncH;
 				posTex++;
-
 			alpha += incAngle ;
         }
 		y -= incHeight ;
@@ -78,24 +76,45 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers)
 	pos++;
 	aVertex[pos] = 0;
 	aNormal[pos] = 0;
-	pos++;
+	pos++; 
 
-	pos = 0 ;
-	y = height/2 ;    
+	float alpha = 0 ;
 
-	for(float i = 0; i < layers ; i++) { 
-		float alpha = 0 ;
+    for(int j=0; j < vertex; j++) {
+		aVertex[pos] = radius*sinf(alpha);
+		aNormal[pos] = 0;
+		pos++;
+		aVertex[pos] = height/2;
+		aNormal[pos] = 1;
+		pos++;
+		aVertex[pos] = radius*cosf(alpha);
+		aNormal[pos] = 0;
+		pos++;
 
-        for(int j=0; j < vertex-1; j++) {
-			if(i == 0) {				          
-					aIndex[pos] = j+(layers*i);
-					pos++;
-					aIndex[pos] = (j+1)+(layers*i);
-					pos++;
-					aIndex[pos] = layers*vertex;
-					pos++;
-			}       
-            if(i < layers-1) {
+		alpha += incAngle ;
+	}
+	
+	alpha = 0 ;
+
+	for(int j=0; j < vertex; j++){
+		aVertex[pos] = radius*sinf(alpha);
+		aNormal[pos] = 0;
+		pos++;
+		aVertex[pos] = -height/2;
+		aNormal[pos] = -1;
+		pos++;
+		aVertex[pos] = radius*cosf(alpha);
+		aNormal[pos] = 0;
+		pos++;
+           
+
+		alpha += incAngle ;
+    }
+
+	pos = 0 ;  
+
+	for(float i = 0; i < layers-1 ; i++) { 
+        for(int j=0; j < vertex-1; j++) {			          
 					aIndex[pos] = j+(layers*i);
 					pos++;
 					aIndex[pos] = j+(layers*(i+1));
@@ -109,18 +128,25 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers)
 					pos++;
 					aIndex[pos] = (j+1)+(layers*i);
 					pos++;
-            }
-			if(i == layers-1) {     
-					aIndex[pos] = j+(layers*i);
+        }
+    }
+
+    for(int j=0; j < vertex-1; j++) {			          
+					aIndex[pos] = layers*vertex+j+2;
+					pos++;
+					aIndex[pos] = layers*vertex+3+j;
+					pos++;
+					aIndex[pos] = layers*vertex;
+					pos++;
+    }
+
+    for(int j=0; j < vertex-1; j++) {			          
+					aIndex[pos] = layers*vertex+j+2+layers;
 					pos++;
 					aIndex[pos] = layers*vertex+1;
 					pos++;
-					aIndex[pos] = (j+1)+(layers*i);
+					aIndex[pos] = layers*vertex+3+j+layers;
 					pos++;
-				}
-			alpha += incAngle ;
-        }
-		y -= incHeight ;
     }
 
 	glGenBuffers(3, buffers);

@@ -78,7 +78,7 @@ void changeSize(int w, int h) {
 
 void renderScene(void) {
     
-	float pos[4] = {1.0, 1.0, 1.0, 1};
+	float pos[4] = {0.0, 20.0, 0.0, 1};
 	float dif[] = {0.3,0.3,0.3,1};
 
 	// clear buffers
@@ -134,8 +134,12 @@ void renderScene(void) {
 			drawSphere(3, 30, 30);
 			break;
 		case 5:
-			drawCylinder(3, 5, 30);
-			break;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				cylinder->draw();
+				break;
 		case 6:
 			drawPlane(5, 5);
 			break;
