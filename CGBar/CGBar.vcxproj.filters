@@ -105,6 +105,9 @@
     <ClCompile Include="primitives\sphere\sphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="primitives\cylinder\CylinderVBO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Primitivas.h">
@@ -192,6 +195,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitives\sphere\sphere.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\cylinder\CylinderVBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="primitives\cylinder\CylinderVBO.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="objects\bancos\banco.cpp" />
     <ClCompile Include="objects\bottles\wineBottle.cpp" />
@@ -111,6 +112,7 @@
     <ClCompile Include="utils\cores.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="primitives\cylinder\CylinderVBO.h" />
     <ClInclude Include="objects\bancos\banco.h" />
     <ClInclude Include="objects\bottles\wineBottle.h" />
     <ClInclude Include="objects\bottles\wiskyBottle.h" />

@@ -2,7 +2,7 @@
 class Primitivas
 {
 public:
-	virtual void draw() = 0;
+	void draw();
 protected:
 	unsigned int buffers[3];
 	int nrIndex;
