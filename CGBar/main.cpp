@@ -29,6 +29,7 @@
 #include "objects/estruturas/walls.h"
 
 #include "primitives/plane/PlaneVBO.h"
+#include "primitives/cylinder/CylinderVBO.h"
 
 float rotation;
 float rotationz;
@@ -40,7 +41,8 @@ bool dragging;
 int dragx, dragy;
 int figura;
 
-PlaneVBO* p;
+PlaneVBO* plane;
+CylinderVBO* cylinder;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -113,13 +115,17 @@ void renderScene(void) {
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
-			p->draw();
+				cylinder->draw();
 			break ;
 		case 1:
 			drawCylinder(3, 10, 30, 30);
 			break;
 		case 2:
-			drawPlane(5, 7, 30);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				plane->draw();
 			break;
 		case 3:
 			drawCube(5, 30);;
@@ -638,7 +644,8 @@ int main(int argc, char **argv) {
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 
-	p = new PlaneVBO(5.0,7.0,30);
+	plane = new PlaneVBO(5.0,7.0,30);
+	cylinder = new CylinderVBO(3.0,10.0,100,100);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
