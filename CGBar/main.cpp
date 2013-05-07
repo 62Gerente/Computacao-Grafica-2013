@@ -125,8 +125,12 @@ void renderScene(void) {
 				sphere->draw();
 			break ;
 		case 1:
-			drawCylinder(3, 10, 30, 30);
-			break;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				cylinder->draw();
+				break;
 		case 2:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -142,8 +146,12 @@ void renderScene(void) {
 				cube->draw();
 			break;
 		case 4:
-			drawSphere(3, 30, 30);
-			break;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				sphere->draw();
+			break ;
 		case 5:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -152,7 +160,11 @@ void renderScene(void) {
 				cylinder->draw();
 				break;
 		case 6:
-			drawPlane(5, 5);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				plane->draw();
 			break;
 		case 7:
 			drawCone(3, 5, 30, 30);;
