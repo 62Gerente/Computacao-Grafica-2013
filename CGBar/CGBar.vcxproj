@@ -110,6 +110,7 @@
     <ClCompile Include="primitives\sphere\sphere.cpp" />
     <ClCompile Include="utils\axis.cpp" />
     <ClCompile Include="utils\cores.cpp" />
+    <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="primitives\cylinder\CylinderVBO.h" />
@@ -142,6 +143,7 @@
     <ClInclude Include="primitives\sphere\sphere.h" />
     <ClInclude Include="utils\axis.h" />
     <ClInclude Include="utils\cores.h" />
+    <ClInclude Include="objects\cups\VodkaCupVBO.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

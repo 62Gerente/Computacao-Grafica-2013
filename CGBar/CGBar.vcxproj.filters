@@ -108,6 +108,9 @@
     <ClCompile Include="primitives\cylinder\CylinderVBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="objects\cups\VodkaCupVBO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Primitivas.h">
@@ -198,6 +201,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitives\cylinder\CylinderVBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\cups\VodkaCupVBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

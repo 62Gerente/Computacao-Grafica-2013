@@ -30,6 +30,7 @@
 
 #include "primitives/plane/PlaneVBO.h"
 #include "primitives/cylinder/CylinderVBO.h"
+#include "objects/cups/VodkaCupVBO.h"
 
 float rotation;
 float rotationz;
@@ -43,6 +44,7 @@ int figura;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
+VodkaCupVBO* vodkaCup;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -159,8 +161,12 @@ void renderScene(void) {
 			drawShotCup(5, 30, 30);
 			break;
 		case 13:
-			drawVodkaCup(5, 30, 30);
-			break;
+			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				vodkaCup->draw();
+				break;
 		case 14:
 			drawWineBottle(5,30,30);
 			break;
@@ -650,6 +656,8 @@ int main(int argc, char **argv) {
 
 	plane = new PlaneVBO(5.0,7.0,30);
 	cylinder = new CylinderVBO(3.0,10.0,100,100);
+	vodkaCup = new VodkaCupVBO(5,30,30);
+
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
