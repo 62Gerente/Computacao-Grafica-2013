@@ -109,6 +109,7 @@
     <ClCompile Include="primitives\plane\plane.cpp" />
     <ClCompile Include="primitives\plane\PlaneVBO.cpp" />
     <ClCompile Include="primitives\sphere\sphere.cpp" />
+    <ClCompile Include="primitives\sphere\SphereVBO.cpp" />
     <ClCompile Include="utils\axis.cpp" />
     <ClCompile Include="utils\cores.cpp" />
   </ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="primitives\plane\plane.h" />
     <ClInclude Include="primitives\plane\PlaneVBO.h" />
     <ClInclude Include="primitives\sphere\sphere.h" />
+    <ClInclude Include="primitives\sphere\SphereVBO.h" />
     <ClInclude Include="utils\axis.h" />
     <ClInclude Include="utils\cores.h" />
   </ItemGroup>

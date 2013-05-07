@@ -31,6 +31,7 @@
 #include "primitives/plane/PlaneVBO.h"
 #include "primitives/cylinder/CylinderVBO.h"
 #include "primitives/cube/CubeVBO.h"
+#include "primitives/sphere/SphereVBO.h"
 
 float rotation;
 float rotationz;
@@ -45,6 +46,7 @@ int figura;
 PlaneVBO* plane;
 CylinderVBO* cylinder;
 CubeVBO* cube;
+SphereVBO* sphere;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -117,7 +119,7 @@ void renderScene(void) {
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
-				cube->draw();
+				sphere->draw();
 			break ;
 		case 1:
 			drawCylinder(3, 10, 30, 30);
@@ -657,6 +659,7 @@ int main(int argc, char **argv) {
 	plane = new PlaneVBO(5.0,7.0,30);
 	cylinder = new CylinderVBO(3.0,10.0,100,100);
 	cube = new CubeVBO(6.0,30 );
+	sphere = new SphereVBO(6,30,30);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
