@@ -25,11 +25,6 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers)
 
 	int pos = 0;
 
-	int posTex=0;
-
-	float texIncV=1/(float)layers;
-	float texIncH=1/(float)vertex;
-
 	float incAngle = (2*M_PI)/(float)(vertex-1);
     float incHeight = height/(float)(layers-1);
 	
@@ -48,11 +43,7 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers)
 				aVertex[pos] = radius*cosf(alpha);
 				aNormal[pos] = cosf(alpha);
 				pos++;
-            
-				aTexture[posTex] = i*texIncV;
-				posTex++;
-				aTexture[posTex] = j*texIncH;
-				posTex++;
+
 			alpha += incAngle ;
         }
 		y -= incHeight ;

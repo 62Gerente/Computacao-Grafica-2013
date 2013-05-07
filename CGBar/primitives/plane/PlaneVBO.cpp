@@ -28,11 +28,6 @@ PlaneVBO::PlaneVBO(float x, float z, int layers)
 
 	int pos = 0;
 
-	int posTex=0;
-
-	float texIncV=1/(float)layers;
-	float texIncH=1/(float)layers;
-
 	for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){
 			aVertex[pos] = (-x/2) + i*divx;
@@ -46,11 +41,6 @@ PlaneVBO::PlaneVBO(float x, float z, int layers)
 			aVertex[pos] = z/2 - j*divz;
 			aNormal[pos] = 0;
 			pos++;
-
-			aTexture[posTex] = i*texIncV;
-			posTex++;
-			aTexture[posTex] = j*texIncH;
-			posTex++;
         }
     }
 
