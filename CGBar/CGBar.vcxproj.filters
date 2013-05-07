@@ -90,9 +90,6 @@
     <ClCompile Include="primitives\cone\cone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="primitives\cube\cube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="primitives\cylinder\cylinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -108,7 +105,17 @@
     <ClCompile Include="primitives\cylinder\CylinderVBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="objects\cups\VodkaCupVBO.cpp">
+    <ClCompile Include="primitives\cube\cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\cube\CubeVBO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\cube\cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\sphere\SphereVBO.cpp">
+
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -185,9 +192,6 @@
     <ClInclude Include="primitives\cone\cone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="primitives\cube\cube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitives\cylinder\cylinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -203,7 +207,13 @@
     <ClInclude Include="primitives\cylinder\CylinderVBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="objects\cups\VodkaCupVBO.h">
+    <ClInclude Include="primitives\cube\CubeVBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\cube\cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\sphere\SphereVBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

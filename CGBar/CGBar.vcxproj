@@ -79,6 +79,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="primitives\cube\cube.cpp" />
+    <ClCompile Include="primitives\cube\CubeVBO.cpp" />
     <ClCompile Include="primitives\cylinder\CylinderVBO.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="objects\bancos\banco.cpp" />
@@ -103,16 +105,18 @@
     <ClCompile Include="objects\table\table.cpp" />
     <ClCompile Include="Primitivas.cpp" />
     <ClCompile Include="primitives\cone\cone.cpp" />
-    <ClCompile Include="primitives\cube\cube.cpp" />
     <ClCompile Include="primitives\cylinder\cylinder.cpp" />
     <ClCompile Include="primitives\plane\plane.cpp" />
     <ClCompile Include="primitives\plane\PlaneVBO.cpp" />
     <ClCompile Include="primitives\sphere\sphere.cpp" />
+    <ClCompile Include="primitives\sphere\SphereVBO.cpp" />
     <ClCompile Include="utils\axis.cpp" />
     <ClCompile Include="utils\cores.cpp" />
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="primitives\cube\cube.h" />
+    <ClInclude Include="primitives\cube\CubeVBO.h" />
     <ClInclude Include="primitives\cylinder\CylinderVBO.h" />
     <ClInclude Include="objects\bancos\banco.h" />
     <ClInclude Include="objects\bottles\wineBottle.h" />
@@ -136,11 +140,11 @@
     <ClInclude Include="objects\table\table.h" />
     <ClInclude Include="Primitivas.h" />
     <ClInclude Include="primitives\cone\cone.h" />
-    <ClInclude Include="primitives\cube\cube.h" />
     <ClInclude Include="primitives\cylinder\cylinder.h" />
     <ClInclude Include="primitives\plane\plane.h" />
     <ClInclude Include="primitives\plane\PlaneVBO.h" />
     <ClInclude Include="primitives\sphere\sphere.h" />
+    <ClInclude Include="primitives\sphere\SphereVBO.h" />
     <ClInclude Include="utils\axis.h" />
     <ClInclude Include="utils\cores.h" />
     <ClInclude Include="objects\cups\VodkaCupVBO.h" />
