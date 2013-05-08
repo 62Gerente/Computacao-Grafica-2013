@@ -106,18 +106,18 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 
 	for(float i = 0; i < layers-1 ; i++) { 
         for(int j=0; j < vertex-1; j++) {			          
-					aIndex[pos] = j+(layers*i);
+					aIndex[pos] = j+(vertex*i);
 					pos++;
-					aIndex[pos] = j+(layers*(i+1));
+					aIndex[pos] = j+(vertex*(i+1));
 					pos++;
-					aIndex[pos] = (j+1)+(layers*(i+1));
+					aIndex[pos] = (j+1)+(vertex*(i+1));
 					pos++;
 
-					aIndex[pos] = j+(layers*i);
+					aIndex[pos] = j+(vertex*i);
 					pos++;
-					aIndex[pos] = (j+1)+(layers*(i+1));
+					aIndex[pos] = (j+1)+(vertex*(i+1));
 					pos++;
-					aIndex[pos] = (j+1)+(layers*i);
+					aIndex[pos] = (j+1)+(vertex*i);
 					pos++;
         }
     }
@@ -132,11 +132,11 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
     }
 
     for(int j=0; j < vertex-1; j++) {			          
-					aIndex[pos] = layers*vertex+j+2+layers;
+					aIndex[pos] = layers*vertex+j+2+vertex;
 					pos++;
 					aIndex[pos] = layers*vertex+1;
 					pos++;
-					aIndex[pos] = layers*vertex+3+j+layers;
+					aIndex[pos] = layers*vertex+3+j+vertex;
 					pos++;
     }
 

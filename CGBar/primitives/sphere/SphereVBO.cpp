@@ -56,18 +56,18 @@ SphereVBO::SphereVBO(float radius, int vertex, int layers, unsigned int id_textu
 	for(int i=0; i<layers;i++){
 
 		for(int j=0; j<vertex;j++){
-			aIndex[pos]=j+(i*(layers+1)); 
+			aIndex[pos]=j+(i*(vertex+1)); 
 			pos++;
-			aIndex[pos]=(j+1)+(i*(layers+1));
+			aIndex[pos]=(j+1)+(i*(vertex+1));
 			pos++;
-			aIndex[pos]=j+((i+1)*(layers+1)); 
+			aIndex[pos]=j+((i+1)*(vertex+1)); 
 			pos++;
 			
-			aIndex[pos]=(j+1)+(i*(layers+1));
+			aIndex[pos]=(j+1)+(i*(vertex+1));
 			pos++;
-			aIndex[pos]=(j+1)+((i+1)*(layers+1)); 
+			aIndex[pos]=(j+1)+((i+1)*(vertex+1)); 
 			pos++;
-			aIndex[pos]=j+((i+1)*(layers+1)); 
+			aIndex[pos]=j+((i+1)*(vertex+1)); 
 			pos++;
 
 		}

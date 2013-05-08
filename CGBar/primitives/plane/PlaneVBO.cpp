@@ -9,12 +9,14 @@
 
 PlaneVBO::PlaneVBO(float x, float z, int layers, unsigned int id_textura) : Primitivas(id_textura)
 {
+	layers=layers+1;
+
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	float divx = x/layers;
-    float divz = z/layers;
+	float divx = x/(layers-1);
+    float divz = z/(layers-1);
 
 	nrIndex = 6*(layers*layers);
 	int arraySize = 3*(layers*layers)*sizeof(float);
