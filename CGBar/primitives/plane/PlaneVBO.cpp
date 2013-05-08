@@ -7,7 +7,7 @@
 #include <GLUT/glut.h>
 #include <math.h>
 
-PlaneVBO::PlaneVBO(float x, float z, int layers)
+PlaneVBO::PlaneVBO(float x, float z, int layers, unsigned int id_textura) : Primitivas(id_textura)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
@@ -28,10 +28,15 @@ PlaneVBO::PlaneVBO(float x, float z, int layers)
 
 	int pos = 0;
 
+	int pos_textura = 0 ;
+	float divx_textura = x/(layers-1);
+    float divz_textura = z/(layers-1); 
+
 	for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){
 			aVertex[pos] = (-x/2) + i*divx;
 			aNormal[pos] = 0;
+			aTexture[pos_textura++] = (((-x/2) + i*divx_textura) - (-x/2))/x ;
 			pos++;
 
 			aVertex[pos] = 0;
@@ -40,6 +45,7 @@ PlaneVBO::PlaneVBO(float x, float z, int layers)
 
 			aVertex[pos] = z/2 - j*divz;
 			aNormal[pos] = 0;
+			aTexture[pos_textura++] = ((z/2 - j*divz_textura) - (-z/2))/z;
 			pos++;
         }
     }

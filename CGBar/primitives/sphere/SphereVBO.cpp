@@ -7,7 +7,7 @@
 #include <GLUT/glut.h>
 #include <math.h>
 
-SphereVBO::SphereVBO(float radius, int vertex, int layers)
+SphereVBO::SphereVBO(float radius, int vertex, int layers, unsigned int id_textura) : Primitivas(id_textura)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);

@@ -7,7 +7,7 @@
 #include <GLUT/glut.h>
 #include <math.h>
 
-CubeVBO::CubeVBO(float dim, int layers)
+CubeVBO::CubeVBO(float dim, int layers, unsigned int id_textura) : Primitivas(id_textura)
 {
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
@@ -28,11 +28,14 @@ CubeVBO::CubeVBO(float dim, int layers)
 
 	int pos = 0;
 
+	/* Textura */
+	int pos_textura = 0 ;	   
+
 		/* face +y */        
     for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){
 			aVertex[pos] = (-dim/2) + i*div;
-			aNormal[pos] = 0;
+			aNormal[pos] = 0;			
 			pos++;
 
 			aVertex[pos] = h;
@@ -40,8 +43,11 @@ CubeVBO::CubeVBO(float dim, int layers)
 			pos++;
 
 			aVertex[pos] = dim/2 - j*div;
-			aNormal[pos] = 0;
+			aNormal[pos] = 0;			
 			pos++;
+
+			aTexture[pos_textura++] = (((-dim/2) + i*div) - (-dim/2))/dim ;
+			aTexture[pos_textura++] = 1-((((-dim/2) + j*div) - (-dim/2))/dim) ;
         }
     }       
 
@@ -50,6 +56,7 @@ CubeVBO::CubeVBO(float dim, int layers)
         for(int j=0; j<layers; j++){
 			aVertex[pos] = (-dim/2) + i*div;
 			aNormal[pos] = 0;
+			aTexture[pos_textura++] = (((-dim/2) + i*div) - (-dim/2))/dim ;
 			pos++;
 
 			aVertex[pos] = -h;
@@ -58,6 +65,7 @@ CubeVBO::CubeVBO(float dim, int layers)
 
 			aVertex[pos] = dim/2 - j*div;
 			aNormal[pos] = 0;
+			aTexture[pos_textura++] = (((-dim/2) + j*div) - (-dim/2))/dim ;
 			pos++;
         }
     } 
@@ -66,7 +74,7 @@ CubeVBO::CubeVBO(float dim, int layers)
 	for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){            			
 			aVertex[pos] = (-dim/2) + j*div;
-			aNormal[pos] = 0;
+			aNormal[pos] = 0;			
 			pos++;
 
 			aVertex[pos] = (-dim/2) + i*div;
@@ -74,8 +82,11 @@ CubeVBO::CubeVBO(float dim, int layers)
 			pos++;
 
 			aVertex[pos] = h;
-			aNormal[pos] = 1;
+			aNormal[pos] = 1;			
 			pos++;		
+
+			aTexture[pos_textura++] = (((-dim/2) + j*div) - (-dim/2))/dim ;
+			aTexture[pos_textura++] = 1-((((-dim/2) + i*div) - (-dim/2))/dim) ;
         }
     } 
 
@@ -83,7 +94,7 @@ CubeVBO::CubeVBO(float dim, int layers)
 	for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){            			
 			aVertex[pos] = (-dim/2) + j*div;
-			aNormal[pos] = 0;
+			aNormal[pos] = 0;			
 			pos++;
 
 			aVertex[pos] = (-dim/2) + i*div;
@@ -91,8 +102,11 @@ CubeVBO::CubeVBO(float dim, int layers)
 			pos++;
 
 			aVertex[pos] = -h;
-			aNormal[pos] = -1;
+			aNormal[pos] = -1;			
 			pos++;		
+
+			aTexture[pos_textura++] = 1-((((-dim/2) + j*div) - (-dim/2))/dim) ;
+			aTexture[pos_textura++] = 1-((((-dim/2) + i*div) - (-dim/2))/dim) ;
         }
     } 
 
@@ -100,7 +114,7 @@ CubeVBO::CubeVBO(float dim, int layers)
 	for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){            			
 			aVertex[pos] = h;
-			aNormal[pos] = 1;
+			aNormal[pos] = 1;			
 			pos++;
 
 			aVertex[pos] = (-dim/2) + i*div;
@@ -108,8 +122,11 @@ CubeVBO::CubeVBO(float dim, int layers)
 			pos++;
 
 			aVertex[pos] = (-dim/2) + j*div;
-			aNormal[pos] = 0;
-			pos++;		
+			aNormal[pos] = 0;			
+			pos++;	
+
+			aTexture[pos_textura++] = 1-((((-dim/2) + j*div) - (-dim/2))/dim) ;
+			aTexture[pos_textura++] = 1-((((-dim/2) + i*div) - (-dim/2))/dim) ;
         }
     } 
 
@@ -117,7 +134,7 @@ CubeVBO::CubeVBO(float dim, int layers)
 	for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){            						
 			aVertex[pos] = -h;
-			aNormal[pos] = -1;
+			aNormal[pos] = -1;			
 			pos++;
 
 			aVertex[pos] = (-dim/2) + i*div;
@@ -125,8 +142,11 @@ CubeVBO::CubeVBO(float dim, int layers)
 			pos++;
 
 			aVertex[pos] = (-dim/2) + j*div;
-			aNormal[pos] = 0;
+			aNormal[pos] = 0;			
 			pos++;		
+
+			aTexture[pos_textura++] = 1-((((-dim/2) + j*div) - (-dim/2))/dim) ;
+			aTexture[pos_textura++] = (((-dim/2) + i*div) - (-dim/2))/dim ;
         }
     } 
 

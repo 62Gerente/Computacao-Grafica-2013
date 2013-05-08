@@ -3,6 +3,6 @@
 class CubeVBO : public Primitivas
 {
 public:
-	CubeVBO(float dim, int layers);
+	CubeVBO(float dim, int layers, unsigned int id_textura);
 };
 

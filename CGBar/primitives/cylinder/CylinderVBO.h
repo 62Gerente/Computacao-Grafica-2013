@@ -5,6 +5,6 @@
 class CylinderVBO : public Primitivas
 {
 public:
-	CylinderVBO(float radius, float height, int vertex, int layers);
+	CylinderVBO(float radius, float height, int vertex, int layers, unsigned int id_textura);
 };
 
