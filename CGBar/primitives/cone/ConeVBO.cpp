@@ -35,6 +35,7 @@ ConeVBO::ConeVBO(float height, float radius, int vertex, int layers, unsigned in
 	float alt_dec=height/((float)(vertex-1));
     
 	int pos = 0;
+	int textura_pos = 0 ;
 
 	for(int i=0; i<layers;i++){
         
@@ -55,6 +56,10 @@ ConeVBO::ConeVBO(float height, float radius, int vertex, int layers, unsigned in
 				aVertex[pos] = fr*cosf(ang);
 				aNormal[pos] = cosf(ang);
 				pos++;
+
+			aTexture[textura_pos++] = (float)i/(float)layers ;
+			aTexture[textura_pos++] = (float)f/(float)vertex ;
+			
 		}
 		ang+=ang_inc;
 	}
@@ -64,7 +69,7 @@ ConeVBO::ConeVBO(float height, float radius, int vertex, int layers, unsigned in
 	for(int i=0; i<layers;i++){
         
 		float fr=0.0;
-		float alt=height;
+		//float alt=height;
 		float r=0;
 
 		for(int ri=0;ri<layers;ri++){
@@ -80,6 +85,9 @@ ConeVBO::ConeVBO(float height, float radius, int vertex, int layers, unsigned in
 				aVertex[pos] = r*cosf(ang);
 				aNormal[pos] = cosf(ang);
 				pos++;
+
+				aTexture[textura_pos++] = 1-(sinf(ang)*((r/radius)*0.5) + 0.5) ;
+				aTexture[textura_pos++] = cosf(ang)*((r/radius)*0.5) + 0.5 ;
             
 		}
 		ang+=ang_inc;
