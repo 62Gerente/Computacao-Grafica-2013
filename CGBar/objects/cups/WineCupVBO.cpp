@@ -7,13 +7,14 @@
 
 double altura, rad;
 int vert,lay;
+unsigned int id_text ;
 
-WineCupVBO::WineCupVBO(double alt, double radius, int vertex, int layers)
+WineCupVBO::WineCupVBO(double alt, int vertex, int layers, unsigned int id_textura) : Primitivas(id_textura)
 {
 	altura = alt;
 	vert = vertex;
 	lay =layers;
-	rad= radius;
+	rad= alt/6;
 }
 
 
@@ -35,7 +36,7 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 
 
 	double divH = (2*M_PI) / vertex;
-    double divV = (M_PI) / (layers+layers*0.25);
+    double divV = (2*rad) / (layers);
 	float angv, angh;
 
 	int pos = 0;
@@ -67,23 +68,26 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 	for(int i=0; i<layers;i++){
 
 		for(int j=0; j<vertex;j++){
-			aIndex[pos]=j+(i*(layers+1)); 
+			aIndex[pos]=j+(i*(vertex+1)); 
 			pos++;
-			aIndex[pos]=(j+1)+(i*(layers+1));
+			aIndex[pos]=(j+1)+(i*(vertex+1));
 			pos++;
-			aIndex[pos]=j+((i+1)*(layers+1)); 
+			aIndex[pos]=j+((i+1)*(vertex+1)); 
 			pos++;
 			
-			aIndex[pos]=(j+1)+(i*(layers+1));
+			aIndex[pos]=(j+1)+(i*(vertex+1));
 			pos++;
-			aIndex[pos]=(j+1)+((i+1)*(layers+1)); 
+			aIndex[pos]=(j+1)+((i+1)*(vertex+1)); 
 			pos++;
-			aIndex[pos]=j+((i+1)*(layers+1)); 
+			aIndex[pos]=j+((i+1)*(vertex+1)); 
 			pos++;
 
 		}
 
 	}
+
+
+
 
 	glGenBuffers(3, buffers);
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
@@ -104,7 +108,7 @@ void WineCupVBO::draw(){
     glRotatef(180, 1, 0, 0);
 
 	drawWineCup_top(altura/6, altura, vert, lay);
-
+	
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
@@ -123,12 +127,12 @@ void WineCupVBO::draw(){
         
         glPushMatrix();
         glTranslatef(0,altura/2/4, 0);
-		CylinderVBO* cylinder = new CylinderVBO(altura/80, altura/2/2, vert, lay);
+		CylinderVBO* cylinder = new CylinderVBO(altura/80, altura/2/2, vert, lay, id_text);
 		cylinder->draw();
         glPopMatrix();
     
         glPushMatrix();
-		CylinderVBO* cylinder1 = new CylinderVBO(altura/9, altura/200, vert, lay);
+		CylinderVBO* cylinder1 = new CylinderVBO(altura/9, altura/200, vert, lay, id_text);
 		cylinder1->draw();
         glPopMatrix();
         
