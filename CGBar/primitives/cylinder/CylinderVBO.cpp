@@ -24,6 +24,7 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 	aIndex = (int*) malloc (sizeof(int)*nrIndex);
 
 	int pos = 0;
+	int textura_pos = 0;
 
 	float incAngle = (2*M_PI)/(float)(vertex-1);
     float incHeight = height/(float)(layers-1);
@@ -44,6 +45,9 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 				aNormal[pos] = cosf(alpha);
 				pos++;
 
+				aTexture[textura_pos++] = (float)j/(float)vertex ;
+				aTexture[textura_pos++] = ((float)i/(float)layers) ;
+
 			alpha += incAngle ;
         }
 		y -= incHeight ;
@@ -59,6 +63,9 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 	aNormal[pos] = 0;
 	pos++;
 
+	aTexture[textura_pos++] = 0.5 ;
+	aTexture[textura_pos++] = 0.5 ;
+
 	aVertex[pos] = 0;
 	aNormal[pos] = 0;
 	pos++;
@@ -68,6 +75,9 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 	aVertex[pos] = 0;
 	aNormal[pos] = 0;
 	pos++; 
+
+	aTexture[textura_pos++] = 0.5 ;
+	aTexture[textura_pos++] = 0.5 ;
 
 	float alpha = 0 ;
 
@@ -81,6 +91,9 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 		aVertex[pos] = radius*cosf(alpha);
 		aNormal[pos] = 0;
 		pos++;
+
+		aTexture[textura_pos++] = sinf(alpha)*0.5 + 0.5 ;
+		aTexture[textura_pos++] = cosf(alpha)*0.5 + 0.5 ;
 
 		alpha += incAngle ;
 	}
@@ -98,6 +111,8 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 		aNormal[pos] = 0;
 		pos++;
            
+		aTexture[textura_pos++] = 1-(sinf(alpha)*0.5 + 0.5) ;
+		aTexture[textura_pos++] = cosf(alpha)*0.5 + 0.5 ;
 
 		alpha += incAngle ;
     }

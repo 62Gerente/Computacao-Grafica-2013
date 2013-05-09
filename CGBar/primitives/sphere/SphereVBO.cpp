@@ -28,6 +28,7 @@ SphereVBO::SphereVBO(float radius, int vertex, int layers, unsigned int id_textu
 	float angv, angh;
 
 	int pos = 0;
+	int textura_pos = 0;
 
 
 	for(int i=0; i<=layers;i++){
@@ -47,6 +48,9 @@ SphereVBO::SphereVBO(float radius, int vertex, int layers, unsigned int id_textu
 			aVertex[pos]=radius*sin(angv)*cos(angh);
 			aNormal[pos]=sin(angv)*cos(angh);
 			pos++;
+
+			aTexture[textura_pos++] = 1-((float)j/(float)(vertex+1)) ;
+			aTexture[textura_pos++] = (float)i/(float)(layers+1) ;
 		}
 
 	}

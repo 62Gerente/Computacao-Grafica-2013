@@ -124,11 +124,14 @@ void renderScene(void) {
 
 	switch(figura){
 		case 0:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				/*glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-				cylinder->draw();
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);*/
+				//cylinder->draw();
+				//plane->draw() ;
+				//cube->draw() ;				
+				sphere->draw();
 
 			break ;
 		case 1:
@@ -701,6 +704,7 @@ int main(int argc, char **argv) {
 
 	/* Carregar textura */
 	carregarTextura("terra.jpg", &id_textura) ;
+	//carregarTextura("madeira.jpg", &id_textura) ;
 
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
@@ -709,12 +713,12 @@ int main(int argc, char **argv) {
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 
-	plane = new PlaneVBO(5.0,7.0,30, id_textura);
-	cylinder = new CylinderVBO(2.5,10.0,80,100,id_textura );
+	plane = new PlaneVBO(5.0,7.0, 5, id_textura);
+	cylinder = new CylinderVBO(2.5,10.0, 15, 10, id_textura);
 
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
-	cube = new CubeVBO(6.0,5, id_textura);
-	sphere = new SphereVBO(6,100,120,id_textura);
+	cube = new CubeVBO(6.0, 5, id_textura);
+	sphere = new SphereVBO(6, 30, 20, id_textura);
 
 
     // entrar no ciclo do GLUT

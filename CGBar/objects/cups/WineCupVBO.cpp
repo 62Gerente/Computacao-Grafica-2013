@@ -8,7 +8,7 @@
 double altura, rad;
 int vert,lay;
 
-WineCupVBO::WineCupVBO(double alt, double radius, int vertex, int layers)
+WineCupVBO::WineCupVBO(double alt, double radius, int vertex, int layers) : Primitivas(0)
 {
 	altura = alt;
 	vert = vertex;
@@ -17,7 +17,8 @@ WineCupVBO::WineCupVBO(double alt, double radius, int vertex, int layers)
 }
 
 
-void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int layers){
+void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int layers)
+{
 	
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
@@ -123,12 +124,12 @@ void WineCupVBO::draw(){
         
         glPushMatrix();
         glTranslatef(0,altura/2/4, 0);
-		CylinderVBO* cylinder = new CylinderVBO(altura/80, altura/2/2, vert, lay);
+		CylinderVBO* cylinder = new CylinderVBO(altura/80, altura/2/2, vert, lay, 0);
 		cylinder->draw();
         glPopMatrix();
     
         glPushMatrix();
-		CylinderVBO* cylinder1 = new CylinderVBO(altura/9, altura/200, vert, lay);
+		CylinderVBO* cylinder1 = new CylinderVBO(altura/9, altura/200, vert, lay, 0);
 		cylinder1->draw();
         glPopMatrix();
         

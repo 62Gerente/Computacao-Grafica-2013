@@ -115,7 +115,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="primitives\sphere\SphereVBO.cpp">
-
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\cups\VodkaCupVBO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="objects\cups\WineCupVBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -214,6 +219,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitives\sphere\SphereVBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\cups\VodkaCupVBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="objects\cups\WineCupVBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

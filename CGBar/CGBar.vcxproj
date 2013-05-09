@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="objects\cups\WineCupVBO.cpp" />
     <ClCompile Include="primitives\cube\cube.cpp" />
     <ClCompile Include="primitives\cube\CubeVBO.cpp" />
     <ClCompile Include="primitives\cylinder\CylinderVBO.cpp" />
@@ -115,6 +116,7 @@
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="objects\cups\WineCupVBO.h" />
     <ClInclude Include="primitives\cube\cube.h" />
     <ClInclude Include="primitives\cube\CubeVBO.h" />
     <ClInclude Include="primitives\cylinder\CylinderVBO.h" />

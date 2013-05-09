@@ -34,3 +34,4 @@ CGBar/Debug
 .gitignore.swp
 
 CGBar/CGBar.opensdf
+CGBar/CGBar.vcx*
