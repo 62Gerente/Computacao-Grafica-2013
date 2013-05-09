@@ -34,6 +34,7 @@
 #include "objects/cups/VodkaCupVBO.h"
 #include "primitives/cube/CubeVBO.h"
 #include "primitives/sphere/SphereVBO.h"
+#include "primitives/cone/ConeVBO.h"
 
 float rotation;
 float rotationz;
@@ -52,7 +53,7 @@ CylinderVBO* cylinder;
 VodkaCupVBO* vodkaCup;
 CubeVBO* cube;
 SphereVBO* sphere;
-
+ConeVBO* cone;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -128,8 +129,7 @@ void renderScene(void) {
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-				cylinder->draw();
-
+				cone->draw();
 			break ;
 		case 1:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
@@ -174,7 +174,11 @@ void renderScene(void) {
 				plane->draw();
 			break;
 		case 7:
-			drawCone(3, 5, 30, 30);;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				cone->draw();
 			break;
 		case 9:
 			drawWineCup(5, 30, 30);;
@@ -711,10 +715,10 @@ int main(int argc, char **argv) {
 
 	plane = new PlaneVBO(5.0,7.0,30, id_textura);
 	cylinder = new CylinderVBO(2.5,10.0,80,100,id_textura );
-
-	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
 	cube = new CubeVBO(6.0,5, id_textura);
 	sphere = new SphereVBO(6,100,120,id_textura);
+	cone = new ConeVBO(5,5.0,50,50,id_textura );
+	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
 
 
     // entrar no ciclo do GLUT
