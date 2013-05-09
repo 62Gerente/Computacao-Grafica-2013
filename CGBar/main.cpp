@@ -37,9 +37,12 @@
 
 #include "objects/cups/WineCupVBO.h"
 #include "objects/cups/CocktailCupVBO.h"
-#include "objects/bottles/wineBottleVBO.h"
+#include "objects/bottles/WineBottleVBO.h"
 
 #include "primitives/cone/ConeVBO.h"
+#include "objects/bottles/wiskyBottleVBO.h"
+#include "objects/bottles/WiskyBottleVBO.h"
+#include "objects/cups/ShotCupVBO.h"
 
 
 float rotation;
@@ -65,7 +68,8 @@ CocktailCupVBO* cocktailCup;
 WineBottleVBO* wineBottle;
 
 ConeVBO* cone;
-
+WiskyBottleVBO* wiskyBottle;
+ShotCupVBO* shotCup;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -203,8 +207,12 @@ void renderScene(void) {
 			drawBeerCup(5, 30, 30);
 			break;
 		case 12:
-			drawShotCup(5, 30, 30);
-			break;
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				shotCup->draw();
+				break;
 		case 13:
 			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -220,8 +228,12 @@ void renderScene(void) {
 				wineBottle->draw();
 				break;
 		case 15:
-			drawWiskyBottle(5,30,30);
-			break;
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				wiskyBottle->draw();
+				break;
 		case 16:
 			drawChairClassica(5,30,10) ;
 			break;
@@ -737,6 +749,8 @@ int main(int argc, char **argv) {
 
 	cone = new ConeVBO(5,5.0,50,80,id_textura );
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
+	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura);
+	shotCup = new ShotCupVBO(5,30,30,0);
 
 
     // entrar no ciclo do GLUT
