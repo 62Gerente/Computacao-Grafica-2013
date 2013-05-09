@@ -6,8 +6,13 @@
 class  VodkaCupVBO : public Primitivas
 {
 public:
-	VodkaCupVBO(double alt,  int vertex, int layers, unsigned int id_textura);
+	VodkaCupVBO(double argAlt,  int argVertex, int argLayers, unsigned int argId_textura);
 	void drawVodka_top (float altura, float raio, int nLados, int nCamadas);
 	void draw();
+private:
+	double alt;
+	int vertex,layer;
+	unsigned int id_textura;
 };
+
 

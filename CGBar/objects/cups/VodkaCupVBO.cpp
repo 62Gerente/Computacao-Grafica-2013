@@ -5,14 +5,13 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-double altur;
-int vertx,lays;
 
-VodkaCupVBO::VodkaCupVBO(double alt,  int vertex, int layers, unsigned int id_textura) : Primitivas(id_textura)
+VodkaCupVBO::VodkaCupVBO(double argAlt,  int argVertex, int argLayers, unsigned int argId_textura) : Primitivas(id_textura)
 {
-	altur = alt;
-	vertx = vertex;
-	lays =layers;
+	alt = argAlt;
+	vertex = argVertex;
+	layer = argLayers;
+	id_textura = argId_textura;
 }
 
 
@@ -137,8 +136,8 @@ void VodkaCupVBO::drawVodka_top (float altura, float raio, int vertex, int layer
 
 void VodkaCupVBO::draw(){
 	glPushMatrix();
-    glTranslatef(0, (3*altur)/10, 0);
-	drawVodka_top((3*altur)/5, altur/9, vertx, lays);
+    glTranslatef(0, (3*alt)/10, 0);
+	drawVodka_top((3*alt)/5, alt/9, vertex, layer);
 
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);
@@ -153,7 +152,7 @@ void VodkaCupVBO::draw(){
 
 
 
-	CylinderVBO* cylinder = new CylinderVBO(altur/9, altur/40, vertx, lays, 0);
+	CylinderVBO* cylinder = new CylinderVBO(alt/9, alt/40, vertex, layer, 0);
 	cylinder->draw();
 }
 
