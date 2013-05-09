@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="objects\cups\WineCupVBO.cpp" />
+    <ClCompile Include="objects\paralelepipedo\ParallelepipedVBO.cpp" />
     <ClCompile Include="primitives\cone\cone.cpp" />
     <ClCompile Include="primitives\cone\ConeVBO.cpp" />
     <ClCompile Include="primitives\cube\cube.cpp" />
@@ -118,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
+    <ClInclude Include="objects\paralelepipedo\ParallelepipedVBO.h" />
     <ClInclude Include="primitives\cone\cone.h" />
     <ClInclude Include="primitives\cone\ConeVBO.h" />
     <ClInclude Include="primitives\cube\cube.h" />

@@ -41,6 +41,7 @@
 
 #include "primitives/cone/ConeVBO.h"
 
+#include "objects/paralelepipedo/ParallelepipedVBO.h"
 
 float rotation;
 float rotationz;
@@ -65,6 +66,7 @@ CocktailCupVBO* cocktailCup;
 WineBottleVBO* wineBottle;
 
 ConeVBO* cone;
+ParallelepipedVBO* parallelepiped;
 
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
@@ -138,15 +140,16 @@ void renderScene(void) {
 
 	switch(figura){
 		case 0:
-				/*glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);*/
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 				//cylinder->draw();
 				//plane->draw() ;
 				//cube->draw() ;				
-				//sphere->draw();
-				cone->draw();
+				//sphere->draw()
+				//cone->draw();
+				parallelepiped->draw();
 				
 			break ;
 		case 1:
@@ -737,6 +740,7 @@ int main(int argc, char **argv) {
 
 	cone = new ConeVBO(5,5.0,50,80,id_textura );
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
+	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura);
 
 
     // entrar no ciclo do GLUT
