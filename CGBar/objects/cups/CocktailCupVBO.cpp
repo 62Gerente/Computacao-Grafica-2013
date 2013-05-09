@@ -5,8 +5,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-double a;
-int v,l;
+
 
 CocktailCupVBO::CocktailCupVBO(double alt ,  int vertex, int layers, unsigned int id_textura) : Primitivas(id_textura)
 {
