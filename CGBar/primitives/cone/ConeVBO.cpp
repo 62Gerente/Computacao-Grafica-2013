@@ -123,18 +123,18 @@ ConeVBO::ConeVBO(float height, float radius, int vertex, int layers, unsigned in
 	for(int i=0; i<layers-1;i++){
 		for(int ri=0;ri<layers-1;ri++){
 
-					aIndex[pos] = ri+(vertex*i) +inc;
+					aIndex[pos] = ri+(layers*i) +inc;
 					pos++;
-					aIndex[pos] = (ri+1)+(vertex*(i+1)) +inc;
+					aIndex[pos] = (ri+1)+(layers*(i+1)) +inc;
 					pos++;
-					aIndex[pos] = (ri+1)+(vertex*i) +inc;
+					aIndex[pos] = (ri+1)+(layers*i) +inc;
 					pos++;
 
-					aIndex[pos] = ri+(vertex*i) +inc;
+					aIndex[pos] = ri+(layers*i) +inc;
 					pos++;
-					aIndex[pos] = ri+(vertex*(i+1)) +inc;
+					aIndex[pos] = ri+(layers*(i+1)) +inc;
 					pos++;
-					aIndex[pos] = (ri+1)+(vertex*(i+1)) +inc;
+					aIndex[pos] = (ri+1)+(layers*(i+1)) +inc;
 					pos++;
 
 		}

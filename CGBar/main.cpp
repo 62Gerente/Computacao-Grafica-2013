@@ -705,7 +705,7 @@ int main(int argc, char **argv) {
 	cylinder = new CylinderVBO(2.5,10.0,80,100,id_textura );
 	cube = new CubeVBO(6.0,5, id_textura);
 	sphere = new SphereVBO(6,100,120,id_textura);
-	cone = new ConeVBO(5,5.0,50,50,id_textura );
+	cone = new ConeVBO(5,5.0,50,80,id_textura );
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
 
     // entrar no ciclo do GLUT
