@@ -121,65 +121,53 @@ void renderScene(void) {
 
 
 	float vermelho[]={1.0,0.3,0.3};
+	float cinzento[]={0.6662,0.6662,0.6662};
 	float spec[]={1,1,1,1.0};
 
 	switch(figura){
 		case 0:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 				cone->draw();
 			break ;
 		case 1:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				cylinder->draw();
 				break;
 		case 2:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				plane->draw();
 			break;
 		case 3:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				cube->draw();
 			break;
 		case 4:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				sphere->draw();
 			break ;
 		case 5:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				cylinder->draw();
-				break;
-		case 6:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				plane->draw();
-			break;
-		case 7:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 				cone->draw();
 			break;
+
 		case 9:
 			drawWineCup(5, 30, 30);;
 			break;
@@ -193,7 +181,7 @@ void renderScene(void) {
 			drawShotCup(5, 30, 30);
 			break;
 		case 13:
-			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
@@ -428,11 +416,6 @@ void menu_figuras_handler(int op)
 			figura = 5; // Cilindro sem camadas
 			break;
 		}
-        case 5:
-		{
-			figura = 6; // Plano sem camadas
-			break;
-		}
         default: return;
 	}
 	glutPostRedisplay();
@@ -646,8 +629,7 @@ int main(int argc, char **argv) {
         glutAddMenuEntry("PLANO", 1);
         glutAddMenuEntry("CUBO", 2);
         glutAddMenuEntry("ESFERA", 3);
-        glutAddMenuEntry("CILINDRO SEM CAMADAS", 4);
-        glutAddMenuEntry("PLANO SEM CAMADAS", 5);
+        glutAddMenuEntry("CONE", 4);
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	int mcopos = glutCreateMenu(menu_copos_handler);
