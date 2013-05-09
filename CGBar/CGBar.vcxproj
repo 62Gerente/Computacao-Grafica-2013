@@ -80,6 +80,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="objects\cups\WineCupVBO.cpp" />
+    <ClCompile Include="primitives\cone\cone.cpp" />
+    <ClCompile Include="primitives\cone\ConeVBO.cpp" />
     <ClCompile Include="primitives\cube\cube.cpp" />
     <ClCompile Include="primitives\cube\CubeVBO.cpp" />
     <ClCompile Include="primitives\cylinder\CylinderVBO.cpp" />
@@ -105,7 +107,6 @@
     <ClCompile Include="objects\sconces\treeSconce.cpp" />
     <ClCompile Include="objects\table\table.cpp" />
     <ClCompile Include="Primitivas.cpp" />
-    <ClCompile Include="primitives\cone\cone.cpp" />
     <ClCompile Include="primitives\cylinder\cylinder.cpp" />
     <ClCompile Include="primitives\plane\plane.cpp" />
     <ClCompile Include="primitives\plane\PlaneVBO.cpp" />
@@ -117,6 +118,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
+    <ClInclude Include="primitives\cone\cone.h" />
+    <ClInclude Include="primitives\cone\ConeVBO.h" />
     <ClInclude Include="primitives\cube\cube.h" />
     <ClInclude Include="primitives\cube\CubeVBO.h" />
     <ClInclude Include="primitives\cylinder\CylinderVBO.h" />
@@ -141,7 +144,6 @@
     <ClInclude Include="objects\sconces\treeSconce.h" />
     <ClInclude Include="objects\table\table.h" />
     <ClInclude Include="Primitivas.h" />
-    <ClInclude Include="primitives\cone\cone.h" />
     <ClInclude Include="primitives\cylinder\cylinder.h" />
     <ClInclude Include="primitives\plane\plane.h" />
     <ClInclude Include="primitives\plane\PlaneVBO.h" />

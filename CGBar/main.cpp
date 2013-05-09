@@ -34,6 +34,7 @@
 #include "objects/cups/VodkaCupVBO.h"
 #include "primitives/cube/CubeVBO.h"
 #include "primitives/sphere/SphereVBO.h"
+#include "primitives/cone/ConeVBO.h"
 
 float rotation;
 float rotationz;
@@ -52,7 +53,7 @@ CylinderVBO* cylinder;
 VodkaCupVBO* vodkaCup;
 CubeVBO* cube;
 SphereVBO* sphere;
-
+ConeVBO* cone;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -120,6 +121,7 @@ void renderScene(void) {
 
 
 	float vermelho[]={1.0,0.3,0.3};
+	float cinzento[]={0.6662,0.6662,0.6662};
 	float spec[]={1,1,1,1.0};
 
 	switch(figura){
@@ -131,54 +133,46 @@ void renderScene(void) {
 				//cylinder->draw();
 				//plane->draw() ;
 				//cube->draw() ;				
-				sphere->draw();
-
+				//sphere->draw();
+				cone->draw();
+				
 			break ;
 		case 1:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				cylinder->draw();
 				break;
 		case 2:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				plane->draw();
 			break;
 		case 3:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				cube->draw();
 			break;
 		case 4:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				sphere->draw();
 			break ;
 		case 5:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
-				cylinder->draw();
-				break;
-		case 6:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				cone->draw();
+			break;
 
-				plane->draw();
-			break;
-		case 7:
-			drawCone(3, 5, 30, 30);;
-			break;
 		case 9:
 			drawWineCup(5, 30, 30);;
 			break;
@@ -192,7 +186,7 @@ void renderScene(void) {
 			drawShotCup(5, 30, 30);
 			break;
 		case 13:
-			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
@@ -427,11 +421,6 @@ void menu_figuras_handler(int op)
 			figura = 5; // Cilindro sem camadas
 			break;
 		}
-        case 5:
-		{
-			figura = 6; // Plano sem camadas
-			break;
-		}
         default: return;
 	}
 	glutPostRedisplay();
@@ -645,8 +634,7 @@ int main(int argc, char **argv) {
         glutAddMenuEntry("PLANO", 1);
         glutAddMenuEntry("CUBO", 2);
         glutAddMenuEntry("ESFERA", 3);
-        glutAddMenuEntry("CILINDRO SEM CAMADAS", 4);
-        glutAddMenuEntry("PLANO SEM CAMADAS", 5);
+        glutAddMenuEntry("CONE", 4);
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	int mcopos = glutCreateMenu(menu_copos_handler);
@@ -713,13 +701,12 @@ int main(int argc, char **argv) {
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 
-	plane = new PlaneVBO(5.0,7.0, 5, id_textura);
-	cylinder = new CylinderVBO(2.5,10.0, 15, 10, id_textura);
-
+	plane = new PlaneVBO(5.0,7.0,30, id_textura);
+	cylinder = new CylinderVBO(2.5,10.0,80,100,id_textura );
+	cube = new CubeVBO(6.0,5, id_textura);
+	sphere = new SphereVBO(6,100,120,id_textura);
+	cone = new ConeVBO(5,5.0,50,50,id_textura );
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
-	cube = new CubeVBO(6.0, 5, id_textura);
-	sphere = new SphereVBO(6, 30, 20, id_textura);
-
 
     // entrar no ciclo do GLUT
 	glutMainLoop();

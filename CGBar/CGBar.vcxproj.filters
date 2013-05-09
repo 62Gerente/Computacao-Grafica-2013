@@ -87,9 +87,6 @@
     <ClCompile Include="objects\table\table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="primitives\cone\cone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="primitives\cylinder\cylinder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -120,7 +117,17 @@
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="objects\cups\WineCupVBO.cpp">
+=======
+    <ClCompile Include="primitives\cone\cone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\cone\ConeVBO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="primitives\cone\cone.cpp">
+>>>>>>> 72c449ab484c040044ef5ffd9cabc8c6aaa7c07d
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -194,9 +201,6 @@
     <ClInclude Include="objects\table\table.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="primitives\cone\cone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitives\cylinder\cylinder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -224,7 +228,13 @@
     <ClInclude Include="objects\cups\VodkaCupVBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="objects\cups\WineCupVBO.h">
+    <ClInclude Include="primitives\cone\cone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\cone\ConeVBO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitives\cone\cone.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
