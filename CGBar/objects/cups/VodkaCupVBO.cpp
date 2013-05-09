@@ -8,7 +8,7 @@
 double altur;
 int vertx,lays;
 
-VodkaCupVBO::VodkaCupVBO(double alt,  int vertex, int layers)
+VodkaCupVBO::VodkaCupVBO(double alt,  int vertex, int layers, unsigned int id_textura) : Primitivas(id_textura)
 {
 	altur = alt;
 	vertx = vertex;
@@ -153,7 +153,7 @@ void VodkaCupVBO::draw(){
 
 
 
-	CylinderVBO* cylinder = new CylinderVBO(altur/9, altur/40, vertx, lays);
+	CylinderVBO* cylinder = new CylinderVBO(altur/9, altur/40, vertx, lays, 0);
 	cylinder->draw();
 }
 

@@ -1,5 +1,6 @@
 ﻿#include <glew.h>
 #include <GLUT/glut.h>
+#include <IL/il.h>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -43,6 +44,8 @@ bool cull;
 bool dragging;
 int dragx, dragy;
 int figura;
+
+unsigned int id_textura ;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
@@ -97,9 +100,12 @@ void renderScene(void) {
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     
-
+	/* Luzes */
 	glLightfv(GL_LIGHT0, GL_POSITION, pos);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, dif);
+	
+	/* Activar texturas */
+	glEnable(GL_TEXTURE_2D) ;
 
     // por instrucoes de desenho aqui
     //glutPostRedisplay();
@@ -120,13 +126,18 @@ void renderScene(void) {
 		case 0:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
-				sphere->draw();
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				cylinder->draw();
+
 			break ;
 		case 1:
-			drawCylinder(3, 10, 30, 30);
-			break;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				cylinder->draw();
+				break;
 		case 2:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -142,8 +153,12 @@ void renderScene(void) {
 				cube->draw();
 			break;
 		case 4:
-			drawSphere(3, 30, 30);
-			break;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				sphere->draw();
+			break ;
 		case 5:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -152,7 +167,11 @@ void renderScene(void) {
 				cylinder->draw();
 				break;
 		case 6:
-			drawPlane(5, 5);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				plane->draw();
 			break;
 		case 7:
 			drawCone(3, 5, 30, 30);;
@@ -549,6 +568,28 @@ void menu_candeeiros_handler(int op)
 	glutPostRedisplay();
 }
 
+void carregarTextura (char* nome_ficheiro, unsigned int* textura_id) {
+	
+	unsigned int t, tw, th;
+	unsigned char *texData;
+	ilGenImages(1,&t);
+	ilBindImage(t);
+	ilLoadImage((ILstring)nome_ficheiro);
+	tw = ilGetInteger(IL_IMAGE_WIDTH);
+	th = ilGetInteger(IL_IMAGE_HEIGHT);	
+	ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+	texData = ilGetData();
+	glGenTextures(1,textura_id); // unsigned int texID - variavel global;
+	glBindTexture(GL_TEXTURE_2D,*textura_id);
+	printf("tw: %u th: %u textura_id: %u\n", tw, th, *textura_id) ;
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0,
+	GL_RGBA, GL_UNSIGNED_BYTE, texData);
+}
+
 int main(int argc, char **argv) {
     
     // inicializacao
@@ -654,7 +695,12 @@ int main(int argc, char **argv) {
 		glutAddMenuEntry("Estrutura", 5);
         glutAttachMenu(GLUT_RIGHT_BUTTON);
     
+	/* Iniciar glew e il */
 	glewInit();
+	ilInit();
+
+	/* Carregar textura */
+	carregarTextura("terra.jpg", &id_textura) ;
 
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
@@ -663,12 +709,12 @@ int main(int argc, char **argv) {
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 
-	plane = new PlaneVBO(5.0,7.0,30);
-	cylinder = new CylinderVBO(3.0,10.0,100,100);
+	plane = new PlaneVBO(5.0,7.0,30, id_textura);
+	cylinder = new CylinderVBO(2.5,10.0,80,100,id_textura );
 
-	vodkaCup = new VodkaCupVBO(5,30,30);
-	cube = new CubeVBO(6.0,30 );
-	sphere = new SphereVBO(6,30,30);
+	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
+	cube = new CubeVBO(6.0,5, id_textura);
+	sphere = new SphereVBO(6,100,120,id_textura);
 
 
     // entrar no ciclo do GLUT

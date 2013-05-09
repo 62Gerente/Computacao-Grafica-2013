@@ -5,5 +5,5 @@
 class SphereVBO : public Primitivas
 {
 public:
-	SphereVBO(float radius, int vertex, int layers);
+	SphereVBO(float radius, int vertex, int layers, unsigned int id_textura);
 };
