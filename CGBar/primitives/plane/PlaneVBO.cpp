@@ -30,15 +30,13 @@ PlaneVBO::PlaneVBO(float x, float z, int layers, unsigned int id_textura) : Prim
 
 	int pos = 0;
 
-	int pos_textura = 0 ;
-	float divx_textura = x/(layers-1);
-    float divz_textura = z/(layers-1); 
+	int pos_textura = 0 ;	
 
 	for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){
 			aVertex[pos] = (-x/2) + i*divx;
 			aNormal[pos] = 0;
-			aTexture[pos_textura++] = (((-x/2) + i*divx_textura) - (-x/2))/x ;
+			aTexture[pos_textura++] = (((-x/2) + i*divx) - (-x/2))/x ;
 			pos++;
 
 			aVertex[pos] = 0;
@@ -47,7 +45,7 @@ PlaneVBO::PlaneVBO(float x, float z, int layers, unsigned int id_textura) : Prim
 
 			aVertex[pos] = z/2 - j*divz;
 			aNormal[pos] = 0;
-			aTexture[pos_textura++] = ((z/2 - j*divz_textura) - (-z/2))/z;
+			aTexture[pos_textura++] = ((z/2 - j*divz) - (-z/2))/z;
 			pos++;
         }
     }

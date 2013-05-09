@@ -45,7 +45,7 @@ CubeVBO::CubeVBO(float dim, int layers, unsigned int id_textura) : Primitivas(id
 			aVertex[pos] = dim/2 - j*div;
 			aNormal[pos] = 0;			
 			pos++;
-
+			
 			aTexture[pos_textura++] = (((-dim/2) + i*div) - (-dim/2))/dim ;
 			aTexture[pos_textura++] = 1-((((-dim/2) + j*div) - (-dim/2))/dim) ;
         }
@@ -55,8 +55,7 @@ CubeVBO::CubeVBO(float dim, int layers, unsigned int id_textura) : Primitivas(id
 	for(int i=0; i<layers; i++){
         for(int j=0; j<layers; j++){
 			aVertex[pos] = (-dim/2) + i*div;
-			aNormal[pos] = 0;
-			aTexture[pos_textura++] = (((-dim/2) + i*div) - (-dim/2))/dim ;
+			aNormal[pos] = 0;			
 			pos++;
 
 			aVertex[pos] = -h;
@@ -64,9 +63,11 @@ CubeVBO::CubeVBO(float dim, int layers, unsigned int id_textura) : Primitivas(id
 			pos++;
 
 			aVertex[pos] = dim/2 - j*div;
-			aNormal[pos] = 0;
-			aTexture[pos_textura++] = (((-dim/2) + j*div) - (-dim/2))/dim ;
+			aNormal[pos] = 0;			
 			pos++;
+
+			aTexture[pos_textura++] = (((-dim/2) + i*div) - (-dim/2))/dim ;
+			aTexture[pos_textura++] = (((-dim/2) + j*div) - (-dim/2))/dim ;
         }
     } 
 
@@ -145,8 +146,8 @@ CubeVBO::CubeVBO(float dim, int layers, unsigned int id_textura) : Primitivas(id
 			aNormal[pos] = 0;			
 			pos++;		
 
-			aTexture[pos_textura++] = 1-((((-dim/2) + j*div) - (-dim/2))/dim) ;
-			aTexture[pos_textura++] = (((-dim/2) + i*div) - (-dim/2))/dim ;
+			aTexture[pos_textura++] = (((-dim/2) + j*div) - (-dim/2))/dim ;
+			aTexture[pos_textura++] = 1-((((-dim/2) + i*div) - (-dim/2))/dim) ;
         }
     } 
 
