@@ -62,6 +62,12 @@ bool dragging;
 int dragx, dragy;
 int figura;
 
+float camz = 5.0;
+float camYaw=0.0;      
+float camPitch=0.0;     
+float movevel=0.2;
+float mousevel=0.2;
+
 unsigned int id_textura ;
 
 PlaneVBO* plane;
@@ -653,6 +659,98 @@ void carregarTextura (char* nome_ficheiro, unsigned int* textura_id) {
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0,
 	GL_RGBA, GL_UNSIGNED_BYTE, texData);
 }
+
+
+
+void lockCamera()
+{
+        if(camPitch>90)
+                camPitch=90;
+        if(camPitch<-90)
+                camPitch=-90;
+        if(camYaw<0.0)
+                camYaw+=360.0;
+        if(camYaw>360.0)
+                camYaw-=360;
+}
+ 
+void moveCamera(float dist,float dir)
+{
+        float rad=(camYaw+dir)*M_PI/180.0;
+        camx-=sin(rad)*dist;    
+        camz-=cos(rad)*dist;    
+}
+ 
+void moveCameraUp(float dist,float dir)
+{
+        float rad=(camPitch+dir)*M_PI/180.0;
+        camy+=sin(rad)*dist;   
+}
+
+void UpdateCamera()
+{
+        glTranslatef(-camx,-camy,-camz);       
+}
+
+void keyboard_handler_explorer(unsigned char key, int x, int y){
+
+    switch (key) {
+        case 'a':
+		{
+			moveCamera(movevel,90.0);
+			break;
+		}
+        case 'd':
+		{
+			moveCamera(movevel,270);;
+			break;
+		}
+        case 'w':
+		{
+			if(camPitch!=90 && camPitch!=-90)
+                moveCamera(movevel,0.0);    
+            moveCameraUp(movevel,0.0);      
+			break;
+		}
+        case 's':
+		{
+			if(camPitch!=90 && camPitch!=-90)
+                moveCamera(movevel,180.0);
+            moveCameraUp(movevel,180.0);
+			break;
+		}
+        default:
+            break;
+    }
+}
+
+void mouse_motion_handler_explorer(int x, int y){
+        int MidX=glutGet(GLUT_SCREEN_WIDTH)/2;
+        int MidY=glutGet(GLUT_SCREEN_HEIGHT)/2;
+		camYaw+=mousevel*(MidX-x);   
+        camPitch+=mousevel*(MidY-y); 
+		glutPostRedisplay();
+}
+
+void Control(bool mi)    
+{
+        if(mi) 
+        {
+                int MidX=glutGet(GLUT_SCREEN_WIDTH)/2;
+                int MidY=glutGet(GLUT_SCREEN_HEIGHT)/2;
+                glutSetCursor(GLUT_CURSOR_NONE);  
+                glutPassiveMotionFunc(mouse_motion_handler_explorer);
+                lockCamera();
+                glutWarpPointer(MidX,MidY);      
+                glutKeyboardFunc(keyboard_handler_explorer);        
+        }
+        glRotatef(-camPitch,1.0,0.0,0.0);       
+        glRotatef(-camYaw,0.0,1.0,0.0);
+}
+
+//
+//
+//
 
 int main(int argc, char **argv) {
     
