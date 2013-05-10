@@ -7,20 +7,22 @@
 
 
 
-WineBottleVBO::WineBottleVBO(double alt,  int vertex, int layers, unsigned int id_textura)
+WineBottleVBO::WineBottleVBO(double alt,  int vertex, int layers, unsigned int argId_textura)
 {
 	al = alt;
 	vrt = vertex;
 	layer =layers;
+	id_textura = argId_textura;
+
+	
+	sphere = new SphereVBO (al/8, vrt, layer, id_textura); 
+	cylinder = new CylinderVBO( al/26, al/5,vrt/2, layer/2, id_textura);
+	cyl = new CylinderVBO(al/23, al/50, vrt/2, layer/3, id_textura);
+	cylinder1 = new CylinderVBO( al/8, (2*al)/3 - al/10, vrt, layer, id_textura);
 }
 
 
 void WineBottleVBO::draw(){
-
-	SphereVBO* sphere = new SphereVBO (al/8, vrt, layer, 0); 
-	CylinderVBO* cylinder = new CylinderVBO( al/26, al/5,vrt/2, layer/2, 0);
-	CylinderVBO* cyl = new CylinderVBO(al/23, al/50, vrt/2, layer/3, 0);
-	CylinderVBO* cylinder1 = new CylinderVBO( al/8, (2*al)/3 - al/10, vrt, layer, 0);
 
 	glPushMatrix();
     glTranslatef(0, ((2*al)/9), 0);
@@ -41,6 +43,8 @@ void WineBottleVBO::draw(){
    glTranslatef(0, (2*al)/3 + al/6, 0);
 	cyl->draw();
     glPopMatrix();
+
+	
 
 	
 }
