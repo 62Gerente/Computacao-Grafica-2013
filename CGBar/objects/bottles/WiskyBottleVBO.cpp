@@ -5,6 +5,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "../paralelepipedo/paralelepipedo.h"
+#include "../paralelepipedo/ParallelepipedVBo.h"
 
 WiskyBottleVBO::WiskyBottleVBO(double argAlt,  int argVertex, int argLayers, unsigned int argId_textura)
 {
@@ -12,19 +13,22 @@ WiskyBottleVBO::WiskyBottleVBO(double argAlt,  int argVertex, int argLayers, uns
 	vertex =argVertex;
 	layer =argLayers;
 	id_textura = argId_textura;
+
+	cone = new ConeVBO(alt/6,alt/8, vertex, 4, id_textura);
+	cylinder1 = new CylinderVBO (alt/26, alt/5, vertex/2, layer/2, id_textura);
+	cylinder2 = new CylinderVBO (alt/23, alt/50, vertex/2, layer/3, id_textura);
+	parallelepiped = new ParallelepipedVBO ((2*alt)/3 - alt/10, alt/5-alt/40,alt/5-alt/40, vertex, id_textura);
 }
 
 
 void WiskyBottleVBO::draw(){
 
-	ConeVBO* cone = new ConeVBO(alt/6,alt/8, vertex, 4, 0);
-	CylinderVBO* cylinder1 = new CylinderVBO (alt/26, alt/5, vertex/2, layer/2, 0);
-	CylinderVBO* cylinder2 = new CylinderVBO (alt/23, alt/50, vertex/2, layer/3, 0);
+
 
 	glPushMatrix();
     glRotatef(45, 0, 1, 0);
     glTranslatef(0, ((2*alt)/9), 0);
-    drawParalelepipedo((2*alt)/3 - alt/10, alt/5-alt/40,alt/5-alt/40, vertex);
+    parallelepiped->draw();
     glPopMatrix();
 
 	glPushMatrix();
