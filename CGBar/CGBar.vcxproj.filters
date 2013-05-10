@@ -43,6 +43,7 @@
     <ClCompile Include="objects\bottles\WineBottleVBO.cpp" />
     <ClCompile Include="objects\bottles\WiskyBottleVBO.cpp" />
     <ClCompile Include="objects\estruturas\FloorVBO.cpp" />
+    <ClCompile Include="objects\estruturas\WallsVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -86,5 +87,6 @@
     <ClInclude Include="objects\bottles\WineBottleVBO.h" />
     <ClInclude Include="objects\bottles\WiskyBottleVBO.h" />
     <ClInclude Include="objects\estruturas\FloorVBO.h" />
+    <ClInclude Include="objects\estruturas\WallsVBO.h" />
   </ItemGroup>
 </Project>

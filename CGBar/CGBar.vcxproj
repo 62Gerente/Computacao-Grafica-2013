@@ -85,6 +85,7 @@
     <ClCompile Include="objects\cups\ShotCupVBO.cpp" />
     <ClCompile Include="objects\cups\WineCupVBO.cpp" />
     <ClCompile Include="objects\estruturas\FloorVBO.cpp" />
+    <ClCompile Include="objects\estruturas\WallsVBO.cpp" />
     <ClCompile Include="objects\paralelepipedo\ParallelepipedVBO.cpp" />
     <ClCompile Include="primitives\cone\cone.cpp" />
     <ClCompile Include="primitives\cone\ConeVBO.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="objects\cups\ShotCupVBO.h" />
     <ClInclude Include="objects\cups\WineCupVBO.h" />
     <ClInclude Include="objects\estruturas\FloorVBO.h" />
+    <ClInclude Include="objects\estruturas\WallsVBO.h" />
     <ClInclude Include="objects\paralelepipedo\ParallelepipedVBO.h" />
     <ClInclude Include="primitives\cone\cone.h" />
     <ClInclude Include="primitives\cone\ConeVBO.h" />

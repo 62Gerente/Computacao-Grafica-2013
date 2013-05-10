@@ -38,7 +38,7 @@ void FloorVBO::draw(){
     glPopMatrix();
     
     glPushMatrix();
-    glTranslatef(-2.5, 0, -5);
+    glTranslatef(-2.5, -0.005, -5);
 	cylinderg3->draw();
     glPopMatrix();
     

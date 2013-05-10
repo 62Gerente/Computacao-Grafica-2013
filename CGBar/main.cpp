@@ -47,6 +47,7 @@
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
 
 #include "objects\estruturas\FloorVBO.h"
+#include "objects\estruturas\WallsVBO.h"
 
 float rotation;
 float rotationz;
@@ -77,6 +78,7 @@ WiskyBottleVBO* wiskyBottle;
 ParallelepipedVBO* parallelepiped;
 
 FloorVBO* floorv;
+WallsVBO* wallsv;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -159,8 +161,9 @@ void renderScene(void) {
 				//sphere->draw()
 				//cone->draw();
 				//parallelepiped->draw();
-				//floorv->draw();
-				drawBanco(15, 10, 10);
+				floorv->draw();
+				//drawBanco(15, 10, 10);
+				wallsv->draw();
 
 			break ;
 		case 1:
@@ -774,6 +777,7 @@ int main(int argc, char **argv) {
 	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura);
 
 	floorv = new FloorVBO(1,id_textura);
+	wallsv = new WallsVBO(1,id_textura);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
