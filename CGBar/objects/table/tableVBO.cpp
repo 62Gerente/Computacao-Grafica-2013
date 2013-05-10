@@ -1,6 +1,7 @@
 #include <GLUT/glut.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <stdio.h>
 #include "TableVBO.h"
 #include "../../primitives/cylinder/CylinderVBO.h"
 #include "../../primitives/plane/PlaneVBO.h"
@@ -185,6 +186,7 @@ TableCircularVBO::TableCircularVBO(float arg_raio_tabua, float arg_altura_pe, in
 	raio_base = raio_tabua/3 ;
 	/* Objectos */
 	tabua = new CylinderVBO(raio_tabua, altura_tabua, n_vertices, n_camadas, textura_tabua) ;
+	printf("Raio da tabua: %f	\n  Altura da tabua: %f		\n", raio_tabua, altura_tabua) ;
 	pe = new CylinderVBO(raio_pe, altura_pe, n_vertices, n_camadas, textura_pe) ;
 	base = new CylinderVBO(raio_base, altura_base, n_vertices, n_camadas, textura_base) ;
 }

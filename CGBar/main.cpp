@@ -905,7 +905,7 @@ int main(int argc, char **argv) {
 	glEnable(GL_LIGHT0);
 
 	plane = new PlaneVBO(5.0,7.0,30, id_textura);
-	cylinder = new CylinderVBO(2.5,10.0,80,100,id_textura );
+	cylinder = new CylinderVBO(5, 5, 20, 10, 0 );
 	cube = new CubeVBO(6.0,5, id_textura);
 	sphere = new SphereVBO(6,100,120,id_textura);
 	cone = new ConeVBO(5,5.0,50,80,id_textura );
@@ -931,7 +931,7 @@ int main(int argc, char **argv) {
 
 	mesa_um = new TableOneVBO(2, 1, 0.05, 0.8, 0.05, 30, 10, 0, 0); 	
 	mesa_dois = new TableTwoVBO(1, 2, 0.05, 0.8, 0.05, 30, 10, 0, 0);	
-	mesa_circular = new TableCircularVBO(1.5, 2, 30, 30, 0, 0, 0) ;
+	mesa_circular = new TableCircularVBO(5, 7, 20, 10, 0, 0, 0) ;
 
 	cadeira_um = new ChairClassicaOneVBO(5, 20, 15, 0, 0, 0) ;
 	cadeira_dois = new ChairClassicaTwoVBO(5, 20, 15, 0, 0, 0) ;

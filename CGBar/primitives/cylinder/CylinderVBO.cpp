@@ -13,9 +13,9 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	nrIndex = 6*(vertex*layers + 2*layers*layers);
-	int arraySize = (3*(vertex*layers+ 2*layers*layers))*sizeof(float);
-	int textSize = (2*(vertex*layers+  2*layers*layers))*sizeof(float);
+	nrIndex = 6*(vertex*layers + 2*vertex*layers);
+	int arraySize = (3*(vertex*layers+ 2*vertex*layers))*sizeof(float);
+	int textSize = (2*(vertex*layers+  2*vertex*layers))*sizeof(float);
 
 	float* aVertex = (float*) malloc(arraySize);
 	float* aNormal = (float*) malloc(arraySize);
@@ -55,7 +55,7 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 
 	float ang = 0.0f;
 	float r_inc = radius/((float)(layers-1));
-	for(int i=0; i<layers;i++){
+	for(int i=0; i<vertex;i++){
         
 		float fr=0.0;
 		//float alt=height;
@@ -83,7 +83,7 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 	}
 
 	ang = 0.0f;
-	for(int i=0; i<layers;i++){
+	for(int i=0; i<vertex;i++){
         
 		float fr=0.0;
 		//float alt=height;
@@ -132,7 +132,7 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 	int inc = layers*vertex;
 	ang = 0.0f;
 
-	for(int i=0; i<layers-1;i++){
+	for(int i=0; i<vertex-1;i++){
 		for(int ri=0;ri<layers-1;ri++){
 
 					aIndex[pos] = ri+(layers*i) +inc;
@@ -153,10 +153,10 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 		}
     }
 
-	inc = layers*(layers+vertex);
+	inc = layers*vertex + layers*vertex;
 	ang = 0.0f;
 
-	for(int i=0; i<layers-1;i++){
+	for(int i=0; i<vertex-1;i++){
 		for(int ri=0;ri<layers-1;ri++){
 
 					aIndex[pos] = ri+(layers*i) +inc;
