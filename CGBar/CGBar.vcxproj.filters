@@ -38,6 +38,11 @@
     <ClCompile Include="utils\cores.cpp" />
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
     <ClCompile Include="objects\paralelepipedo\ParallelepipedVBO.cpp" />
+    <ClCompile Include="objects\cups\CocktailCupVBO.cpp" />
+    <ClCompile Include="objects\cups\ShotCupVBO.cpp" />
+    <ClCompile Include="objects\bottles\WineBottleVBO.cpp" />
+    <ClCompile Include="objects\bottles\WiskyBottleVBO.cpp" />
+    <ClCompile Include="objects\estruturas\FloorVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -76,5 +81,10 @@
     <ClInclude Include="utils\cores.h" />
     <ClInclude Include="objects\cups\VodkaCupVBO.h" />
     <ClInclude Include="objects\paralelepipedo\ParallelepipedVBO.h" />
+    <ClInclude Include="objects\cups\CocktailCupVBO.h" />
+    <ClInclude Include="objects\cups\ShotCupVBO.h" />
+    <ClInclude Include="objects\bottles\WineBottleVBO.h" />
+    <ClInclude Include="objects\bottles\WiskyBottleVBO.h" />
+    <ClInclude Include="objects\estruturas\FloorVBO.h" />
   </ItemGroup>
 </Project>

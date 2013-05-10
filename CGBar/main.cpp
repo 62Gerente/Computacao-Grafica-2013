@@ -31,20 +31,22 @@
 
 #include "primitives/plane/PlaneVBO.h"
 #include "primitives/cylinder/CylinderVBO.h"
-#include "objects/cups/VodkaCupVBO.h"
 #include "primitives/cube/CubeVBO.h"
 #include "primitives/sphere/SphereVBO.h"
+#include "primitives/cone/ConeVBO.h"
 
 #include "objects/cups/WineCupVBO.h"
 #include "objects/cups/CocktailCupVBO.h"
 #include "objects/bottles/WineBottleVBO.h"
+#include "objects/cups/VodkaCupVBO.h"
 
-#include "primitives/cone/ConeVBO.h"
 #include "objects/bottles/wiskyBottleVBO.h"
 #include "objects/bottles/WiskyBottleVBO.h"
 #include "objects/cups/ShotCupVBO.h"
 
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
+
+#include "objects\estruturas\FloorVBO.h"
 
 float rotation;
 float rotationz;
@@ -63,18 +65,18 @@ CylinderVBO* cylinder;
 VodkaCupVBO* vodkaCup;
 CubeVBO* cube;
 SphereVBO* sphere;
+ConeVBO* cone;
 
 WineCupVBO* wineCup;
 CocktailCupVBO* cocktailCup;
-WineBottleVBO* wineBottle;
-
-ConeVBO* cone;
-
-WiskyBottleVBO* wiskyBottle;
 ShotCupVBO* shotCup;
+
+WineBottleVBO* wineBottle;
+WiskyBottleVBO* wiskyBottle;
 
 ParallelepipedVBO* parallelepiped;
 
+FloorVBO* floorv;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -156,8 +158,9 @@ void renderScene(void) {
 				//cube->draw() ;				
 				//sphere->draw()
 				//cone->draw();
-				parallelepiped->draw();
-				
+				//parallelepiped->draw();
+				floorv->draw();
+
 			break ;
 		case 1:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
@@ -269,7 +272,17 @@ void renderScene(void) {
 			break;
 		case 22:
 			drawSconce3(5,30,30);
+		case 26:	
+ 			drawWallsX(1);
+ 			drawWallsZ(1);
+			drawTecto(1) ;
+ 			drawFloor(1) ;
+			break;
 		default:	
+ 			drawWallsX(1);
+ 			drawWallsZ(1);
+			drawTecto(1) ;
+ 			drawFloor(1) ;
 			break;
 			}
    
@@ -423,7 +436,7 @@ void menu_principal_handler(int op)
 	{
 		case 5:
 			//estrutura
-			figura = 0 ;
+			figura = 26 ;
 			break;
 
 		default:
@@ -747,21 +760,19 @@ int main(int argc, char **argv) {
 	cylinder = new CylinderVBO(2.5,10.0,80,100,id_textura );
 	cube = new CubeVBO(6.0,5, id_textura);
 	sphere = new SphereVBO(6,100,120,id_textura);
+	cone = new ConeVBO(5,5.0,50,80,id_textura );
 
 	wineCup = new WineCupVBO(8,30,30, id_textura);
 	cocktailCup = new CocktailCupVBO(5,30,30, id_textura);
-	wineBottle = new WineBottleVBO(5,30,30, id_textura);
-
-
-	cone = new ConeVBO(5,5.0,50,80,id_textura );
+	shotCup = new ShotCupVBO(5,30,30,0);
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
 
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura);
-	shotCup = new ShotCupVBO(5,30,30,0);
+	wineBottle = new WineBottleVBO(5,30,30, id_textura);
 
 	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura);
 
-
+	floorv = new FloorVBO(1,id_textura);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
