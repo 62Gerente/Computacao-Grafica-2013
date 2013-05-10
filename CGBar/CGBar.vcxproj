@@ -79,6 +79,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="objects\computer\ComputerVBO.cpp" />
+    <ClCompile Include="objects\bancos\bancoVBO.cpp" />
+    <ClCompile Include="objects\estruturas\CeilingVBO.cpp" />
     <ClCompile Include="objects\bottles\WineBottleVBO.cpp" />
     <ClCompile Include="objects\bottles\WiskyBottleVBO.cpp" />
     <ClCompile Include="objects\cups\CocktailCupVBO.cpp" />
@@ -124,6 +127,9 @@
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="objects\computer\ComputerVBO.h" />
+    <ClInclude Include="objects\bancos\bancoVBO.h" />
+    <ClInclude Include="objects\estruturas\CeilingVBO.h" />
     <ClInclude Include="objects\bottles\WineBottleVBO.h" />
     <ClInclude Include="objects\bottles\WiskyBottleVBO.h" />
     <ClInclude Include="objects\cups\CocktailCupVBO.h" />

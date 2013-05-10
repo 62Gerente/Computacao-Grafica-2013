@@ -48,6 +48,7 @@
 
 #include "objects\estruturas\FloorVBO.h"
 #include "objects\estruturas\WallsVBO.h"
+#include "objects\estruturas\CeilingVBO.h"
 
 float rotation;
 float rotationz;
@@ -79,6 +80,7 @@ ParallelepipedVBO* parallelepiped;
 
 FloorVBO* floorv;
 WallsVBO* wallsv;
+CeilingVBO* ceilingv;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -164,6 +166,7 @@ void renderScene(void) {
 				floorv->draw();
 				//drawBanco(15, 10, 10);
 				wallsv->draw();
+				ceilingv->draw();
 
 			break ;
 		case 1:
@@ -277,16 +280,21 @@ void renderScene(void) {
 		case 22:
 			drawSconce3(5,30,30);
 		case 26:	
- 			drawWallsX(1);
- 			drawWallsZ(1);
-			drawTecto(1) ;
- 			drawFloor(1) ;
-			break;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
 		default:	
- 			drawWallsX(1);
- 			drawWallsZ(1);
-			drawTecto(1) ;
- 			drawFloor(1) ;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
 			break;
 			}
    
@@ -446,6 +454,7 @@ void menu_principal_handler(int op)
 		default:
 		break;
 	}
+	glutPostRedisplay();
 }
 
 void menu_objectos_handler(int op){
@@ -776,8 +785,9 @@ int main(int argc, char **argv) {
 
 	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura);
 
-	floorv = new FloorVBO(1,id_textura);
-	wallsv = new WallsVBO(1,id_textura);
+	floorv = new FloorVBO(1,0);
+	wallsv = new WallsVBO(1,0);
+	ceilingv = new CeilingVBO(1,0);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
