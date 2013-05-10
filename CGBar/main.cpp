@@ -39,6 +39,7 @@
 #include "objects/cups/CocktailCupVBO.h"
 #include "objects/bottles/WineBottleVBO.h"
 #include "objects/cups/VodkaCupVBO.h"
+#include "objects/cups/BeerCupVBO.h"
 
 #include "objects/bottles/wiskyBottleVBO.h"
 #include "objects/bottles/WiskyBottleVBO.h"
@@ -71,6 +72,7 @@ ConeVBO* cone;
 WineCupVBO* wineCup;
 CocktailCupVBO* cocktailCup;
 ShotCupVBO* shotCup;
+BeerCupVBO* beerCup;
 
 WineBottleVBO* wineBottle;
 WiskyBottleVBO* wiskyBottle;
@@ -217,10 +219,14 @@ void renderScene(void) {
 			cocktailCup->draw();
 			break;
 		case 11:
-			drawBeerCup(5, 30, 30);
-			break;
+			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				beerCup->draw();
+				break;
 		case 12:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
@@ -767,9 +773,10 @@ int main(int argc, char **argv) {
 	cone = new ConeVBO(5,5.0,50,80,id_textura );
 
 	wineCup = new WineCupVBO(8,30,30, id_textura);
-	cocktailCup = new CocktailCupVBO(5,30,30, id_textura);
-	shotCup = new ShotCupVBO(5,30,30,0);
+	cocktailCup = new CocktailCupVBO(5,30,10, id_textura);
+	shotCup = new ShotCupVBO(5,30,30,id_textura);
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
+	beerCup = new BeerCupVBO(5,30,30,id_textura);
 
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura);
 	wineBottle = new WineBottleVBO(5,30,30, id_textura);
