@@ -2,15 +2,22 @@
 
 #include "../../Primitivas.h"
 #include "../../primitives/cylinder/CylinderVBO.h"
+#include "../../primitives/cone/ConeVBO.h"
+
 
 class  CocktailCupVBO : public Primitivas
 {
 public:
 	CocktailCupVBO(double alt ,  int vertex, int layers, unsigned int id_textura);
-	void drawCocktailCup_top (double r, double alt, int vertex, int layers);
+	void drawCocktailCup_top ();
 	void draw();
+
+	CylinderVBO* cylinder;
+    ConeVBO* cone ;
+    CylinderVBO* cyl;
 private:
-	double a;
-	int v,l;
+	double alt, rad, altura;
+	int vertex,layers;
+	unsigned int argId_textura;
 };
 
