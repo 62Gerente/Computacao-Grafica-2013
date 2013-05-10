@@ -47,8 +47,7 @@
     <ClCompile Include="objects\estruturas\CeilingVBO.cpp" />
     <ClCompile Include="objects\bancos\bancoVBO.cpp" />
     <ClCompile Include="objects\computer\ComputerVBO.cpp" />
-    <ClCompile Include="objects\table\tableVBO.cpp" />
-    <ClCompile Include="objects\chair\chairVBO.cpp" />
+    <ClCompile Include="objects\sconces\Sconce1VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -96,7 +95,6 @@
     <ClInclude Include="objects\estruturas\CeilingVBO.h" />
     <ClInclude Include="objects\bancos\bancoVBO.h" />
     <ClInclude Include="objects\computer\ComputerVBO.h" />
-    <ClInclude Include="objects\table\tableVBO.h" />
-    <ClInclude Include="objects\chair\chairVBO.h" />
+    <ClInclude Include="objects\sconces\Sconce1VBO.h" />
   </ItemGroup>
 </Project>

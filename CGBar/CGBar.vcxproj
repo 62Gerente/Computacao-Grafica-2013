@@ -79,7 +79,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="objects\chair\chairVBO.cpp" />
     <ClCompile Include="objects\computer\ComputerVBO.cpp" />
     <ClCompile Include="objects\bancos\bancoVBO.cpp" />
     <ClCompile Include="objects\estruturas\CeilingVBO.cpp" />
@@ -91,7 +90,6 @@
     <ClCompile Include="objects\estruturas\FloorVBO.cpp" />
     <ClCompile Include="objects\estruturas\WallsVBO.cpp" />
     <ClCompile Include="objects\paralelepipedo\ParallelepipedVBO.cpp" />
-    <ClCompile Include="objects\table\tableVBO.cpp" />
     <ClCompile Include="primitives\cone\cone.cpp" />
     <ClCompile Include="primitives\cone\ConeVBO.cpp" />
     <ClCompile Include="primitives\cube\cube.cpp" />
@@ -124,12 +122,12 @@
     <ClCompile Include="primitives\plane\PlaneVBO.cpp" />
     <ClCompile Include="primitives\sphere\sphere.cpp" />
     <ClCompile Include="primitives\sphere\SphereVBO.cpp" />
+    <ClCompile Include="objects\sconces\Sconce1VBO.cpp" />
     <ClCompile Include="utils\axis.cpp" />
     <ClCompile Include="utils\cores.cpp" />
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="objects\chair\chairVBO.h" />
     <ClInclude Include="objects\computer\ComputerVBO.h" />
     <ClInclude Include="objects\bancos\bancoVBO.h" />
     <ClInclude Include="objects\estruturas\CeilingVBO.h" />
@@ -141,7 +139,6 @@
     <ClInclude Include="objects\estruturas\FloorVBO.h" />
     <ClInclude Include="objects\estruturas\WallsVBO.h" />
     <ClInclude Include="objects\paralelepipedo\ParallelepipedVBO.h" />
-    <ClInclude Include="objects\table\tableVBO.h" />
     <ClInclude Include="primitives\cone\cone.h" />
     <ClInclude Include="primitives\cone\ConeVBO.h" />
     <ClInclude Include="primitives\cube\cube.h" />
@@ -173,6 +170,7 @@
     <ClInclude Include="primitives\plane\PlaneVBO.h" />
     <ClInclude Include="primitives\sphere\sphere.h" />
     <ClInclude Include="primitives\sphere\SphereVBO.h" />
+    <ClInclude Include="objects\sconces\Sconce1VBO.h" />
     <ClInclude Include="utils\axis.h" />
     <ClInclude Include="utils\cores.h" />
     <ClInclude Include="objects\cups\VodkaCupVBO.h" />
