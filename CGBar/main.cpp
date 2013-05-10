@@ -37,12 +37,14 @@
 
 #include "objects/cups/WineCupVBO.h"
 #include "objects/cups/CocktailCupVBO.h"
-#include "objects/bottles/WineBottleVBO.h"
+#include "objects/cups/ShotCupVBO.h"
 #include "objects/cups/VodkaCupVBO.h"
 
+#include "objects/bottles/WineBottleVBO.h"
 #include "objects/bottles/wiskyBottleVBO.h"
 #include "objects/bottles/WiskyBottleVBO.h"
-#include "objects/cups/ShotCupVBO.h"
+
+#include "objects\computer\ComputerVBO.h"
 
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
 
@@ -77,6 +79,8 @@ WineBottleVBO* wineBottle;
 WiskyBottleVBO* wiskyBottle;
 
 ParallelepipedVBO* parallelepiped;
+
+ComputerVBO* computer;;
 
 FloorVBO* floorv;
 WallsVBO* wallsv;
@@ -167,7 +171,7 @@ void renderScene(void) {
 				//drawBanco(15, 10, 10);
 				wallsv->draw();
 				ceilingv->draw();
-
+				//computer->draw();
 			break ;
 		case 1:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
@@ -783,7 +787,9 @@ int main(int argc, char **argv) {
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura);
 	wineBottle = new WineBottleVBO(5,30,30, id_textura);
 
-	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura);
+	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura,id_textura,id_textura,id_textura,id_textura,id_textura);
+
+	computer = new ComputerVBO(5,20,30,id_textura,id_textura,id_textura,id_textura);
 
 	floorv = new FloorVBO(1,0);
 	wallsv = new WallsVBO(1,0);

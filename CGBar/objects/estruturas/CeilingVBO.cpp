@@ -2,21 +2,19 @@
 
 #include <GLUT/glut.h>
 
-#include "../../primitives/cube/CubeVBO.h"
-
 CeilingVBO::CeilingVBO(double argRatio, unsigned int aId_textura){
 	ratio = argRatio;
 	id_textura = aId_textura;
+
+	c1 = new CubeVBO(5, 10, id_textura);
+	c2 = new CubeVBO(5, 40, id_textura);
+	c3 = new CubeVBO(5, 10, id_textura);
+	c4 = new CubeVBO(5, 5, id_textura);
+	c5 = new CubeVBO(5, 2, id_textura);
+	c6 = new CubeVBO(5, 2, id_textura);
 }
 
 void CeilingVBO::draw(){
-
-	CubeVBO* c1 = new CubeVBO(5, 10, id_textura);
-	CubeVBO* c2 = new CubeVBO(5, 40, id_textura);
-	CubeVBO* c3 = new CubeVBO(5, 10, id_textura);
-	CubeVBO* c4 = new CubeVBO(5, 5, id_textura);
-	CubeVBO* c5 = new CubeVBO(5, 2, id_textura);
-	CubeVBO* c6 = new CubeVBO(5, 2, id_textura);
 
 	glPushMatrix();
     glScaled(ratio, ratio, ratio);
@@ -67,12 +65,12 @@ void CeilingVBO::draw(unsigned int id_texturag1,unsigned int id_texturag2,unsign
 				unsigned int id_texturacb,
 			    unsigned int id_texturap1,unsigned int id_texturap2){
 
-	CubeVBO* c1 = new CubeVBO(5, 10, id_texturag1);
-	CubeVBO* c2 = new CubeVBO(5, 40, id_texturag2);
-	CubeVBO* c3 = new CubeVBO(5, 10, id_texturag3);
-	CubeVBO* c4 = new CubeVBO(5, 5, id_texturacb);
-	CubeVBO* c5 = new CubeVBO(5, 2, id_texturap1);
-	CubeVBO* c6 = new CubeVBO(5, 2, id_texturap2);
+	c1 = new CubeVBO(5, 10, id_texturag1);
+	c2 = new CubeVBO(5, 40, id_texturag2);
+	c3 = new CubeVBO(5, 10, id_texturag3);
+	c4 = new CubeVBO(5, 5, id_texturacb);
+	c5 = new CubeVBO(5, 2, id_texturap1);
+	c6 = new CubeVBO(5, 2, id_texturap2);
 
 	glPushMatrix();
     glScaled(ratio, ratio, ratio);
