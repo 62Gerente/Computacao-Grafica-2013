@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <glew.h>
 #include <GLUT/glut.h>
+#include <IL/il.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -12,6 +13,8 @@ VodkaCupVBO::VodkaCupVBO(double argAlt,  int argVertex, int argLayers, unsigned 
 	vertex = argVertex;
 	layer = argLayers;
 	id_textura = argId_textura;
+
+	cylinder = new CylinderVBO(alt/9 -alt/200, alt/40, vertex, layer, id_textura);
 }
 
 
@@ -25,10 +28,11 @@ void VodkaCupVBO::drawVodka_top (float altura, float raio, int vertex, int layer
 	
 	float y = altura/2 ;
 	int pos = 0;
+	int textura_pos = 0;
 
 	nrIndex = 12*(vertex*layers);
 	int arraySize = (6*(vertex*(layers+1)))*sizeof(float);
-	int textSize = (4*(vertex*layers+2))*sizeof(float);
+	int textSize = (5*(vertex*layers+2))*sizeof(float);
 
 	float* aVertex = (float*) malloc(arraySize);
 	float* aNormal = (float*) malloc(arraySize);
@@ -52,6 +56,10 @@ void VodkaCupVBO::drawVodka_top (float altura, float raio, int vertex, int layer
 				pos++;
 
 			alpha += incAngulo ;
+
+			aTexture[textura_pos++] = (float)j/(float)vertex ;
+			aTexture[textura_pos++] = ((float)i/(float)layers) ;
+			
         }
 		y -= incAltura ;
     }
@@ -75,6 +83,9 @@ void VodkaCupVBO::drawVodka_top (float altura, float raio, int vertex, int layer
 				pos++;
 
 			alpha += incAngulo ;
+
+			aTexture[textura_pos++] = (float)j/(float)vertex ;
+			aTexture[textura_pos++] = ((float)i/(float)layers) ;
         }
 		y -= incAltura ;
     }
@@ -146,13 +157,14 @@ void VodkaCupVBO::draw(){
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
 	glTexCoordPointer(2,GL_FLOAT,0,0);
 
-	glDrawElements(GL_TRIANGLES, nrIndex ,GL_UNSIGNED_INT, aIndex);
+	glBindTexture(GL_TEXTURE_2D, id_textura) ;
+	glDrawElements(GL_TRIANGLES, nrIndex ,GL_UNSIGNED_INT, aIndex);		
+	/* Unbind da textura */
+	glBindTexture(GL_TEXTURE_2D, 0) ;
+    glPopMatrix();
 
-	glPopMatrix();
 
-
-
-	CylinderVBO* cylinder = new CylinderVBO(alt/9, alt/40, vertex, layer, 0);
+	
 	cylinder->draw();
 }
 

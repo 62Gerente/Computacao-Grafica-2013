@@ -9,6 +9,8 @@ public:
 	VodkaCupVBO(double argAlt,  int argVertex, int argLayers, unsigned int argId_textura);
 	void drawVodka_top (float altura, float raio, int nLados, int nCamadas);
 	void draw();
+
+	CylinderVBO* cylinder;
 private:
 	double alt;
 	int vertex,layer;
