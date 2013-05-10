@@ -1,4 +1,4 @@
-﻿#include <glew.h>
+#include <glew.h>
 #include <GLUT/glut.h>
 #include <IL/il.h>
 
@@ -37,18 +37,26 @@
 
 #include "objects/cups/WineCupVBO.h"
 #include "objects/cups/CocktailCupVBO.h"
-#include "objects/bottles/WineBottleVBO.h"
+#include "objects/cups/ShotCupVBO.h"
 #include "objects/cups/VodkaCupVBO.h"
-#include "objects/cups/BeerCupVBO.h"
 
+#include "objects/bottles/WineBottleVBO.h"
 #include "objects/bottles/wiskyBottleVBO.h"
 #include "objects/bottles/WiskyBottleVBO.h"
-#include "objects/cups/ShotCupVBO.h"
+
+#include "objects\computer\ComputerVBO.h"
 
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
 
+#include "objects\sconces\Sconce2VBO.h"
+#include "objects\sconces\Sconce3VBO.h"
+
 #include "objects\estruturas\FloorVBO.h"
 #include "objects\estruturas\WallsVBO.h"
+#include "objects\estruturas\CeilingVBO.h"
+/* Mesas e cadeiras */
+#include "objects/table/tableVBO.h"
+#include "objects/chair/ChairVBO.h"
 
 float rotation;
 float rotationz;
@@ -59,6 +67,12 @@ bool cull;
 bool dragging;
 int dragx, dragy;
 int figura;
+
+float camz = 5.0;
+float camYaw=0.0;      
+float camPitch=0.0;     
+float movevel=0.2;
+float mousevel=0.2;
 
 unsigned int id_textura ;
 
@@ -72,15 +86,29 @@ ConeVBO* cone;
 WineCupVBO* wineCup;
 CocktailCupVBO* cocktailCup;
 ShotCupVBO* shotCup;
-BeerCupVBO* beerCup;
 
 WineBottleVBO* wineBottle;
 WiskyBottleVBO* wiskyBottle;
 
 ParallelepipedVBO* parallelepiped;
 
+ComputerVBO* computer;
+
+Sconce2VBO* sconce2;
+Sconce3VBO* sconce3;
+
 FloorVBO* floorv;
 WallsVBO* wallsv;
+CeilingVBO* ceilingv;
+
+ChairClassicaOneVBO *cadeira_um ;
+ChairClassicaTwoVBO *cadeira_dois ;
+ChairClassicaThreeVBO *cadeira_tres ;
+ChairPubVBO *cadeira_pub ;
+
+TableOneVBO *mesa_um ;
+TableTwoVBO *mesa_dois ;
+TableCircularVBO *mesa_circular ;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -163,10 +191,19 @@ void renderScene(void) {
 				//sphere->draw()
 				//cone->draw();
 				//parallelepiped->draw();
-				floorv->draw();
+				//floorv->draw();
 				//drawBanco(15, 10, 10);
-				wallsv->draw();
-
+				//wallsv->draw();
+				//ceilingv->draw();
+				//computer->draw();
+				glTranslatef(-5, 0, 0) ;
+				//mesa_um->draw() ; 
+				//mesa_dois->draw() ;
+				mesa_circular->draw() ;
+				glTranslatef(10, 0, 0) ;
+				//drawTable(2, 1, 0.05, 0.8, 0.05, 30, 10);				
+				//drawTable2(1, 2, 0.05, 0.8, 0.05, 30, 10);				
+				drawTableCircular(1.5, 2, 30, 10);
 			break ;
 		case 1:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
@@ -219,14 +256,10 @@ void renderScene(void) {
 			cocktailCup->draw();
 			break;
 		case 11:
-			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				beerCup->draw();
-				break;
+			drawBeerCup(5, 30, 30);
+			break;
 		case 12:
-			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
@@ -240,14 +273,14 @@ void renderScene(void) {
 				vodkaCup->draw();
 				break;
 		case 14:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				wineBottle->draw();
 				break;
 		case 15:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
@@ -278,21 +311,36 @@ void renderScene(void) {
 			drawSconce1(5, 30, 30) ;
 			break;
 		case 21:
-			drawSconce2(5, 3, 30, 30);
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+			sconce2->draw();
 			break;
 		case 22:
-			drawSconce3(5,30,30);
-		case 26:	
- 			drawWallsX(1);
- 			drawWallsZ(1);
-			drawTecto(1) ;
- 			drawFloor(1) ;
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+			sconce3->draw();
 			break;
+		case 26:	
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
+				break;
 		default:	
- 			drawWallsX(1);
- 			drawWallsZ(1);
-			drawTecto(1) ;
- 			drawFloor(1) ;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
 			break;
 			}
    
@@ -452,6 +500,7 @@ void menu_principal_handler(int op)
 		default:
 		break;
 	}
+	glutPostRedisplay();
 }
 
 void menu_objectos_handler(int op){
@@ -647,6 +696,95 @@ void carregarTextura (char* nome_ficheiro, unsigned int* textura_id) {
 	GL_RGBA, GL_UNSIGNED_BYTE, texData);
 }
 
+
+
+void lockCamera()
+{
+        if(camPitch>90)
+                camPitch=90;
+        if(camPitch<-90)
+                camPitch=-90;
+        if(camYaw<0.0)
+                camYaw+=360.0;
+        if(camYaw>360.0)
+                camYaw-=360;
+}
+ 
+void moveCamera(float dist,float dir)
+{
+        float rad=(camYaw+dir)*M_PI/180.0;
+        camx-=sin(rad)*dist;    
+        camz-=cos(rad)*dist;    
+}
+ 
+void moveCameraUp(float dist,float dir)
+{
+        float rad=(camPitch+dir)*M_PI/180.0;
+        camy+=sin(rad)*dist;   
+}
+
+void UpdateCamera()
+{
+        glTranslatef(-camx,-camy,-camz);       
+}
+
+void keyboard_handler_explorer(unsigned char key, int x, int y){
+
+    switch (key) {
+        case 'a':
+		{
+			moveCamera(movevel,90.0);
+			break;
+		}
+        case 'd':
+		{
+			moveCamera(movevel,270);;
+			break;
+		}
+        case 'w':
+		{
+			if(camPitch!=90 && camPitch!=-90)
+                moveCamera(movevel,0.0);    
+            moveCameraUp(movevel,0.0);      
+			break;
+		}
+        case 's':
+		{
+			if(camPitch!=90 && camPitch!=-90)
+                moveCamera(movevel,180.0);
+            moveCameraUp(movevel,180.0);
+			break;
+		}
+        default:
+            break;
+    }
+}
+
+void mouse_motion_handler_explorer(int x, int y){
+        int MidX=glutGet(GLUT_SCREEN_WIDTH)/2;
+        int MidY=glutGet(GLUT_SCREEN_HEIGHT)/2;
+		camYaw+=mousevel*(MidX-x);   
+        camPitch+=mousevel*(MidY-y); 
+		glutPostRedisplay();
+}
+
+void Control(bool mi)    
+{
+        if(mi) 
+        {
+                int MidX=glutGet(GLUT_SCREEN_WIDTH)/2;
+                int MidY=glutGet(GLUT_SCREEN_HEIGHT)/2;
+                glutSetCursor(GLUT_CURSOR_NONE);  
+                glutPassiveMotionFunc(mouse_motion_handler_explorer);
+                lockCamera();
+                glutWarpPointer(MidX,MidY);      
+                glutKeyboardFunc(keyboard_handler_explorer);        
+        }
+        glRotatef(-camPitch,1.0,0.0,0.0);       
+        glRotatef(-camYaw,0.0,1.0,0.0);
+}
+
+
 int main(int argc, char **argv) {
     
     // inicializacao
@@ -773,21 +911,37 @@ int main(int argc, char **argv) {
 	cone = new ConeVBO(5,5.0,50,80,id_textura );
 
 	wineCup = new WineCupVBO(8,30,30, id_textura);
-	cocktailCup = new CocktailCupVBO(5,30,10, id_textura);
-	shotCup = new ShotCupVBO(5,30,30,id_textura);
+	cocktailCup = new CocktailCupVBO(5,30,30, id_textura);
+	shotCup = new ShotCupVBO(5,30,30,0);
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
-	beerCup = new BeerCupVBO(5,30,30,id_textura);
 
-	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura);
+	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura,id_textura,id_textura,id_textura,id_textura,id_textura);
 	wineBottle = new WineBottleVBO(5,30,30, id_textura);
 
-	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura);
+	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura,id_textura,id_textura,id_textura,id_textura,id_textura);
 
-	floorv = new FloorVBO(1,id_textura);
-	wallsv = new WallsVBO(1,id_textura);
+	computer = new ComputerVBO(5,20,30,id_textura,id_textura,id_textura,id_textura);
+
+	sconce2 = new Sconce2VBO(5,5,20,20,id_textura,0);
+	sconce3 = new Sconce3VBO(5,20,20,id_textura,0);
+
+	floorv = new FloorVBO(1,0);
+	wallsv = new WallsVBO(1,0);
+	ceilingv = new CeilingVBO(1,0);
+
+	mesa_um = new TableOneVBO(2, 1, 0.05, 0.8, 0.05, 30, 10, 0, 0); 	
+	mesa_dois = new TableTwoVBO(1, 2, 0.05, 0.8, 0.05, 30, 10, 0, 0);	
+	mesa_circular = new TableCircularVBO(1.5, 2, 30, 30, 0, 0, 0) ;
+
+	cadeira_um = new ChairClassicaOneVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_dois = new ChairClassicaTwoVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_tres = new ChairClassicaThreeVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_pub = new ChairPubVBO(5, 20, 15, 0, 0, 0, 0) ;
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
     
 	return 1;
+
 }
+

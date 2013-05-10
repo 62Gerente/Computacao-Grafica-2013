@@ -79,6 +79,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="objects\chair\chairVBO.cpp" />
+    <ClCompile Include="objects\computer\ComputerVBO.cpp" />
+    <ClCompile Include="objects\bancos\bancoVBO.cpp" />
+    <ClCompile Include="objects\estruturas\CeilingVBO.cpp" />
     <ClCompile Include="objects\bottles\WineBottleVBO.cpp" />
     <ClCompile Include="objects\bottles\WiskyBottleVBO.cpp" />
     <ClCompile Include="objects\cups\CocktailCupVBO.cpp" />
@@ -87,6 +91,9 @@
     <ClCompile Include="objects\estruturas\FloorVBO.cpp" />
     <ClCompile Include="objects\estruturas\WallsVBO.cpp" />
     <ClCompile Include="objects\paralelepipedo\ParallelepipedVBO.cpp" />
+    <ClCompile Include="objects\sconces\Sconce2VBO.cpp" />
+    <ClCompile Include="objects\sconces\Sconce3VBO.cpp" />
+    <ClCompile Include="objects\table\tableVBO.cpp" />
     <ClCompile Include="primitives\cone\cone.cpp" />
     <ClCompile Include="primitives\cone\ConeVBO.cpp" />
     <ClCompile Include="primitives\cube\cube.cpp" />
@@ -124,6 +131,10 @@
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="objects\chair\chairVBO.h" />
+    <ClInclude Include="objects\computer\ComputerVBO.h" />
+    <ClInclude Include="objects\bancos\bancoVBO.h" />
+    <ClInclude Include="objects\estruturas\CeilingVBO.h" />
     <ClInclude Include="objects\bottles\WineBottleVBO.h" />
     <ClInclude Include="objects\bottles\WiskyBottleVBO.h" />
     <ClInclude Include="objects\cups\CocktailCupVBO.h" />
@@ -132,6 +143,9 @@
     <ClInclude Include="objects\estruturas\FloorVBO.h" />
     <ClInclude Include="objects\estruturas\WallsVBO.h" />
     <ClInclude Include="objects\paralelepipedo\ParallelepipedVBO.h" />
+    <ClInclude Include="objects\sconces\Sconce2VBO.h" />
+    <ClInclude Include="objects\sconces\Sconce3VBO.h" />
+    <ClInclude Include="objects\table\tableVBO.h" />
     <ClInclude Include="primitives\cone\cone.h" />
     <ClInclude Include="primitives\cone\ConeVBO.h" />
     <ClInclude Include="primitives\cube\cube.h" />

@@ -13,9 +13,9 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	nrIndex = 6*(vertex*layers) + 3*2;
-	int arraySize = (3*(vertex*layers+2) + 3*2*vertex)*sizeof(float);
-	int textSize = (2*(vertex*layers+2)+ 2*2*vertex)*sizeof(float);
+	nrIndex = 6*(vertex*layers + 2*layers*layers);
+	int arraySize = (3*(vertex*layers+ 2*layers*layers))*sizeof(float);
+	int textSize = (2*(vertex*layers+  2*layers*layers))*sizeof(float);
 
 	float* aVertex = (float*) malloc(arraySize);
 	float* aNormal = (float*) malloc(arraySize);
@@ -53,70 +53,62 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 		y -= incHeight ;
     }
 
-	aVertex[pos] = 0;
-	aNormal[pos] = 0;
-	pos++;
-	aVertex[pos] = height/2;
-	aNormal[pos] = 1;
-	pos++;
-	aVertex[pos] = 0;
-	aNormal[pos] = 0;
-	pos++;
+	float ang = 0.0f;
+	float r_inc = radius/((float)(layers-1));
+	for(int i=0; i<layers;i++){
+        
+		float fr=0.0;
+		//float alt=height;
+		float r=0;
 
-	aTexture[textura_pos++] = 0.5 ;
-	aTexture[textura_pos++] = 0.5 ;
+		for(int ri=0;ri<layers;ri++){
+			
+			r=r_inc*((float)ri);
 
-	aVertex[pos] = 0;
-	aNormal[pos] = 0;
-	pos++;
-	aVertex[pos] = -height/2;
-	aNormal[pos] = -1;
-	pos++;
-	aVertex[pos] = 0;
-	aNormal[pos] = 0;
-	pos++; 
+				aVertex[pos] = r*sinf(ang);
+				aNormal[pos] = sinf(ang);
+				pos++;
+				aVertex[pos] = -height/2 ;
+				aNormal[pos] = -1;
+				pos++;
+				aVertex[pos] = r*cosf(ang);
+				aNormal[pos] = cosf(ang);
+				pos++;
 
-	aTexture[textura_pos++] = 0.5 ;
-	aTexture[textura_pos++] = 0.5 ;
-
-	float alpha = 0 ;
-
-    for(int j=0; j < vertex; j++) {
-		aVertex[pos] = radius*sinf(alpha);
-		aNormal[pos] = 0;
-		pos++;
-		aVertex[pos] = height/2;
-		aNormal[pos] = 1;
-		pos++;
-		aVertex[pos] = radius*cosf(alpha);
-		aNormal[pos] = 0;
-		pos++;
-
-		aTexture[textura_pos++] = sinf(alpha)*0.5 + 0.5 ;
-		aTexture[textura_pos++] = cosf(alpha)*0.5 + 0.5 ;
-
-		alpha += incAngle ;
+				aTexture[textura_pos++] = 1-(sinf(ang)*((r/radius)*0.5) + 0.5) ;
+				aTexture[textura_pos++] = cosf(ang)*((r/radius)*0.5) + 0.5 ;
+            
+		}
+		ang+= incAngle;
 	}
-	
-	alpha = 0 ;
 
-	for(int j=0; j < vertex; j++){
-		aVertex[pos] = radius*sinf(alpha);
-		aNormal[pos] = 0;
-		pos++;
-		aVertex[pos] = -height/2;
-		aNormal[pos] = -1;
-		pos++;
-		aVertex[pos] = radius*cosf(alpha);
-		aNormal[pos] = 0;
-		pos++;
-           
-		aTexture[textura_pos++] = 1-(sinf(alpha)*0.5 + 0.5) ;
-		aTexture[textura_pos++] = cosf(alpha)*0.5 + 0.5 ;
+	ang = 0.0f;
+	for(int i=0; i<layers;i++){
+        
+		float fr=0.0;
+		//float alt=height;
+		float r=0;
 
-		alpha += incAngle ;
-    }
+		for(int ri=0;ri<layers;ri++){
+			
+			r=r_inc*((float)ri);
 
+				aVertex[pos] = r*sinf(ang);
+				aNormal[pos] = sinf(ang);
+				pos++;
+				aVertex[pos] = height/2 ;
+				aNormal[pos] = 1;
+				pos++;
+				aVertex[pos] = r*cosf(ang);
+				aNormal[pos] = cosf(ang);
+				pos++;
+
+				aTexture[textura_pos++] = 1-(sinf(ang)*((r/radius)*0.5) + 0.5) ;
+				aTexture[textura_pos++] = cosf(ang)*((r/radius)*0.5) + 0.5 ;
+            
+		}
+		ang+= incAngle;
+	}
 	pos = 0 ;  
 
 	for(float i = 0; i < layers-1 ; i++) { 
@@ -137,22 +129,51 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
         }
     }
 
-    for(int j=0; j < vertex-1; j++) {			          
-					aIndex[pos] = layers*vertex+j+2;
+	int inc = layers*vertex;
+	ang = 0.0f;
+
+	for(int i=0; i<layers-1;i++){
+		for(int ri=0;ri<layers-1;ri++){
+
+					aIndex[pos] = ri+(layers*i) +inc;
 					pos++;
-					aIndex[pos] = layers*vertex+3+j;
+					aIndex[pos] = (ri+1)+(layers*(i+1)) +inc;
 					pos++;
-					aIndex[pos] = layers*vertex;
+
+					aIndex[pos] = (ri+1)+(layers*i) +inc;
 					pos++;
+
+					aIndex[pos] = ri+(layers*i) +inc;
+					pos++;
+					aIndex[pos] = ri+(layers*(i+1)) +inc;
+					pos++;
+					aIndex[pos] = (ri+1)+(layers*(i+1)) +inc;
+					pos++;
+
+		}
     }
 
-    for(int j=0; j < vertex-1; j++) {			          
-					aIndex[pos] = layers*vertex+j+2+vertex;
+	inc = layers*(layers+vertex);
+	ang = 0.0f;
+
+	for(int i=0; i<layers-1;i++){
+		for(int ri=0;ri<layers-1;ri++){
+
+					aIndex[pos] = ri+(layers*i) +inc;
 					pos++;
-					aIndex[pos] = layers*vertex+1;
+					aIndex[pos] = (ri+1)+(layers*i) +inc;
 					pos++;
-					aIndex[pos] = layers*vertex+3+j+vertex;
+					aIndex[pos] = (ri+1)+(layers*(i+1)) +inc;
 					pos++;
+
+					aIndex[pos] = ri+(layers*i) +inc;
+					pos++;
+					aIndex[pos] = (ri+1)+(layers*(i+1)) +inc;
+					pos++;
+					aIndex[pos] = ri+(layers*(i+1)) +inc;
+					pos++;
+
+		}
     }
 
 	glGenBuffers(3, buffers);

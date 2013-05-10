@@ -132,18 +132,18 @@ void CocktailCupVBO::drawCocktailCup_top (){
 
 		for(int f=0; f<vertex-1;f++){
 			
-					aIndex[pos] = f+(vertex*i) + vertex/2*layers/2 ;
+					aIndex[pos] = f+(vertex*i)+ layers/2 ;
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*i) + vertex/2*layers/2;
+					aIndex[pos] = (f+1)+(vertex*i)+ layers/2;
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*(i+1))+ vertex/2*layers/2;
+					aIndex[pos] = (f+1)+(vertex*(i+1))+ layers/2;
 					pos++;
 
-					aIndex[pos] = f+(vertex*i)+ vertex/2*layers/2;
+					aIndex[pos] = f+(vertex*i)+ layers/2;
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*(i+1))+ vertex/2*layers/2;
+					aIndex[pos] = (f+1)+(vertex*(i+1))+ layers/2;
 					pos++;
-					aIndex[pos] = f+(vertex*(i+1))+ vertex/2*layers/2;
+					aIndex[pos] = f+(vertex*(i+1))+ layers/2;
 					pos++;
             
 		}

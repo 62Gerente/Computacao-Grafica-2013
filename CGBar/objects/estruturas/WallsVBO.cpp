@@ -5,39 +5,37 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include "../../primitives/cylinder/CylinderVBO.h"
-#include "../../primitives/plane/PlaneVBO.h"
-#include "../../primitives/cube/CubeVBO.h"
-
 WallsVBO::WallsVBO(double argRatio, unsigned int aId_textura){
 	ratio = argRatio;
 	id_textura = aId_textura;
+
+	double proporcao = 3;
+	
+	c1 = new CubeVBO(proporcao, 30, id_textura);
+	c2 = new CubeVBO(proporcao, 10, id_textura);
+	c3 = new CubeVBO(proporcao, 10, id_textura);
+	c4 = new CubeVBO(proporcao, 10, id_textura);
+	c5 = new CubeVBO(proporcao, 5, id_textura);
+	c6 = new CubeVBO(proporcao, 10, id_textura);
+	c7 = new CubeVBO(proporcao, 2, id_textura);
+	c8 = new CubeVBO(proporcao, 5, id_textura);
+	c9 = new CubeVBO(proporcao, 10, id_textura);
+	c10 = new CubeVBO(proporcao, 10, id_textura);
+	c11 = new CubeVBO(proporcao, 30, id_textura);
+	c12 = new CubeVBO(proporcao, 30, id_textura);
+	c13 = new CubeVBO(proporcao, 50, id_textura);
+	c14 = new CubeVBO(proporcao, 15, id_textura);
+	c15 = new CubeVBO(proporcao, 15, id_textura);
+	c16 = new CubeVBO(proporcao, 15, id_textura);
+	c17 = new CubeVBO(proporcao, 15, id_textura);
+	c18 = new CubeVBO(proporcao, 2, id_textura);
+	c19 = new CubeVBO(proporcao, 2, id_textura);
 }
 
 void WallsVBO::drawWallsZ(){
-    double proporcao = 3;
-    double espessura = 0.01*proporcao;
+	double proporcao = 3;
+	double espessura = 0.01*proporcao;
     double altura = 2;
-
-	CubeVBO* c1 = new CubeVBO(proporcao, 30, id_textura);
-	CubeVBO* c2 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c3 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c4 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c5 = new CubeVBO(proporcao, 5, id_textura);
-	CubeVBO* c6 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c7 = new CubeVBO(proporcao, 2, id_textura);
-	CubeVBO* c8 = new CubeVBO(proporcao, 5, id_textura);
-	CubeVBO* c9 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c10 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c11 = new CubeVBO(proporcao, 30, id_textura);
-	CubeVBO* c12 = new CubeVBO(proporcao, 30, id_textura);
-	CubeVBO* c13 = new CubeVBO(proporcao, 50, id_textura);
-	CubeVBO* c14 = new CubeVBO(proporcao, 15, id_textura);
-	CubeVBO* c15 = new CubeVBO(proporcao, 15, id_textura);
-	CubeVBO* c16 = new CubeVBO(proporcao, 15, id_textura);
-	CubeVBO* c17 = new CubeVBO(proporcao, 15, id_textura);
-	CubeVBO* c18 = new CubeVBO(proporcao, 2, id_textura);
-	CubeVBO* c19 = new CubeVBO(proporcao, 2, id_textura);
 
     glPushMatrix();
     glScaled(ratio, ratio, ratio);
@@ -179,22 +177,22 @@ void WallsVBO::drawWallsX(){
     double espessura = 0.01*proporcao;
     double altura = 2;
 
-	CubeVBO* c1 = new CubeVBO(proporcao, 20, id_textura);
-	CubeVBO* c2 = new CubeVBO(proporcao, 15, id_textura);
-    CubeVBO* c3 = new CubeVBO(proporcao, 15, id_textura);
-	CubeVBO* c4 = new CubeVBO(proporcao, 20, id_textura);
-	CubeVBO* c5 = new CubeVBO(proporcao, 20, id_textura);
-	CubeVBO* c6 = new CubeVBO(proporcao, 2, id_textura);
-	CubeVBO* c7 = new CubeVBO(proporcao, 2, id_textura);
-	CubeVBO* c8 = new CubeVBO(proporcao, 5, id_textura);
-	CubeVBO* c9 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c10 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c11 = new CubeVBO(proporcao, 5, id_textura);
-	CubeVBO* c12 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c13 = new CubeVBO(proporcao, 10, id_textura);
-	CubeVBO* c14 = new CubeVBO(proporcao, 5, id_textura);
-	CubeVBO* c15 = new CubeVBO(proporcao, 20, id_textura);
-	 CubeVBO* c16 = new CubeVBO(proporcao, 20, id_textura);
+	c1 = new CubeVBO(proporcao, 20, id_textura);
+	c2 = new CubeVBO(proporcao, 15, id_textura);
+    c3 = new CubeVBO(proporcao, 15, id_textura);
+	c4 = new CubeVBO(proporcao, 20, id_textura);
+	c5 = new CubeVBO(proporcao, 20, id_textura);
+	c6 = new CubeVBO(proporcao, 2, id_textura);
+	c7 = new CubeVBO(proporcao, 2, id_textura);
+	c8 = new CubeVBO(proporcao, 5, id_textura);
+	c9 = new CubeVBO(proporcao, 10, id_textura);
+	c10 = new CubeVBO(proporcao, 10, id_textura);
+	c11 = new CubeVBO(proporcao, 5, id_textura);
+	c12 = new CubeVBO(proporcao, 10, id_textura);
+	c13 = new CubeVBO(proporcao, 10, id_textura);
+	c14 = new CubeVBO(proporcao, 5, id_textura);
+	c15 = new CubeVBO(proporcao, 20, id_textura);
+	 c16 = new CubeVBO(proporcao, 20, id_textura);
 
     glPushMatrix();
     glScaled(ratio, ratio, ratio);

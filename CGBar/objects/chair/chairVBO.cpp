@@ -12,6 +12,7 @@ ChairClassicaOneVBO::ChairClassicaOneVBO(float arg_tamanho, int arg_n_vertices, 
 	/* Parametros */
 	tamanho = arg_tamanho ;
 	n_vertices = arg_n_vertices ;
+	n_camadas = arg_n_camadas ;
 	textura_pe = arg_textura_pe ;
 	textura_assento = arg_textura_assento ;
 	textura_encosto = arg_textura_encosto ;	
@@ -29,9 +30,9 @@ ChairClassicaOneVBO::ChairClassicaOneVBO(float arg_tamanho, int arg_n_vertices, 
 	inclinacao_encosto = 0 ;
 
 	/* Objectos */
-	assento = new ParallelepipedVBO(altura_assento, largura_assento, comprimento_assento, n_camadas, textura_assento) ;
+	assento = new ParallelepipedVBO(altura_assento, largura_assento, comprimento_assento, n_camadas, textura_assento, textura_assento, textura_assento, textura_assento, textura_assento, textura_assento) ;
 	pe = new CylinderVBO(raio_pe, altura_pe, n_vertices, n_camadas, textura_pe) ;
-	encosto = new ParallelepipedVBO(largura_encosto, comprimento_assento, altura_encosto, n_camadas, textura_encosto) ;
+	encosto = new ParallelepipedVBO(largura_encosto, comprimento_assento, altura_encosto, n_camadas, textura_encosto, textura_encosto, textura_encosto, textura_encosto, textura_encosto, textura_encosto) ;
 }
 
 void ChairClassicaOneVBO::draw() {
@@ -81,6 +82,7 @@ ChairClassicaTwoVBO::ChairClassicaTwoVBO(float arg_tamanho, int arg_n_vertices, 
 	/* Parametros */
 	tamanho = arg_tamanho ;
 	n_vertices = arg_n_vertices ;
+	n_camadas = arg_n_camadas ;
 	textura_pe = arg_textura_pe ;
 	textura_assento = arg_textura_assento ;
 	textura_encosto = arg_textura_encosto ;	
@@ -89,7 +91,7 @@ ChairClassicaTwoVBO::ChairClassicaTwoVBO(float arg_tamanho, int arg_n_vertices, 
 	altura_assento = 0.05*tamanho ;
 	comprimento_assento = 0.6*tamanho ;
 	largura_assento = 0.6*tamanho ;	
-	assento = new ParallelepipedVBO(altura_assento, largura_assento, comprimento_assento, n_camadas, textura_assento) ;
+	assento = new ParallelepipedVBO(altura_assento, largura_assento, comprimento_assento, n_camadas, textura_assento, textura_assento, textura_assento, textura_assento, textura_assento, textura_assento) ;
 	/* Variáveis do pé */
 	altura_pe = 0.4*tamanho ;
 	raio_pe = 0.03*tamanho ;	
@@ -99,13 +101,14 @@ ChairClassicaTwoVBO::ChairClassicaTwoVBO(float arg_tamanho, int arg_n_vertices, 
 	/* Variáveis do encosto */
 	altura_encosto = 0.6*tamanho ;	
 	raio_encosto = 0.03*tamanho ;	
+	n_barras = 3 ;
 	encosto_vertical = new CylinderVBO(raio_encosto, altura_encosto, n_vertices, n_camadas, textura_encosto) ;
 	encosto_horizontal = new CylinderVBO(raio_encosto, comprimento_assento - raio_encosto, n_vertices, n_camadas, textura_encosto) ;
 	/* Variáveis das barras do assento */
 	altura_barra = altura_pe/5 ;
 	comprimento_barra = comprimento_assento - 4*raio_pe ;
 	largura_barra = 2*raio_pe ;
-	barra_assento = new ParallelepipedVBO(altura_barra, largura_barra, comprimento_barra, n_camadas, textura_pe) ;
+	barra_assento = new ParallelepipedVBO(altura_barra, largura_barra, comprimento_barra, n_camadas, textura_pe, textura_pe, textura_pe, textura_pe, textura_pe, textura_pe) ;
 }
 
 
@@ -217,6 +220,7 @@ ChairClassicaThreeVBO::ChairClassicaThreeVBO(float arg_tamanho, int arg_n_vertic
 	/* Parametros */
 	tamanho = arg_tamanho ;
 	n_vertices = arg_n_vertices ;
+	n_camadas = arg_n_camadas ;
 	textura_pe = arg_textura_pe ;
 	textura_assento = arg_textura_assento ;
 	textura_encosto = arg_textura_encosto ;	
@@ -225,7 +229,7 @@ ChairClassicaThreeVBO::ChairClassicaThreeVBO(float arg_tamanho, int arg_n_vertic
 	altura_assento = 0.05*tamanho ;
 	comprimento_assento = 0.6*tamanho ;
 	largura_assento = 0.6*tamanho ;	
-	assento = new ParallelepipedVBO(altura_assento, largura_assento, comprimento_assento, n_camadas, textura_assento) ;
+	assento = new ParallelepipedVBO(altura_assento, largura_assento, comprimento_assento, n_camadas, textura_assento, textura_assento, textura_assento, textura_assento, textura_assento, textura_assento) ;
 	/* Variáveis do pé */
 	altura_pe = 0.4*tamanho ;
 	raio_pe = 0.03*tamanho ;	
@@ -235,19 +239,21 @@ ChairClassicaThreeVBO::ChairClassicaThreeVBO(float arg_tamanho, int arg_n_vertic
 	/* Variáveis do encosto */
 	altura_encosto = 0.6*tamanho ;	
 	raio_encosto = 0.03*tamanho ;	
+	largura_encosto = 0.05*tamanho ;
 	encosto_vertical = new CylinderVBO(raio_encosto, altura_encosto, n_vertices, n_camadas, textura_encosto) ;
 	encosto_horizontal = new CylinderVBO(raio_encosto, comprimento_assento - raio_encosto, n_vertices, n_camadas, textura_encosto) ;
+	n_barras = 3 ;
 	/* Variáveis das barras do assento */
 	altura_barra = altura_pe/5 ;
 	comprimento_barra = comprimento_assento - 4*raio_pe ;
 	largura_barra = 2*raio_pe ;
-	barra_assento = new ParallelepipedVBO(altura_barra, largura_barra, comprimento_barra, n_camadas, textura_pe) ;
+	barra_assento = new ParallelepipedVBO(altura_barra, largura_barra, comprimento_barra, n_camadas, textura_pe, textura_pe, textura_pe, textura_pe, textura_pe, textura_pe) ;
 	/* Variáveis dos braços */
 	altura_braco = altura_encosto/3 ;
 	comprimento_braco = (2*(largura_assento - largura_encosto))/3 ;
-	raio_braco = raio_encosto ;	
-	CylinderVBO *braco_vertical = new CylinderVBO(raio_braco, altura_braco, n_vertices, n_camadas, textura_assento) ;
-	CylinderVBO *braco_horizontal = new CylinderVBO(raio_braco, comprimento_braco, n_vertices, n_camadas, textura_assento) ;	
+	raio_braco = raio_encosto ;		
+	braco_vertical = new CylinderVBO(raio_braco, altura_braco, n_vertices, n_camadas, textura_assento) ;
+	braco_horizontal = new CylinderVBO(raio_braco, comprimento_braco, n_vertices, n_camadas, textura_assento) ;	
 }
 
 
@@ -316,7 +322,10 @@ void ChairClassicaThreeVBO::draw() {
 	glPushMatrix() ;
 	glTranslatef(-comprimento_assento/2 + raio_braco, altura_assento/2 + altura_braco, -largura_assento/2 + largura_encosto + comprimento_braco/2) ;
 	glRotatef(90, 1, 0, 0) ;
+	//printf("Antes de desenhar o braço horizontal! Valores: %f, %f	\n", raio_braco, altura_braco) ;
+	//printf("Antes de desenhar o braço horizontal! Valores: %f, %f	\n", raio_braco, comprimento_braco) ;
 	braco_horizontal->draw();
+	//printf("Depois de desenhar o braço horizontal! Valores: %f, %f	\n", raio_braco, comprimento_braco) ;
 	glPopMatrix() ;
 	/* Braço vertical */
 	glPushMatrix() ;
@@ -410,70 +419,89 @@ void ChairClassicaThreeVBO::draw() {
 }
 
 
-void drawChairPub(float tamanho, int n_vertices, int n_camadas) {
+ChairPubVBO::ChairPubVBO(float arg_tamanho, int arg_n_vertices, int arg_n_camadas, unsigned int arg_textura_pe, unsigned int arg_textura_assento, unsigned int arg_textura_encosto, unsigned int arg_textura_almofada) {
 
-	float altura_assento = 0.02*tamanho ;
-	float comprimento_assento = 0.6*tamanho ;
-	float largura_assento = 0.6*tamanho ;	
+	/* Construtor */
+	tamanho = arg_tamanho ;
+	n_vertices = arg_n_vertices ;
+	n_camadas = arg_n_camadas ;
+	textura_pe = arg_textura_pe ;
+	textura_assento = arg_textura_assento ;
+	textura_encosto = arg_textura_encosto ;
+	textura_almofada = arg_textura_almofada ;
+	/* Variáveis de assento */
+	altura_assento = 0.02*tamanho ;
+	comprimento_assento = 0.6*tamanho ;
+	largura_assento = 0.6*tamanho ;	
+	assento = new ParallelepipedVBO(altura_assento, largura_assento, comprimento_assento, n_camadas, textura_assento, textura_assento, textura_assento, textura_assento, textura_assento, textura_assento) ;
+	/* Variáveis do pé */
+	altura_pe = 0.7*tamanho ;
+	raio_pe = 0.03*tamanho ;	
+	pe = new CylinderVBO(raio_pe, altura_pe, n_vertices, n_camadas, textura_pe) ;
+	/* Variáveis do encosto */
+	altura_encosto = 0.5*tamanho ;	
+	largura_encosto = 0.03*tamanho ;
+	encosto = new ParallelepipedVBO(largura_encosto, comprimento_assento, altura_encosto, n_camadas, textura_encosto, textura_encosto, textura_encosto, textura_encosto, textura_encosto, textura_encosto) ;
+	/* Variáveis da almofada */
+	altura_almofada = 0.05*tamanho ;
+	raio_almofada = ((comprimento_assento - largura_encosto)/2) ;
+	almofada = new CylinderVBO(raio_almofada, altura_almofada, n_vertices, n_camadas, textura_almofada) ;
+	/* Variáveis da base */
+	altura_base = 0.004*tamanho ;
+	raio_base = 0.4*tamanho ;	
+	base = new CylinderVBO(raio_base, altura_base, n_vertices, n_camadas, textura_pe) ;
+	/* Variáveis do suporte */
+	altura_suporte = (altura_pe / 2) ;
+	comprimento_suporte = comprimento_assento - (comprimento_assento/3) ;
+	raio_suporte = 0.4 * raio_pe ;
+	x_suporte = comprimento_assento / 3  ;
+	z_suporte = largura_assento / 3  ;	
+	suporte_vertical = new CylinderVBO(raio_suporte, altura_suporte, n_vertices, n_camadas, textura_pe) ;
+	suporte_horizontal = new CylinderVBO(raio_suporte, comprimento_suporte, n_vertices, n_camadas, textura_pe) ;
+}
 
-	float altura_pe = 0.7*tamanho ;
-	float raio_pe = 0.03*tamanho ;	
-
-	float altura_encosto = 0.5*tamanho ;	
-	float largura_encosto = 0.03*tamanho ;
-
-	float altura_almofada = 0.05*tamanho ;
-	float raio_almofada = ((comprimento_assento - largura_encosto)/2) ;
+void ChairPubVBO::draw() {
 		
-	float altura_base = 0.004*tamanho ;
-	float raio_base = 0.4*tamanho ;	
-	
-	float altura_suporte = (altura_pe / 2) ;
-	float comprimento_suporte = comprimento_assento - (comprimento_assento/3) ;
-	float raio_suporte = 0.4 * raio_pe ;
-	float x_suporte = comprimento_assento / 3  ;
-	float z_suporte = largura_assento / 3  ;	
-	
 	/* Desenhar o assento da cadeira na origem */	
 	glPushMatrix() ;	
-	drawParalelepipedo(altura_assento, largura_assento, comprimento_assento, n_camadas) ;
+	assento->draw();
 	glPopMatrix() ;
 
 	/* Desenhar o encosto */
 	glPushMatrix() ;
 	glTranslatef(-comprimento_assento/2 + largura_encosto/2, altura_assento/2 + altura_encosto/2, 0) ;
 	glRotatef(90, 0, 0, 1) ;	
-	drawParalelepipedo(largura_encosto, comprimento_assento, altura_encosto, n_camadas) ;
+	encosto->draw();
 	glPopMatrix() ;
 
 	/* Desenhar a almofada */
 	glPushMatrix() ;		
 	glTranslatef(largura_encosto/2, altura_almofada/2 + altura_assento/2, 0) ;			
-	drawCylinder(raio_almofada, altura_almofada, n_vertices, n_camadas) ;
+	almofada->draw();
 	glPopMatrix();
 
 	/* Desenhar o pé */
 	glPushMatrix() ;
 	glTranslatef(0, -altura_pe/2 - altura_assento/2, 0);	
-	drawCylinder(raio_pe, altura_pe, n_vertices, n_camadas) ;
+	pe->draw();
 	glPopMatrix() ;
 
 	/* Desenhar a base */
 	glPushMatrix() ;
 	glTranslatef(0, -altura_pe - altura_base/2 - altura_assento/2, 0) ;
-	drawCylinder(raio_base, altura_base, n_vertices, n_camadas) ;
+	base->draw();
 	glPopMatrix();
 
 	/* Desenhar o suporte para os pés */
 	/* Desenhar o suporte vertical */
 	glPushMatrix() ;
 	glTranslatef(x_suporte, -altura_suporte/2 - altura_assento/2, z_suporte) ;
-	drawCylinder(raio_suporte, altura_suporte, n_vertices, n_camadas) ;
+	suporte_vertical->draw();
 	glPopMatrix();
 	/* Desenhar o suporte horizontal*/
 	glPushMatrix() ;
 	glTranslatef(x_suporte, -altura_suporte - altura_assento/2, z_suporte - comprimento_suporte/2) ;
 	glRotatef(90, 1, 0, 0) ;
-	drawCylinder(raio_suporte, comprimento_suporte, n_vertices, n_camadas) ;
+	suporte_horizontal->draw();
 	glPopMatrix();
 }

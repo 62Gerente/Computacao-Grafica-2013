@@ -1,9 +1,22 @@
 #pragma once
+
+#include "../../primitives/cube/CubeVBO.h"
+#include "../../primitives/cylinder/CylinderVBO.h"
+
 class FloorVBO
 {
 private:
 	double ratio;
 	unsigned int id_textura ;
+
+	CubeVBO* cubeg1;
+	CubeVBO* cubeg2;
+	CylinderVBO* cylinderg3;
+	CubeVBO* cubeg4;
+	CubeVBO* cubeg5;
+	CubeVBO* cubecb;
+	CubeVBO* cubep1;
+	CubeVBO* cubep2;
 public:
 	FloorVBO(double argRatio, unsigned int aId_textura);
 	void draw();
