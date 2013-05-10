@@ -4,20 +4,27 @@
 #include <GLUT/glut.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <stdio.h>
 
 ShotCupVBO::ShotCupVBO(double argAlt,  int argVertex, int argLayers, unsigned int argId_textura) : Primitivas(id_textura)
 {
 	alt = argAlt;
-	vertex = argVertex;
-	layer = argLayers;
+	vertex = argVertex++;
+	layers = argLayers++;
 	id_textura = argId_textura;
+	rad= alt/6;
+	desenha = argVertex*0.77;
+	height=alt*2; 
+	radius=alt/6;
+
+	cylinder = new CylinderVBO(alt/7-alt/200, alt/30, vertex, layers, id_textura);
+
 }
 
-void ShotCupVBO::drawShot_top(float height, float radius, int vertex, int layers, unsigned int id_textura)
+void ShotCupVBO::drawShot_top()
 {
-	layers++;
-	vertex++;
 
+	
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -48,7 +55,7 @@ void ShotCupVBO::drawShot_top(float height, float radius, int vertex, int layers
         
 		float fr=0.0;
 		float alt=height;
-		for(int f=layers; f>layers;f++){
+		for(int f=0; f<vertex;f++){
             
 			fr=fr_inc*((float)f);
 			alt=alt_dec*((float)((vertex-1)-f));
@@ -70,12 +77,41 @@ void ShotCupVBO::drawShot_top(float height, float radius, int vertex, int layers
 		ang+=ang_inc;
 	}
 
+
 	ang=0.0f;
+	for(int i=0; i<layers;i++){
+        
+        
+		float fr=0.0;
+		float alt=height;
+		for(int f=0; f<vertex;f++){
+            
+			fr=fr_inc*((float)f);
+			alt=alt_dec*((float)((vertex-1)-f));
+			
+				aVertex[pos] = fr*sinf(ang);
+				aNormal[pos] = -sinf(ang);
+				pos++;
+				aVertex[pos] = alt;
+				aNormal[pos] = 0;
+				pos++;
+				aVertex[pos] = fr*cosf(ang);
+				aNormal[pos] = -cosf(ang);
+				pos++;
+
+			aTexture[textura_pos++] = (float)i/(float)layers ;
+			aTexture[textura_pos++] = (float)f/(float)vertex ;
+			
+		}
+		ang+=ang_inc;
+	}
+
+
 	pos = 0;
 
 	for(int i=0; i<layers-1;i++){
 
-		for(int f=0; f<vertex-1;f++){
+		for(int f=vertex-2; f>desenha;f--){
 			
 					aIndex[pos] = f+(vertex*i);
 					pos++;
@@ -94,8 +130,28 @@ void ShotCupVBO::drawShot_top(float height, float radius, int vertex, int layers
 		}
 	}
 
-	int inc = layers*vertex;
-	ang = 0.0f;
+	for(int i=0; i<layers-1;i++){
+
+		for(int f=vertex-2; f>desenha;f--){
+			
+					aIndex[pos] = f+(vertex*i) + layers*vertex;
+					pos++;
+					aIndex[pos] = (f+1)+(vertex*(i+1)) + layers*vertex;
+					pos++;
+					aIndex[pos] = (f+1)+(vertex*i) + layers*vertex;
+					pos++;
+
+
+					aIndex[pos] = f+(vertex*i) + layers*vertex;
+					pos++;
+					aIndex[pos] = f+(vertex*(i+1)) + layers*vertex;
+					pos++;
+					aIndex[pos] = (f+1)+(vertex*(i+1)) + layers*vertex;
+					pos++;
+
+            
+		}
+	}
 
 
 	glGenBuffers(3, buffers);
@@ -118,7 +174,7 @@ void ShotCupVBO::draw(){
 	glPushMatrix();
     glTranslatef(0, alt/2-alt/5, 0);
     glRotatef(180, 1, 0, 0);
-    drawShot_top(alt*2, alt/6, vertex, layer,0.80);
+    drawShot_top();
 
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);
@@ -127,10 +183,13 @@ void ShotCupVBO::draw(){
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
 	glTexCoordPointer(2,GL_FLOAT,0,0);
 
-	glDrawElements(GL_TRIANGLES, nrIndex ,GL_UNSIGNED_INT, aIndex);
+	glBindTexture(GL_TEXTURE_2D, id_textura) ;
+	glDrawElements(GL_TRIANGLES, nrIndex ,GL_UNSIGNED_INT, aIndex);		
+	/* Unbind da textura */
+	glBindTexture(GL_TEXTURE_2D, 0) ;
     glPopMatrix();
 
-	CylinderVBO* cylinder = new CylinderVBO(alt/7, alt/30, vertex, layer, 0);
+	
 	cylinder->draw();
 }
 
