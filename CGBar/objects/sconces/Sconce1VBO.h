@@ -1,4 +1,9 @@
 #pragma once
+
+#include "../../primitives/cylinder/CylinderVBO.h"
+#include "../../primitives/sphere/SphereVBO.h"
+
+
 class Sconce1VBO
 {
 private:
@@ -19,7 +24,7 @@ private:
 	CylinderVBO* abajur;
 
 public:
-	Sconce1VBO(void);
+	Sconce1VBO(	double alt, int nlados, int ncamadas, unsigned int id_textura1, unsigned int id_textura2, unsigned int id_textura3);
 	void draw();
 };
 
