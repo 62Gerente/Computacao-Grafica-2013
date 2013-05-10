@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="objects\cups\WineCupVBO.cpp" />
@@ -49,6 +49,8 @@
     <ClCompile Include="objects\computer\ComputerVBO.cpp" />
     <ClCompile Include="objects\sconces\Sconce2VBO.cpp" />
     <ClCompile Include="objects\sconces\Sconce3VBO.cpp" />
+    <ClCompile Include="objects\chair\chairVBO.cpp" />
+    <ClCompile Include="objects\table\tableVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -98,5 +100,7 @@
     <ClInclude Include="objects\computer\ComputerVBO.h" />
     <ClInclude Include="objects\sconces\Sconce2VBO.h" />
     <ClInclude Include="objects\sconces\Sconce3VBO.h" />
+    <ClInclude Include="objects\chair\chairVBO.h" />
+    <ClInclude Include="objects\table\tableVBO.h" />
   </ItemGroup>
 </Project>
