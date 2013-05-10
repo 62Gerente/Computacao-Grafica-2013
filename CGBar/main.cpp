@@ -159,7 +159,8 @@ void renderScene(void) {
 				//sphere->draw()
 				//cone->draw();
 				//parallelepiped->draw();
-				floorv->draw();
+				//floorv->draw();
+				drawBanco(15, 10, 10);
 
 			break ;
 		case 1:
