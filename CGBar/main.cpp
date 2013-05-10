@@ -1,4 +1,4 @@
-﻿#include <glew.h>
+#include <glew.h>
 #include <GLUT/glut.h>
 #include <IL/il.h>
 
@@ -48,6 +48,9 @@
 
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
 
+#include "objects\sconces\Sconce2VBO.h"
+#include "objects\sconces\Sconce3VBO.h"
+
 #include "objects\estruturas\FloorVBO.h"
 #include "objects\estruturas\WallsVBO.h"
 #include "objects\estruturas\CeilingVBO.h"
@@ -89,7 +92,10 @@ WiskyBottleVBO* wiskyBottle;
 
 ParallelepipedVBO* parallelepiped;
 
-ComputerVBO* computer;;
+ComputerVBO* computer;
+
+Sconce2VBO* sconce2;
+Sconce3VBO* sconce3;
 
 FloorVBO* floorv;
 WallsVBO* wallsv;
@@ -267,14 +273,14 @@ void renderScene(void) {
 				vodkaCup->draw();
 				break;
 		case 14:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 				wineBottle->draw();
 				break;
 		case 15:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
 				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
@@ -305,10 +311,19 @@ void renderScene(void) {
 			drawSconce1(5, 30, 30) ;
 			break;
 		case 21:
-			drawSconce2(5, 3, 30, 30);
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+			sconce2->draw();
 			break;
 		case 22:
-			drawSconce3(5,30,30);
+			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+			sconce3->draw();
+			break;
 		case 26:	
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -317,6 +332,7 @@ void renderScene(void) {
 				floorv->draw();
 				wallsv->draw();
 				ceilingv->draw();
+				break;
 		default:	
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -768,9 +784,6 @@ void Control(bool mi)
         glRotatef(-camYaw,0.0,1.0,0.0);
 }
 
-//
-//
-//
 
 int main(int argc, char **argv) {
     
@@ -909,6 +922,9 @@ int main(int argc, char **argv) {
 
 	computer = new ComputerVBO(5,20,30,id_textura,id_textura,id_textura,id_textura);
 
+	sconce2 = new Sconce2VBO(5,5,20,20,id_textura,0);
+	sconce3 = new Sconce3VBO(5,20,20,id_textura,0);
+
 	floorv = new FloorVBO(1,0);
 	wallsv = new WallsVBO(1,0);
 	ceilingv = new CeilingVBO(1,0);
@@ -926,5 +942,5 @@ int main(int argc, char **argv) {
 	glutMainLoop();
     
 	return 1;
+
 }
-	

@@ -12,7 +12,6 @@
 		glRotatef(90,1,0,0);
 		glRotatef(90,0,0,1);
 		glScalef(alt,alt,0.06);
-		glColor3ub(88,88,88);
         drawSphere(alt/20, nlados,ncamadas);
         glPopMatrix();
 
@@ -21,7 +20,6 @@
 		glRotatef(90,1,0,0);
 		glRotatef(90,0,0,1);
 		glScalef(alt,alt,0.09);
-		glColor3ub(255,255,255);
         drawSphere(alt/26, nlados,ncamadas);
         glPopMatrix();
 	 }
