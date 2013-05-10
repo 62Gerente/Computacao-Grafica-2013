@@ -1,8 +1,12 @@
+#include "../../primitives/cylinder/CylinderVBO.h"
+#include "../../primitives/plane/PlaneVBO.h"
+#include "../paralelepipedo/ParallelepipedVBO.h"
+
 #pragma once
 class ChairClassicaOneVBO
 {
 public:
-	ChairClassicaOneVBO(float tamanho, int n_vertices, int n_camadas, unsigned int arg_textura_pe, unsigned int arg_textura_assento, unsigned int arg_textura_encosto) ;
+	ChairClassicaOneVBO(float arg_tamanho, int arg_n_vertices, int arg_n_camadas, unsigned int arg_textura_pe, unsigned int arg_textura_assento, unsigned int arg_textura_encosto) ;
 	void draw();	
 protected:
 	float tamanho ;
@@ -106,7 +110,7 @@ protected:
 class ChairPubVBO
 {
 public:
-	ChairPubVBO(float tamanho, int n_vertices, int n_camadas, unsigned int arg_textura_pe, unsigned int arg_textura_assento, unsigned int arg_textura_encosto, unsigned int arg_textura_almofada) ;
+	ChairPubVBO(float arg_tamanho, int arg_n_vertices, int arg_n_camadas, unsigned int arg_textura_pe, unsigned int arg_textura_assento, unsigned int arg_textura_encosto, unsigned int arg_textura_almofada) ;	
 	void draw();	
 protected:
 	float tamanho ;
@@ -116,4 +120,33 @@ protected:
 	unsigned int textura_assento ;
 	unsigned int textura_encosto ;
 	unsigned int textura_almofada ;
+	/* Variáveis de assento */
+	float altura_assento ;
+	float comprimento_assento ;
+	float largura_assento ;	
+	ParallelepipedVBO *assento ;
+	/* Variáveis do pé */
+	float altura_pe ;
+	float raio_pe ;	
+	CylinderVBO *pe ;
+	/* Variáveis do encosto */
+	float altura_encosto ;	
+	float largura_encosto ;
+	ParallelepipedVBO *encosto ;
+	/* Variáveis da almofada */
+	float altura_almofada ;
+	float raio_almofada ;
+	CylinderVBO *almofada ;
+	/* Variáveis da base */
+	float altura_base ;
+	float raio_base ;	
+	CylinderVBO *base ;
+	/* Variáveis do suporte */
+	float altura_suporte ;
+	float comprimento_suporte ;
+	float raio_suporte ;
+	float x_suporte ;
+	float z_suporte ;	
+	CylinderVBO *suporte_vertical ;
+	CylinderVBO *suporte_horizontal ;
 };
