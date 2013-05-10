@@ -51,6 +51,9 @@
 #include "objects\estruturas\FloorVBO.h"
 #include "objects\estruturas\WallsVBO.h"
 #include "objects\estruturas\CeilingVBO.h"
+/* Mesas e cadeiras */
+#include "objects/table/tableVBO.h"
+#include "objects/chair/ChairVBO.h"
 
 float rotation;
 float rotationz;
@@ -91,6 +94,15 @@ ComputerVBO* computer;;
 FloorVBO* floorv;
 WallsVBO* wallsv;
 CeilingVBO* ceilingv;
+
+ChairClassicaOneVBO *cadeira_um ;
+ChairClassicaTwoVBO *cadeira_dois ;
+ChairClassicaThreeVBO *cadeira_tres ;
+ChairPubVBO *cadeira_pub ;
+
+TableOneVBO *mesa_um ;
+TableTwoVBO *mesa_dois ;
+TableCircularVBO *mesa_circular ;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -173,11 +185,19 @@ void renderScene(void) {
 				//sphere->draw()
 				//cone->draw();
 				//parallelepiped->draw();
-				floorv->draw();
+				//floorv->draw();
 				//drawBanco(15, 10, 10);
-				wallsv->draw();
-				ceilingv->draw();
+				//wallsv->draw();
+				//ceilingv->draw();
 				//computer->draw();
+				glTranslatef(-5, 0, 0) ;
+				//mesa_um->draw() ; 
+				//mesa_dois->draw() ;
+				mesa_circular->draw() ;
+				glTranslatef(10, 0, 0) ;
+				//drawTable(2, 1, 0.05, 0.8, 0.05, 30, 10);				
+				//drawTable2(1, 2, 0.05, 0.8, 0.05, 30, 10);				
+				drawTableCircular(1.5, 2, 30, 10);
 			break ;
 		case 1:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
@@ -893,8 +913,18 @@ int main(int argc, char **argv) {
 	wallsv = new WallsVBO(1,0);
 	ceilingv = new CeilingVBO(1,0);
 
+	mesa_um = new TableOneVBO(2, 1, 0.05, 0.8, 0.05, 30, 10, 0, 0); 	
+	mesa_dois = new TableTwoVBO(1, 2, 0.05, 0.8, 0.05, 30, 10, 0, 0);	
+	mesa_circular = new TableCircularVBO(1.5, 2, 30, 30, 0, 0, 0) ;
+
+	cadeira_um = new ChairClassicaOneVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_dois = new ChairClassicaTwoVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_tres = new ChairClassicaThreeVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_pub = new ChairPubVBO(5, 20, 15, 0, 0, 0, 0) ;
+
     // entrar no ciclo do GLUT
 	glutMainLoop();
     
 	return 1;
 }
+	
