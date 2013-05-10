@@ -2,26 +2,24 @@
 
 #include <GLUT/glut.h>
 
-#include "../../primitives/plane/PlaneVBO.h"
-
-ParallelepipedVBO::ParallelepipedVBO(float argHeight, float argWidth, float arglength, int argLayers, unsigned int argId_textura){
+ParallelepipedVBO::ParallelepipedVBO(float argHeight, float argWidth, float arglength, int argLayers, unsigned int id_texturaposx, unsigned int id_texturanegx, unsigned int id_texturaposy, unsigned int id_texturanegy, unsigned int id_texturaposz, unsigned int id_texturanegz){
 	height = argHeight;
 	width = argWidth;
 	length = arglength;
 	layers =  argLayers;
-	id_textura = argId_textura;
+
+	/* Planos y */
+	planeposy = new PlaneVBO(length, width, layers, id_texturaposy) ;
+	planenegy = new PlaneVBO(length, width, layers, id_texturanegy) ;
+	/* Planos z */
+	planeposz = new PlaneVBO(length, height, layers, id_texturaposz) ;
+	planenegz = new PlaneVBO(length, height, layers, id_texturanegz) ;
+	/* Planos x */
+	planeposx = new PlaneVBO(height, width, layers, id_texturaposx) ;
+	planenegx = new PlaneVBO(height, width, layers, id_texturanegx) ;
 }
 
-void ParallelepipedVBO::draw(unsigned int id_texturaposx, unsigned int id_texturanegx, unsigned int id_texturaposy, unsigned int id_texturanegy, unsigned int id_texturaposz, unsigned int id_texturanegz) {
-	/* Planos y */
-	PlaneVBO* planeposy = new PlaneVBO(length, width, layers, id_texturaposy) ;
-	PlaneVBO* planenegy = new PlaneVBO(length, width, layers, id_texturanegy) ;
-	/* Planos z */
-	PlaneVBO* planeposz = new PlaneVBO(length, height, layers, id_texturaposz) ;
-	PlaneVBO* planenegz = new PlaneVBO(length, height, layers, id_texturanegz) ;
-	/* Planos x */
-	PlaneVBO* planeposx = new PlaneVBO(height, width, layers, id_texturaposx) ;
-	PlaneVBO* planenegx = new PlaneVBO(height, width, layers, id_texturanegx) ;
+void ParallelepipedVBO::draw() {
 
 	/* Desenhar o plano y=-height/2 */
 	glPushMatrix() ;
@@ -62,57 +60,6 @@ void ParallelepipedVBO::draw(unsigned int id_texturaposx, unsigned int id_textur
 	glTranslatef(-length/2, 0, 0) ;	
 	glRotatef(90, 0, 0, 1) ;
 	planeposx->draw() ;
-	glPopMatrix() ;
-
-}
-
-void ParallelepipedVBO::draw() {
-	/* Planos y */
-	PlaneVBO* planey = new PlaneVBO(length, width, layers,id_textura) ;
-	/* Planos z */
-	PlaneVBO* planez = new PlaneVBO(length, height, layers,id_textura) ;
-	/* Planos x */
-	PlaneVBO* planex = new PlaneVBO(height, width, layers,id_textura) ;
-
-	/* Desenhar o plano y=-height/2 */
-	glPushMatrix() ;
-	glTranslatef(0, -height/2, 0) ;
-	glRotatef(180, 0, 0, 1) ;
-	planey->draw() ;
-	glPopMatrix() ;
-
-	/* Desenhar o plano y=height/2 */
-	glPushMatrix() ;
-	glTranslatef(0, height/2, 0) ;	
-	planey->draw() ;
-	glPopMatrix() ;
-
-	/* Desenhar o plano z=-width/2 */
-	glPushMatrix() ;
-	glTranslatef(0, 0, -width/2) ;	
-	glRotatef(270, 1, 0, 0) ;
-	planez->draw() ;
-	glPopMatrix() ;
-
-	/* Desenhar o plano z=height/2 */
-	glPushMatrix() ;
-	glTranslatef(0, 0, width/2) ;	
-	glRotatef(90, 1, 0, 0) ;
-	planez->draw() ;
-	glPopMatrix() ;
-
-	/* Desenhar o plano x=length/2 */
-	glPushMatrix() ;
-	glTranslatef(length/2, 0, 0) ;	
-	glRotatef(270, 0, 0, 1) ;
-	planex->draw() ;
-	glPopMatrix() ;
-
-	/* Desenhar o plano x=-length/2 */
-	glPushMatrix() ;
-	glTranslatef(-length/2, 0, 0) ;	
-	glRotatef(90, 0, 0, 1) ;
-	planex->draw() ;
 	glPopMatrix() ;
 
 }

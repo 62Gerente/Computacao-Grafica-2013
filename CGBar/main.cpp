@@ -37,17 +37,20 @@
 
 #include "objects/cups/WineCupVBO.h"
 #include "objects/cups/CocktailCupVBO.h"
-#include "objects/bottles/WineBottleVBO.h"
+#include "objects/cups/ShotCupVBO.h"
 #include "objects/cups/VodkaCupVBO.h"
 
+#include "objects/bottles/WineBottleVBO.h"
 #include "objects/bottles/wiskyBottleVBO.h"
 #include "objects/bottles/WiskyBottleVBO.h"
-#include "objects/cups/ShotCupVBO.h"
+
+#include "objects\computer\ComputerVBO.h"
 
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
 
 #include "objects\estruturas\FloorVBO.h"
 #include "objects\estruturas\WallsVBO.h"
+#include "objects\estruturas\CeilingVBO.h"
 
 float rotation;
 float rotationz;
@@ -58,6 +61,12 @@ bool cull;
 bool dragging;
 int dragx, dragy;
 int figura;
+
+float camz = 5.0;
+float camYaw=0.0;      
+float camPitch=0.0;     
+float movevel=0.2;
+float mousevel=0.2;
 
 unsigned int id_textura ;
 
@@ -77,8 +86,11 @@ WiskyBottleVBO* wiskyBottle;
 
 ParallelepipedVBO* parallelepiped;
 
+ComputerVBO* computer;;
+
 FloorVBO* floorv;
 WallsVBO* wallsv;
+CeilingVBO* ceilingv;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -164,7 +176,8 @@ void renderScene(void) {
 				floorv->draw();
 				//drawBanco(15, 10, 10);
 				wallsv->draw();
-
+				ceilingv->draw();
+				//computer->draw();
 			break ;
 		case 1:
 				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
@@ -277,16 +290,21 @@ void renderScene(void) {
 		case 22:
 			drawSconce3(5,30,30);
 		case 26:	
- 			drawWallsX(1);
- 			drawWallsZ(1);
-			drawTecto(1) ;
- 			drawFloor(1) ;
-			break;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
 		default:	
- 			drawWallsX(1);
- 			drawWallsZ(1);
-			drawTecto(1) ;
- 			drawFloor(1) ;
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
 			break;
 			}
    
@@ -446,6 +464,7 @@ void menu_principal_handler(int op)
 		default:
 		break;
 	}
+	glutPostRedisplay();
 }
 
 void menu_objectos_handler(int op){
@@ -641,6 +660,98 @@ void carregarTextura (char* nome_ficheiro, unsigned int* textura_id) {
 	GL_RGBA, GL_UNSIGNED_BYTE, texData);
 }
 
+
+
+void lockCamera()
+{
+        if(camPitch>90)
+                camPitch=90;
+        if(camPitch<-90)
+                camPitch=-90;
+        if(camYaw<0.0)
+                camYaw+=360.0;
+        if(camYaw>360.0)
+                camYaw-=360;
+}
+ 
+void moveCamera(float dist,float dir)
+{
+        float rad=(camYaw+dir)*M_PI/180.0;
+        camx-=sin(rad)*dist;    
+        camz-=cos(rad)*dist;    
+}
+ 
+void moveCameraUp(float dist,float dir)
+{
+        float rad=(camPitch+dir)*M_PI/180.0;
+        camy+=sin(rad)*dist;   
+}
+
+void UpdateCamera()
+{
+        glTranslatef(-camx,-camy,-camz);       
+}
+
+void keyboard_handler_explorer(unsigned char key, int x, int y){
+
+    switch (key) {
+        case 'a':
+		{
+			moveCamera(movevel,90.0);
+			break;
+		}
+        case 'd':
+		{
+			moveCamera(movevel,270);;
+			break;
+		}
+        case 'w':
+		{
+			if(camPitch!=90 && camPitch!=-90)
+                moveCamera(movevel,0.0);    
+            moveCameraUp(movevel,0.0);      
+			break;
+		}
+        case 's':
+		{
+			if(camPitch!=90 && camPitch!=-90)
+                moveCamera(movevel,180.0);
+            moveCameraUp(movevel,180.0);
+			break;
+		}
+        default:
+            break;
+    }
+}
+
+void mouse_motion_handler_explorer(int x, int y){
+        int MidX=glutGet(GLUT_SCREEN_WIDTH)/2;
+        int MidY=glutGet(GLUT_SCREEN_HEIGHT)/2;
+		camYaw+=mousevel*(MidX-x);   
+        camPitch+=mousevel*(MidY-y); 
+		glutPostRedisplay();
+}
+
+void Control(bool mi)    
+{
+        if(mi) 
+        {
+                int MidX=glutGet(GLUT_SCREEN_WIDTH)/2;
+                int MidY=glutGet(GLUT_SCREEN_HEIGHT)/2;
+                glutSetCursor(GLUT_CURSOR_NONE);  
+                glutPassiveMotionFunc(mouse_motion_handler_explorer);
+                lockCamera();
+                glutWarpPointer(MidX,MidY);      
+                glutKeyboardFunc(keyboard_handler_explorer);        
+        }
+        glRotatef(-camPitch,1.0,0.0,0.0);       
+        glRotatef(-camYaw,0.0,1.0,0.0);
+}
+
+//
+//
+//
+
 int main(int argc, char **argv) {
     
     // inicializacao
@@ -774,10 +885,13 @@ int main(int argc, char **argv) {
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura);
 	wineBottle = new WineBottleVBO(5,30,30, id_textura);
 
-	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura);
+	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura,id_textura,id_textura,id_textura,id_textura,id_textura);
 
-	floorv = new FloorVBO(1,id_textura);
-	wallsv = new WallsVBO(1,id_textura);
+	computer = new ComputerVBO(5,20,30,id_textura,id_textura,id_textura,id_textura);
+
+	floorv = new FloorVBO(1,0);
+	wallsv = new WallsVBO(1,0);
+	ceilingv = new CeilingVBO(1,0);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
