@@ -128,11 +128,11 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 	for(int i=0; i<layers;i++){
 
 		for(int j=0; j<vertex;j++){
-			aIndex[pos]=j+(i*(vertex+1)) + vertex/2*layers/2; 
+			aIndex[pos]=j+(i*(vertex+1)) + vertex*layers; 
 			pos++;
-			aIndex[pos]=j+((i+1)*(vertex+1)) + vertex/2*layers/2; 
+			aIndex[pos]=j+((i+1)*(vertex+1)) + vertex*layers; 
 			pos++;
-			aIndex[pos]=(j+1)+(i*(vertex+1)) + vertex/2*layers/2;
+			aIndex[pos]=(j+1)+(i*(vertex+1)) + vertex*layers;
 			pos++;
 			
 			

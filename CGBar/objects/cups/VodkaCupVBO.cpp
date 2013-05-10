@@ -110,23 +110,23 @@ void VodkaCupVBO::drawVodka_top (float altura, float raio, int vertex, int layer
         }
     }
 
-	int cenas = layers*vertex;
+
 
 	for(float i = 0; i < layers-1 ; i++) { 
         for(int j=0; j < vertex-1; j++) {			          
-					aIndex[pos] = j+(layers*i) + cenas;
+					aIndex[pos] = j+(layers*i) + layers*vertex;
 					pos++;
-					aIndex[pos] = (j+1)+(layers*(i+1)) + cenas;
+					aIndex[pos] = (j+1)+(layers*(i+1)) + layers*vertex;
 					pos++;
-					aIndex[pos] = j+(layers*(i+1)) + cenas;
+					aIndex[pos] = j+(layers*(i+1)) + layers*vertex;
 					pos++;
 
 
-					aIndex[pos] = j+(layers*i) + cenas;
+					aIndex[pos] = j+(layers*i) + layers*vertex;
 					pos++;
-					aIndex[pos] = (j+1)+(layers*i) + cenas;
+					aIndex[pos] = (j+1)+(layers*i) + layers*vertex;
 					pos++;
-					aIndex[pos] = (j+1)+(layers*(i+1)) + cenas;
+					aIndex[pos] = (j+1)+(layers*(i+1)) + layers*vertex;
 					pos++;
         }
     }

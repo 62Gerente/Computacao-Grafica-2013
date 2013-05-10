@@ -51,6 +51,8 @@
     <ClCompile Include="objects\sconces\Sconce3VBO.cpp" />
     <ClCompile Include="objects\chair\chairVBO.cpp" />
     <ClCompile Include="objects\table\tableVBO.cpp" />
+    <ClCompile Include="objects\cups\BeerCupVBO.cpp" />
+    <ClCompile Include="objects\sconces\Sconce1VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -102,5 +104,11 @@
     <ClInclude Include="objects\sconces\Sconce3VBO.h" />
     <ClInclude Include="objects\chair\chairVBO.h" />
     <ClInclude Include="objects\table\tableVBO.h" />
+    <ClInclude Include="objects\cups\BeerCupVBO.h" />
+    <ClInclude Include="objects\sconces\Sconce1VBO.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="madeira.jpg" />
+    <Image Include="terra.jpg" />
   </ItemGroup>
 </Project>

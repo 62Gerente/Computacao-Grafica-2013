@@ -39,6 +39,7 @@
 #include "objects/cups/CocktailCupVBO.h"
 #include "objects/cups/ShotCupVBO.h"
 #include "objects/cups/VodkaCupVBO.h"
+#include "objects/cups/BeerCupVBO.h"
 
 #include "objects/bottles/WineBottleVBO.h"
 #include "objects/bottles/wiskyBottleVBO.h"
@@ -48,6 +49,7 @@
 
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
 
+#include "objects\sconces\Sconce1VBO.h"
 #include "objects\sconces\Sconce2VBO.h"
 #include "objects\sconces\Sconce3VBO.h"
 
@@ -74,7 +76,10 @@ float camPitch=0.0;
 float movevel=0.2;
 float mousevel=0.2;
 
-unsigned int id_textura ;
+
+unsigned int id_textura=0;
+unsigned int textura_terra ;
+unsigned int textura_madeira;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
@@ -86,6 +91,7 @@ ConeVBO* cone;
 WineCupVBO* wineCup;
 CocktailCupVBO* cocktailCup;
 ShotCupVBO* shotCup;
+BeerCupVBO* beerCup;
 
 WineBottleVBO* wineBottle;
 WiskyBottleVBO* wiskyBottle;
@@ -94,6 +100,7 @@ ParallelepipedVBO* parallelepiped;
 
 ComputerVBO* computer;
 
+Sconce1VBO* sconce1;
 Sconce2VBO* sconce2;
 Sconce3VBO* sconce3;
 
@@ -178,166 +185,95 @@ void renderScene(void) {
 	float vermelho[]={1.0,0.3,0.3};
 	float cinzento[]={0.6662,0.6662,0.6662};
 	float spec[]={1,1,1,1.0};
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+	glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
 
 	switch(figura){
 		case 0:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-				//cylinder->draw();
-				//plane->draw() ;
-				//cube->draw() ;				
-				//sphere->draw()
-				//cone->draw();
-				//parallelepiped->draw();
-				//floorv->draw();
-				//drawBanco(15, 10, 10);
-				//wallsv->draw();
-				//ceilingv->draw();
-				//computer->draw();
-				glTranslatef(-5, 0, 0) ;
-				//mesa_um->draw() ; 
-				//mesa_dois->draw() ;
-				mesa_circular->draw() ;
-				glTranslatef(10, 0, 0) ;
-				//drawTable(2, 1, 0.05, 0.8, 0.05, 30, 10);				
-				//drawTable2(1, 2, 0.05, 0.8, 0.05, 30, 10);				
-				drawTableCircular(1.5, 2, 30, 10);
-			break ;
-		case 1:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				cylinder->draw();
-				break;
-		case 2:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				plane->draw();
-			break;
-		case 3:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				cube->draw();
-			break;
-		case 4:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				sphere->draw();
-			break ;
-		case 5:
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-				cone->draw();
-			break;
-
-		case 9:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
-			glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-			glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-			wineCup->draw();
-			break;
-		case 10:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,vermelho);
-			glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-			glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-			cocktailCup->draw();
-			break;
-		case 11:
-			drawBeerCup(5, 30, 30);
-			break;
-		case 12:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				shotCup->draw();
-				break;
-		case 13:
-			    glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				vodkaCup->draw();
-				break;
-		case 14:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				wineBottle->draw();
-				break;
-		case 15:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-				wiskyBottle->draw();
-				break;
-		case 16:
-			drawChairClassica(5,30,10) ;
-			break;
-		case 17:
-			drawChairPub(5,30,10);
-			break;
-		case 23:
-			drawChairClassica2(5,30,10);
-			break;
-		case 24:
-			drawChairClassica3(5,30,10);
-			break;
-        case 25:
-			drawTable2(1, 2, 0.05, 0.8, 0.05, 30, 10);
-			break;
-		case 18:
-			drawTableCircular(1.5, 2, 30, 10);
-			break;
-		case 19:
-			drawTable(2, 1, 0.05, 0.8, 0.05, 30, 10);
-			break;
-		case 20:
-			drawSconce1(5, 30, 30) ;
-			break;
-		case 21:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-			sconce2->draw();
-			break;
-		case 22:
-			glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
-
-			sconce3->draw();
-			break;
-		case 26:	
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 				floorv->draw();
 				wallsv->draw();
 				ceilingv->draw();
 				break;
-		default:	
-				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+		case 1:
+				cylinder->draw();
+				break;
+		case 2:
+				plane->draw();
+			break;
+		case 3:
+				cube->draw();
+			break;
+		case 4:
+				sphere->draw();
+			break ;
+		case 5:
+				cone->draw();
+			break;
 
-				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+		case 9:
+			drawWineCup(5,30,30);
+			break;
+		case 10:
+
+			cocktailCup->draw();
+			break;
+		case 11:
+
+			beerCup->draw();
+			break;
+		case 12:
+				shotCup->draw();
+				break;
+		case 13:
+				vodkaCup->draw();
+				break;
+		case 14:
+				wineBottle->draw();
+				break;
+		case 15:
+				wiskyBottle->draw();
+				break;
+		case 16:
+			cadeira_um->draw() ;
+			break;
+		case 17:
+			cadeira_pub->draw();
+			break;
+		case 23:
+			cadeira_dois->draw();
+			break;
+		case 24:
+			cadeira_tres->draw();
+			break;
+        case 25:
+			mesa_um->draw();
+			break;
+		case 18:
+			mesa_circular->draw();
+			break;
+		case 19:
+			mesa_dois->draw();
+			break;
+		case 20:
+			sconce1->draw();
+			break;
+		case 21:
+			sconce2->draw();
+			break;
+		case 22:
+			sconce3->draw();
+			break;
+		case 26:
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
+				break;
+		case 27:
+				computer->draw();
+				break;
+		default:
 				floorv->draw();
 				wallsv->draw();
 				ceilingv->draw();
@@ -504,6 +440,18 @@ void menu_principal_handler(int op)
 }
 
 void menu_objectos_handler(int op){
+
+	switch (op)
+	{
+		case 5:
+			//estrutura
+			figura = 27 ;
+			break;
+
+		default:
+		break;
+	}
+	glutPostRedisplay();
 }
 
 void menu_figuras_handler(int op)
@@ -687,7 +635,6 @@ void carregarTextura (char* nome_ficheiro, unsigned int* textura_id) {
 	texData = ilGetData();
 	glGenTextures(1,textura_id); // unsigned int texID - variavel global;
 	glBindTexture(GL_TEXTURE_2D,*textura_id);
-	printf("tw: %u th: %u textura_id: %u\n", tw, th, *textura_id) ;
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -879,6 +826,7 @@ int main(int argc, char **argv) {
 		glutAddSubMenu("Cadeiras", mcadeiras);
 		glutAddSubMenu("Mesas", mmesas);
 		glutAddSubMenu("Candeeiros", mcandeeiros);
+		glutAddMenuEntry("Computador", 5);
         glutAttachMenu(GLUT_RIGHT_BUTTON);
     
     
@@ -894,8 +842,8 @@ int main(int argc, char **argv) {
 	ilInit();
 
 	/* Carregar textura */
-	carregarTextura("terra.jpg", &id_textura) ;
-	//carregarTextura("madeira.jpg", &id_textura) ;
+	carregarTextura("terra.jpg", &textura_terra) ;
+	carregarTextura("madeira.jpg", &textura_madeira) ;
 
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
@@ -905,15 +853,16 @@ int main(int argc, char **argv) {
 	glEnable(GL_LIGHT0);
 
 	plane = new PlaneVBO(5.0,7.0,30, id_textura);
-	cylinder = new CylinderVBO(5, 5, 20, 10, 0 );
+	cylinder = new CylinderVBO(5, 5, 20, 10, id_textura);
 	cube = new CubeVBO(6.0,5, id_textura);
 	sphere = new SphereVBO(6,100,120,id_textura);
 	cone = new ConeVBO(5,5.0,50,80,id_textura );
 
 	wineCup = new WineCupVBO(8,30,30, id_textura);
 	cocktailCup = new CocktailCupVBO(5,30,30, id_textura);
-	shotCup = new ShotCupVBO(5,30,30,0);
+	shotCup = new ShotCupVBO(5,30,30,id_textura);
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
+	beerCup = new BeerCupVBO(5,30,30,id_textura);
 
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura, id_textura, id_textura, id_textura, id_textura, id_textura);
 	wineBottle = new WineBottleVBO(5,30,30, id_textura);
@@ -922,6 +871,7 @@ int main(int argc, char **argv) {
 
 	computer = new ComputerVBO(5,20,30,id_textura,id_textura,id_textura,id_textura);
 
+	sconce1 = new Sconce1VBO(5,5,20,id_textura,id_textura,id_textura);
 	sconce2 = new Sconce2VBO(5,5,20,20,id_textura,0);
 	sconce3 = new Sconce3VBO(5,20,20,id_textura,0);
 
