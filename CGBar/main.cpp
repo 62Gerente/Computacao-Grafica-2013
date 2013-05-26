@@ -59,6 +59,9 @@
 /* Mesas e cadeiras */
 #include "objects/table/tableVBO.h"
 #include "objects/chair/ChairVBO.h"
+/* Packs */
+#include "objects\packs\Mesa2Cadeiras.h"
+#include "objects\packs\Mesa4Cadeiras.h"
 
 float rotation;
 float rotationz;
@@ -120,6 +123,11 @@ ChairPubVBO *cadeira_pub ;
 TableOneVBO *mesa_um ;
 TableTwoVBO *mesa_dois ;
 TableCircularVBO *mesa_circular ;
+
+//PACKS
+
+Mesa2Cadeiras *mesa2;
+Mesa4Cadeiras *mesa4;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -199,38 +207,24 @@ void renderScene(void) {
 				floorv->draw();
 				//wallsv->draw();
 
-				glPushMatrix();	
-				glTranslatef(-6.5f,0.48f,-3.0f);
-				cadeira_um->draw() ;
+				glPushMatrix();
+				glTranslatef(-5.9f,0,-3.0f);
+				mesa2->draw2LugaresWine();
 				glPopMatrix();
 
-				glPushMatrix();	
-				glTranslatef(-5.7f,0.48f,-3.0f);
-				mesa_circular->draw() ;
+				glPushMatrix();
+				glTranslatef(-3.3f,0,-3.0f);
+				mesa2->draw2LugaresWisky();
 				glPopMatrix();
 
-				glPushMatrix();	
-				glTranslatef(-5.7f,0.9,-3.0f);
-				glColor4f(10,95,0,0.7);
-				wineBottle->draw() ;
+				glPushMatrix();
+				glTranslatef(-3.3f,0,-0.4f);
+				mesa4->draw4LugaresWine();
 				glPopMatrix();
 
-				glPushMatrix();	
-				glTranslatef(-6.1f,0.9,-3.0f);
-				glColor4f(10,95,0,0.7);
-				wineCup->draw() ;
-				glPopMatrix();
-
-				glPushMatrix();	
-				glTranslatef(-5.3f,0.9,-3.0f);
-				glColor4f(10,95,0,0.7);
-				wineCup->draw() ;
-				glPopMatrix();
-
-				glPushMatrix();	
-				glTranslatef(-4.9f,0.48f,-3.0f);
-				glRotatef(180,0,1,0);
-				cadeira_um->draw() ;
+				glPushMatrix();
+				glTranslatef(-5.9f,0,-0.4f);
+				mesa2->draw2LugaresShot();
 				glPopMatrix();
 				break;
 		case 1:
@@ -927,6 +921,11 @@ int main(int argc, char **argv) {
 	cadeira_dois = new ChairClassicaTwoVBO(5, 20, 15, 0, 0, 0) ;
 	cadeira_tres = new ChairClassicaThreeVBO(5, 20, 15, 0, 0, 0) ;
 	cadeira_pub = new ChairPubVBO(5, 20, 15, 0, 0, 0, 0) ;
+
+	//PACKS
+
+	mesa2 = new Mesa2Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass);
+	mesa4 = new Mesa4Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();
