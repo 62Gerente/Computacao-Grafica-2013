@@ -79,7 +79,11 @@ float mousevel=0.2;
 
 unsigned int id_textura=0;
 unsigned int textura_terra ;
-unsigned int textura_madeira;
+unsigned int textura_madeira_chao;
+unsigned int textura_madeira_moveis;
+unsigned int textura_paredes;
+unsigned int textura_green_glass;
+unsigned int textura_white_glass;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
@@ -183,7 +187,7 @@ void renderScene(void) {
 
 
 	float vermelho[]={1.0,0.3,0.3};
-	float cinzento[]={0.6662,0.6662,0.6662};
+	float cinzento[]={1,1,1};
 	float spec[]={1,1,1,1.0};
 	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
 	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
@@ -193,8 +197,41 @@ void renderScene(void) {
 	switch(figura){
 		case 0:
 				floorv->draw();
-				wallsv->draw();
-				ceilingv->draw();
+				//wallsv->draw();
+
+				glPushMatrix();	
+				glTranslatef(-6.5f,0.48f,-3.0f);
+				cadeira_um->draw() ;
+				glPopMatrix();
+
+				glPushMatrix();	
+				glTranslatef(-5.7f,0.48f,-3.0f);
+				mesa_circular->draw() ;
+				glPopMatrix();
+
+				glPushMatrix();	
+				glTranslatef(-5.7f,0.9,-3.0f);
+				glColor4f(10,95,0,0.7);
+				wineBottle->draw() ;
+				glPopMatrix();
+
+				glPushMatrix();	
+				glTranslatef(-6.1f,0.9,-3.0f);
+				glColor4f(10,95,0,0.7);
+				wineCup->draw() ;
+				glPopMatrix();
+
+				glPushMatrix();	
+				glTranslatef(-5.3f,0.9,-3.0f);
+				glColor4f(10,95,0,0.7);
+				wineCup->draw() ;
+				glPopMatrix();
+
+				glPushMatrix();	
+				glTranslatef(-4.9f,0.48f,-3.0f);
+				glRotatef(180,0,1,0);
+				cadeira_um->draw() ;
+				glPopMatrix();
 				break;
 		case 1:
 				cylinder->draw();
@@ -213,7 +250,7 @@ void renderScene(void) {
 			break;
 
 		case 9:
-			drawWineCup(5,30,30);
+			wineCup->draw();
 			break;
 		case 10:
 
@@ -801,10 +838,10 @@ int main(int argc, char **argv) {
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	int mcadeiras = glutCreateMenu(menu_cadeiras_handler);
-        glutAddMenuEntry("Cadeira Clássica", 0);
+        glutAddMenuEntry("Cadeira Classica", 0);
 		glutAddMenuEntry("Cadeira de Pub", 1);
-		glutAddMenuEntry("Cadeira Clássica 2", 2);
-		glutAddMenuEntry("Cadeira Clássica 3", 3);
+		glutAddMenuEntry("Cadeira Classica 2", 2);
+		glutAddMenuEntry("Cadeira Classica 3", 3);
 		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	int mmesas = glutCreateMenu(menu_mesas_handler);
@@ -831,7 +868,7 @@ int main(int argc, char **argv) {
     
     
     glutCreateMenu(menu_principal_handler);
-        glutAddSubMenu("Opções", mopcoes);
+        glutAddSubMenu("Opcoes", mopcoes);
         glutAddSubMenu("Primitivas", mfiguras);
 		glutAddSubMenu("Objectos", mobjectos);
 		glutAddMenuEntry("Estrutura", 5);
@@ -842,9 +879,12 @@ int main(int argc, char **argv) {
 	ilInit();
 
 	/* Carregar textura */
-	carregarTextura("terra.jpg", &textura_terra) ;
-	carregarTextura("madeira.jpg", &textura_madeira) ;
-
+	carregarTextura("textures/terra.jpg", &textura_terra) ;
+	carregarTextura("textures/floor.jpeg", &textura_madeira_chao) ;
+	carregarTextura("textures/table.jpg", &textura_madeira_moveis) ;
+	carregarTextura("textures/text_wall.jpg", &textura_paredes);
+	carregarTextura("textures/green_glass.jpg", &textura_green_glass);
+	carregarTextura("textures/white_glass.jpg", &textura_white_glass);
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -858,14 +898,14 @@ int main(int argc, char **argv) {
 	sphere = new SphereVBO(6,100,120,id_textura);
 	cone = new ConeVBO(5,5.0,50,80,id_textura );
 
-	wineCup = new WineCupVBO(8,30,30, id_textura);
+	wineCup = new WineCupVBO(0.4,20,20, id_textura);
 	cocktailCup = new CocktailCupVBO(5,30,30, id_textura);
 	shotCup = new ShotCupVBO(5,30,30,id_textura);
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
 	beerCup = new BeerCupVBO(5,30,30,id_textura);
 
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura, id_textura, id_textura, id_textura, id_textura, id_textura);
-	wineBottle = new WineBottleVBO(5,30,30, id_textura);
+	wineBottle = new WineBottleVBO(0.5,20,20, textura_green_glass);
 
 	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura,id_textura,id_textura,id_textura,id_textura,id_textura);
 
@@ -875,15 +915,15 @@ int main(int argc, char **argv) {
 	sconce2 = new Sconce2VBO(5,5,20,20,id_textura,0);
 	sconce3 = new Sconce3VBO(5,20,20,id_textura,0);
 
-	floorv = new FloorVBO(1,0);
-	wallsv = new WallsVBO(1,0);
+	floorv = new FloorVBO(1,textura_madeira_chao);
+	wallsv = new WallsVBO(1,textura_paredes);
 	ceilingv = new CeilingVBO(1,0);
 
 	mesa_um = new TableOneVBO(2, 1, 0.05, 0.8, 0.05, 30, 10, 0, 0); 	
 	mesa_dois = new TableTwoVBO(1, 2, 0.05, 0.8, 0.05, 30, 10, 0, 0);	
-	mesa_circular = new TableCircularVBO(5, 7, 20, 10, 0, 0, 0) ;
+	mesa_circular = new TableCircularVBO(0.7, 0.7, 20, 10, textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis) ;
 
-	cadeira_um = new ChairClassicaOneVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_um = new ChairClassicaOneVBO(1, 10, 10, textura_madeira_moveis, textura_madeira_moveis, textura_madeira_moveis) ;
 	cadeira_dois = new ChairClassicaTwoVBO(5, 20, 15, 0, 0, 0) ;
 	cadeira_tres = new ChairClassicaThreeVBO(5, 20, 15, 0, 0, 0) ;
 	cadeira_pub = new ChairPubVBO(5, 20, 15, 0, 0, 0, 0) ;

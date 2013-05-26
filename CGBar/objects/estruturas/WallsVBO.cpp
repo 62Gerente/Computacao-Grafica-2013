@@ -11,7 +11,7 @@ WallsVBO::WallsVBO(double argRatio, unsigned int aId_textura){
 
 	double proporcao = 3;
 	
-	c1 = new CubeVBO(proporcao, 30, id_textura);
+	c1 = new CubeVBO(proporcao, 10, id_textura);
 	c2 = new CubeVBO(proporcao, 10, id_textura);
 	c3 = new CubeVBO(proporcao, 10, id_textura);
 	c4 = new CubeVBO(proporcao, 10, id_textura);
@@ -21,9 +21,9 @@ WallsVBO::WallsVBO(double argRatio, unsigned int aId_textura){
 	c8 = new CubeVBO(proporcao, 5, id_textura);
 	c9 = new CubeVBO(proporcao, 10, id_textura);
 	c10 = new CubeVBO(proporcao, 10, id_textura);
-	c11 = new CubeVBO(proporcao, 30, id_textura);
-	c12 = new CubeVBO(proporcao, 30, id_textura);
-	c13 = new CubeVBO(proporcao, 50, id_textura);
+	c11 = new CubeVBO(proporcao, 10, id_textura);
+	c12 = new CubeVBO(proporcao, 10, id_textura);
+	c13 = new CubeVBO(proporcao, 10, id_textura);
 	c14 = new CubeVBO(proporcao, 15, id_textura);
 	c15 = new CubeVBO(proporcao, 15, id_textura);
 	c16 = new CubeVBO(proporcao, 15, id_textura);

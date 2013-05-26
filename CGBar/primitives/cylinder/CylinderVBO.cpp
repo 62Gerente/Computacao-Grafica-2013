@@ -81,7 +81,7 @@ CylinderVBO::CylinderVBO(float radius, float height, int vertex, int layers, uns
 		}
 		ang+= incAngle;
 	}
-
+	
 	ang = 0.0f;
 	for(int i=0; i<vertex;i++){
         

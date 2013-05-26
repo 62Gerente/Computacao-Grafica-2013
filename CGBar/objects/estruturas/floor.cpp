@@ -24,7 +24,7 @@ void drawFloor(double proporcao){
     
     glPushMatrix();
     glTranslatef(-2.5, 0, -5);
-    drawCylinder(5, 0.1, 300, 20);
+    drawCylinder(5, 0.1, 100, 100);
     glPopMatrix();
     
     glPushMatrix();

@@ -13,11 +13,12 @@ unsigned int id_text ;
 WineCupVBO::WineCupVBO(double alt, int vertex, int layers, unsigned int id_textura) : Primitivas(id_textura)
 
 {
+
 	altura = alt;
 	vert = vertex;
 	lay =layers;
 	rad= alt/6;
-	desenha = layers+layers*0.25;
+	desenha = layers+layers*0.4;
 
 	cone = new ConeVBO(altura/20, altura/25, vert, lay, id_textura);
     cylinder = new CylinderVBO(altura/80, altura/2/2, vert, lay, id_textura);
@@ -33,9 +34,9 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	nrIndex = 6*(layers*layers*6);
-	int arraySize = 3*(layers*layers*6)*sizeof(float);
-	int textSize = 2*(layers*layers*6)*sizeof(float);
+	nrIndex = 6*((layers+1)*(vertex+1)*2);
+	int arraySize = 3*((layers+1)*(vertex+1)*2)*sizeof(float);
+	int textSize = 2*((layers+1)*(vertex+1)*2)*sizeof(float);
 
 	float* aVertex = (float*) malloc(arraySize);
 	float* aNormal = (float*) malloc(arraySize);
@@ -45,7 +46,7 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 
 
 	double divH = (2*M_PI) / vertex;
-    double divV = (2*rad) / desenha;
+    double divV = (M_PI) / desenha;
 	float angv, angh;
 
 	int pos = 0;
@@ -74,6 +75,9 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 		}
 
 	}
+
+	textura_pos = 0;
+
 	for(int i=0; i<=layers;i++){
 		angv=divV*i;
 
@@ -85,7 +89,7 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 			pos++;
 
 			aVertex[pos]=radius*cos(angv);
-			aNormal[pos]=-cos(angv);
+			aNormal[pos]=cos(angv);
 			pos++;
 
 			aVertex[pos]=radius*sin(angv)*cos(angh);
@@ -97,7 +101,6 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 		}
 
 	}
-
 
 	pos=0;
 
@@ -125,31 +128,30 @@ void WineCupVBO::drawWineCup_top(double radius, double alt,  int vertex, int lay
 
 	}
 
+	int inc = (layers+1)*(vertex+1);
+
 	for(int i=0; i<layers;i++){
 
 		for(int j=0; j<vertex;j++){
-			aIndex[pos]=j+(i*(vertex+1)) + vertex*layers; 
+			aIndex[pos]=j+(i*(vertex+1))+inc; 
 			pos++;
-			aIndex[pos]=j+((i+1)*(vertex+1)) + vertex*layers; 
+			aIndex[pos]=(j+1)+(i*(vertex+1))+inc;
 			pos++;
-			aIndex[pos]=(j+1)+(i*(vertex+1)) + vertex*layers;
+			aIndex[pos]=j+((i+1)*(vertex+1))+inc; 
 			pos++;
 			
 			
-			aIndex[pos]=(j+1)+(i*(vertex+1)) + vertex*layers;
+			aIndex[pos]=(j+1)+(i*(vertex+1))+inc;
 			pos++;
-			aIndex[pos]=j+((i+1)*(vertex+1)) + vertex*layers; 
+			aIndex[pos]=(j+1)+((i+1)*(vertex+1))+inc; 
 			pos++;
-			aIndex[pos]=(j+1)+((i+1)*(vertex+1)) + vertex*layers; 
+			aIndex[pos]=j+((i+1)*(vertex+1))+inc; 
 			pos++;
 			
 
 		}
 
 	}
-	
-
-
 
 	glGenBuffers(3, buffers);
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
