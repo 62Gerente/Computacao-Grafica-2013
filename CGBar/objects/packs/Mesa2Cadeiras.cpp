@@ -1,11 +1,11 @@
 #include "Mesa2Cadeiras.h"
 #include <GLUT/glut.h>
 
-Mesa2Cadeiras::Mesa2Cadeiras(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr){
+Mesa2Cadeiras::Mesa2Cadeiras(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr, unsigned int text_mesa){
 	cco =  new ChairClassicaOneVBO(1, 10, 10, text_cad, text_cad, text_cad) ;
 	wineb = new WineBottleVBO(0.5,10,10, text_garr);
 	wiskyb = new WiskyBottleVBO(0.5,10,10,text_garr, text_garr, text_garr, text_garr, text_garr, text_garr);
-	mcirc = new TableCircularVBO(0.7, 0.7, 20, 10, text_cad,text_cad,text_cad) ;
+	mcirc = new TableCircularVBO(0.7, 0.7, 20, 10, text_cad,text_mesa,text_cad) ;
 	winec = new WineCupVBO(0.4,10,10, text_copo);
 	vodkac = new VodkaCupVBO(0.3,10,10,text_copo);
 	shotc = new ShotCupVBO(0.2,30,30,text_copo);

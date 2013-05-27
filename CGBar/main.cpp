@@ -62,6 +62,7 @@
 /* Packs */
 #include "objects\packs\Mesa2Cadeiras.h"
 #include "objects\packs\Mesa4Cadeiras.h"
+#include "objects\packs\Mesa4Esplanada.h"
 
 float rotation;
 float rotationz;
@@ -87,6 +88,9 @@ unsigned int textura_madeira_moveis;
 unsigned int textura_paredes;
 unsigned int textura_green_glass;
 unsigned int textura_white_glass;
+unsigned int textura_alum_pernas;
+unsigned int textura_alum_topo;
+unsigned int textura_toalha;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
@@ -128,6 +132,7 @@ TableCircularVBO *mesa_circular ;
 
 Mesa2Cadeiras *mesa2;
 Mesa4Cadeiras *mesa4;
+Mesa4Esplanada *mesa4e;
 
 float p1[] = {-1.0f, 0.0f, 1.0f};
 float p2[] = {1.0f, 0.0f, 1.0f};
@@ -225,6 +230,30 @@ void renderScene(void) {
 				glPushMatrix();
 				glTranslatef(-5.9f,0,-0.4f);
 				mesa4->draw4LugaresShot();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.5f,0,-5.3f);
+				glRotatef(180,0,1,0);
+				mesa4e->draw4LugaresEspRectFino();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-2.7f,0,-5.3f);
+				glRotatef(180,0,1,0);
+				mesa4e->draw4LugaresEspRectFino();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-2.7f,0,-7.5f);
+				glRotatef(180,0,1,0);
+				mesa4e->draw4LugaresEspQuaFino();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.5f,0,-7.5f);
+				glRotatef(180,0,1,0);
+				mesa4e->draw4LugaresEspQuaFino();
 				glPopMatrix();
 				break;
 		case 1:
@@ -879,6 +908,10 @@ int main(int argc, char **argv) {
 	carregarTextura("textures/text_wall.jpg", &textura_paredes);
 	carregarTextura("textures/green_glass.jpg", &textura_green_glass);
 	carregarTextura("textures/white_glass.jpg", &textura_white_glass);
+	carregarTextura("textures/alumin.jpg", &textura_alum_pernas);
+	carregarTextura("textures/metal_mesa.jpg", &textura_alum_topo);
+	carregarTextura("textures/toalha2.jpg", &textura_toalha);
+
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -913,19 +946,20 @@ int main(int argc, char **argv) {
 	wallsv = new WallsVBO(1,textura_paredes);
 	ceilingv = new CeilingVBO(1,0);
 
-	mesa_um = new TableOneVBO(2, 1, 0.05, 0.8, 0.05, 30, 10, 0, 0); 	
-	mesa_dois = new TableTwoVBO(1, 2, 0.05, 0.8, 0.05, 30, 10, 0, 0);	
+	mesa_um = new TableOneVBO(2, 1, 0.05, 0.8, 0.05, 30, 10, textura_alum_pernas, textura_alum_topo); 	
+	mesa_dois = new TableTwoVBO(0.9, 1.8, 0.05, 0.65, 0.05, 30, 10, textura_alum_pernas, textura_alum_topo); 
 	mesa_circular = new TableCircularVBO(0.7, 0.7, 20, 10, textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis) ;
 
 	cadeira_um = new ChairClassicaOneVBO(1, 10, 10, textura_madeira_moveis, textura_madeira_moveis, textura_madeira_moveis) ;
-	cadeira_dois = new ChairClassicaTwoVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_dois = new ChairClassicaTwoVBO(1, 10, 10, textura_alum_pernas, textura_alum_pernas, textura_alum_pernas) ;
 	cadeira_tres = new ChairClassicaThreeVBO(5, 20, 15, 0, 0, 0) ;
 	cadeira_pub = new ChairPubVBO(5, 20, 15, 0, 0, 0, 0) ;
 
 	//PACKS
 
-	mesa2 = new Mesa2Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass);
-	mesa4 = new Mesa4Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass);
+	mesa2 = new Mesa2Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass,textura_toalha);
+	mesa4 = new Mesa4Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass,textura_toalha);
+	mesa4e = new Mesa4Esplanada(textura_alum_pernas,id_textura,textura_green_glass,textura_alum_topo);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();

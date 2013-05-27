@@ -30,6 +30,23 @@ private:
 	CubeVBO* c17;
 	CubeVBO* c18;
 	CubeVBO* c19;
+
+	CubeVBO* cx1;
+	CubeVBO* cx2;
+	CubeVBO* cx3;
+	CubeVBO* cx4;
+	CubeVBO* cx5;
+	CubeVBO* cx6;
+	CubeVBO* cx7;
+	CubeVBO* cx8;
+	CubeVBO* cx9;
+	CubeVBO* cx10;
+	CubeVBO* cx11;
+	CubeVBO* cx12;
+	CubeVBO* cx13;
+	CubeVBO* cx14;
+	CubeVBO* cx15;
+	CubeVBO* cx16;
 public:
 	WallsVBO(double argRatio, unsigned int aId_textura);
 	void draw();

@@ -19,7 +19,7 @@ private:
 	VodkaCupVBO *vodkac;
 	Mesa2Cadeiras *mesa2c;
 public:
-	Mesa4Cadeiras(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr);
+	Mesa4Cadeiras(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr, unsigned int text_mesa);
 	void draw4LugaresWine();
 	void draw4LugaresWisky();
 	void draw4LugaresShot();

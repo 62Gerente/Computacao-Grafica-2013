@@ -13,7 +13,7 @@ CubeVBO::CubeVBO(float dim, int layers, unsigned int id_textura) : Primitivas(id
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	nrIndex = 6*(layers*layers*6);
+	nrIndex = 6*((layers-1)*(layers-1)*6);
 	int arraySize = 3*(layers*layers*6)*sizeof(float);
 	int textSize = 2*(layers*layers*6)*sizeof(float);
 

@@ -1,11 +1,11 @@
 #include "Mesa4Cadeiras.h"
 #include <GLUT/glut.h>
 
-Mesa4Cadeiras::Mesa4Cadeiras(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr){
+Mesa4Cadeiras::Mesa4Cadeiras(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr, unsigned int text_mesa){
 	cco =  new ChairClassicaOneVBO(1, 10, 10, text_cad, text_cad, text_cad) ;
 	winec = new WineCupVBO(0.4,10,10, text_copo);
 	vodkac = new VodkaCupVBO(0.3,10,10,text_copo);
-	mesa2c = new Mesa2Cadeiras(text_cad,text_copo,text_garr);
+	mesa2c = new Mesa2Cadeiras(text_cad,text_copo,text_garr,text_mesa);
 	shotc = new ShotCupVBO(0.2,30,30,text_copo);
 }
 

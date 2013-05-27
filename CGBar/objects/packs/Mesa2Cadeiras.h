@@ -20,7 +20,7 @@ private:
 	ShotCupVBO *shotc;
 
 public:
-	Mesa2Cadeiras(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr);
+	Mesa2Cadeiras(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr, unsigned int text_mesa);
 	void draw2LugaresWine();
 	void draw2LugaresWisky();
 	void draw2LugaresShot();

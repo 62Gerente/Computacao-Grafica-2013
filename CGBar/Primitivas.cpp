@@ -21,5 +21,4 @@ void Primitivas::draw(){
 	glDrawElements(GL_TRIANGLES, nrIndex ,GL_UNSIGNED_INT, aIndex);		
 	/* Unbind da textura */
 	glBindTexture(GL_TEXTURE_2D, 0) ;
-
 }

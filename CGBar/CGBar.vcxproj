@@ -93,6 +93,7 @@
     <ClCompile Include="objects\estruturas\WallsVBO.cpp" />
     <ClCompile Include="objects\packs\Mesa2Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Cadeiras.cpp" />
+    <ClCompile Include="objects\packs\Mesa4Esplanada.cpp" />
     <ClCompile Include="objects\paralelepipedo\ParallelepipedVBO.cpp" />
     <ClCompile Include="objects\sconces\Sconce1VBO.cpp" />
     <ClCompile Include="objects\sconces\Sconce2VBO.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="objects\estruturas\WallsVBO.h" />
     <ClInclude Include="objects\packs\Mesa2Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Cadeiras.h" />
+    <ClInclude Include="objects\packs\Mesa4Esplanada.h" />
     <ClInclude Include="objects\paralelepipedo\ParallelepipedVBO.h" />
     <ClInclude Include="objects\sconces\Sconce1VBO.h" />
     <ClInclude Include="objects\sconces\Sconce2VBO.h" />
