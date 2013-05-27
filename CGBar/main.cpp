@@ -205,7 +205,7 @@ void renderScene(void) {
 	switch(figura){
 		case 0:
 				floorv->draw();
-				//wallsv->draw();
+				wallsv->draw();
 
 				glPushMatrix();
 				glTranslatef(-5.9f,0,-3.0f);
@@ -224,7 +224,7 @@ void renderScene(void) {
 
 				glPushMatrix();
 				glTranslatef(-5.9f,0,-0.4f);
-				mesa2->draw2LugaresShot();
+				mesa4->draw4LugaresShot();
 				glPopMatrix();
 				break;
 		case 1:

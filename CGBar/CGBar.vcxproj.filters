@@ -111,14 +111,4 @@
     <ClInclude Include="objects\packs\Mesa2Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Cadeiras.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="madeira.jpg" />
-    <Image Include="terra.jpg" />
-    <Image Include="floor.png" />
-    <Image Include="black_floor.jpeg" />
-    <Image Include="chair.jpg" />
-    <Image Include="dark_wood.jpg" />
-    <Image Include="floor.jpeg" />
-    <Image Include="floor.jpg" />
-  </ItemGroup>
 </Project>

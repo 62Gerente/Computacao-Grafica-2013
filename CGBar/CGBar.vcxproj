@@ -189,16 +189,6 @@
     <ClInclude Include="utils\cores.h" />
     <ClInclude Include="objects\cups\VodkaCupVBO.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="black_floor.jpeg" />
-    <Image Include="chair.jpg" />
-    <Image Include="dark_wood.jpg" />
-    <Image Include="floor.jpeg" />
-    <Image Include="floor.jpg" />
-    <Image Include="floor.png" />
-    <Image Include="madeira.jpg" />
-    <Image Include="terra.jpg" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

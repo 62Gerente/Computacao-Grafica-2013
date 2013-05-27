@@ -22,15 +22,16 @@ CocktailCupVBO::CocktailCupVBO(double argAlt ,  int argVertex, int argLayers, un
 }
 
 void CocktailCupVBO::drawCocktailCup_top (){
-	
+	layers++;
+	vertex++;
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	nrIndex = 6*((vertex+layers)*layers);
-	int arraySize = (3*((vertex+layers)*layers))*sizeof(float);
-	int textSize = (2*((vertex+layers)*layers))*sizeof(float);
+	nrIndex = 6*((vertex+vertex)*layers);
+	int arraySize = (3*((vertex+vertex)*layers))*sizeof(float);
+	int textSize = (2*((vertex+vertex)*layers))*sizeof(float);
 
 	float* aVertex = (float*) malloc(arraySize);
 	float* aNormal = (float*) malloc(arraySize);
@@ -76,6 +77,9 @@ void CocktailCupVBO::drawCocktailCup_top (){
 		ang+=ang_inc;
 	}
 
+	ang =0;
+	textura_pos = 0 ;
+
 	for(int i=0; i<layers;i++){
         
         
@@ -103,9 +107,9 @@ void CocktailCupVBO::drawCocktailCup_top (){
 		ang+=ang_inc;
 	}
 
-
 	ang=0.0f;
 	pos = 0;
+	int inc = layers*vertex;
 
 	for(int i=0; i<layers-1;i++){
 
@@ -132,25 +136,23 @@ void CocktailCupVBO::drawCocktailCup_top (){
 
 		for(int f=0; f<vertex-1;f++){
 			
-					aIndex[pos] = f+(vertex*i)+ layers/2 ;
+					aIndex[pos] = f+(vertex*i)+inc;
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*i)+ layers/2;
+					aIndex[pos] = (f+1)+(vertex*(i+1))+inc;
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*(i+1))+ layers/2;
+					aIndex[pos] = (f+1)+(vertex*i)+inc;
 					pos++;
 
-					aIndex[pos] = f+(vertex*i)+ layers/2;
+					aIndex[pos] = f+(vertex*i)+inc;
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*(i+1))+ layers/2;
+					aIndex[pos] = f+(vertex*(i+1))+inc;
 					pos++;
-					aIndex[pos] = f+(vertex*(i+1))+ layers/2;
+					aIndex[pos] = (f+1)+(vertex*(i+1))+inc;
 					pos++;
             
 		}
 	}
 
-
-	
 
 	glGenBuffers(3, buffers);
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
