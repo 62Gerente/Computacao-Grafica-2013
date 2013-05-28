@@ -113,6 +113,7 @@ WineBottleVBO* wineBottle;
 WiskyBottleVBO* wiskyBottle;
 
 ParallelepipedVBO* parallelepiped;
+ParallelepipedVBO* prateleira;
 
 ComputerVBO* computer;
 
@@ -183,7 +184,7 @@ void renderScene(void) {
     
 	// set the camera
 	glLoadIdentity();
-    gluLookAt(10*sin(camx),2*camy,10*cos(camx),
+    gluLookAt(20*sin(camx),2*camy,20*cos(camx),
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     
@@ -219,6 +220,29 @@ void renderScene(void) {
 				floorv->draw();
 				wallsv->draw();
 
+				// Prateleiras
+
+				glPushMatrix();
+				glTranslatef(-5.7f,1.3,4.7);
+				prateleira->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.5f,1.2,4.7);
+				prateleira->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.9f,1.4,4.7);
+				prateleira->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,3.95);
+				glRotatef(90,0,1,0);
+				prateleira->draw();
+				glPopMatrix();
+
 				//Balcao
 
 				glPushMatrix();
@@ -234,6 +258,7 @@ void renderScene(void) {
 				glPopMatrix();
 
 				// Cadeiras Balcao
+
 
 				glPushMatrix();
 				glTranslatef(-3.8f,0.9,1.5f);
@@ -981,6 +1006,9 @@ int main(int argc, char **argv) {
 
 	parallelepiped = new ParallelepipedVBO(1,0.7,6,10,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis);
 	balcony = new Balcony(textura_madeira_chao,textura_alum_topo);;
+
+	prateleira = new ParallelepipedVBO(0.1,0.5,1,10,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo);
+
 
 	computer = new ComputerVBO(0.7,20,30,textura_ecra,textura_pc,textura_pc,textura_pc);
 
