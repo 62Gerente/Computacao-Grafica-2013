@@ -37,7 +37,7 @@
     <ClCompile Include="Maths\VECTOR2D.cpp" />
     <ClCompile Include="Maths\VECTOR3D.cpp" />
     <ClCompile Include="Maths\VECTOR4D.cpp" />
-    <ClCompile Include="main2.cpp" />
+    <ClCompile Include="main_sombras.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />

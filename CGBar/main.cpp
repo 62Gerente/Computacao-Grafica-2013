@@ -1,92 +1,46 @@
-﻿#include <stdlib.h>
-#include <GL/glew.h>
-#include <GL/glut.h>
-#include "Maths\Maths.h"
-
+﻿#include <glew.h>
+#include <GLUT/glut.h>
+#include <IL/il.h>
+#include <math.h>
 #include "primitives/plane/PlaneVBO.h"
 #include "primitives/cylinder/CylinderVBO.h"
 #include "primitives/cube/CubeVBO.h"
 #include "primitives/sphere/SphereVBO.h"
 #include "primitives/cone/ConeVBO.h"
-
 #include "objects/cups/WineCupVBO.h"
 #include "objects/cups/CocktailCupVBO.h"
 #include "objects/cups/ShotCupVBO.h"
 #include "objects/cups/VodkaCupVBO.h"
 #include "objects/cups/BeerCupVBO.h"
-
 #include "objects/bottles/WineBottleVBO.h"
 #include "objects/bottles/wiskyBottleVBO.h"
 #include "objects/bottles/WiskyBottleVBO.h"
-
 #include "objects\computer\ComputerVBO.h"
-
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
-
 #include "objects\sconces\Sconce1VBO.h"
 #include "objects\sconces\Sconce2VBO.h"
 #include "objects\sconces\Sconce3VBO.h"
-
 #include "objects\estruturas\FloorVBO.h"
 #include "objects\estruturas\WallsVBO.h"
 #include "objects\estruturas\CeilingVBO.h"
 #include "objects/table/tableVBO.h"
 #include "objects/chair/ChairVBO.h"
-
 #include "objects\balcony\Balcony.h"
-
 #include "objects\packs\Mesa2Cadeiras.h"
 #include "objects\packs\Mesa4Cadeiras.h"
 #include "objects\packs\Mesa4Esplanada.h"
 
-// include para a lib devil
-// n„o esquecer de adicionar a lib (devil.lib) ao projecto
-#include <IL/il.h>
-
 #define _USE_MATH_DEFINES
-#include <math.h>
 
-#define ANG2RAD 3.14159265358979323846/360.0 
-#define N_TEX 5
-
-
-#define SENS_RATO 0.001
-#define ANG 0.05
-#define MOV 0.1
-
-
-
-float height = 2.0f;
-float x = 0.0f;
-float z = 0.0f;
-
-
-float camX = 00, camY = 1, camZ = 0;
-float camDir[3]={1,0,0};
-float ang=0;
-int startX, startY;
-
-float alpha = 0.0f, beta = 45;
-
-unsigned char *imageData[N_TEX];
-
-
-unsigned int tex[N_TEX];
-
-unsigned int shadowMapTexture;
-unsigned int mFBO;
-unsigned int shadowMapSize=4098;
-
-int wHeight;
-int wWidth;
-
-MATRIX4X4 lightProjectionMatrix, lightViewMatrix;
-MATRIX4X4 cameraProjectionMatrix, cameraViewMatrix;
-
-float pos[4] = {4.9, 1.9, -7.4, 1};
-float ambLight=0.2;
-
-
+float rotation;
+float rotationz;
+float px, py, pz;
+float camx, camy;
+int face, modo;
+bool cull;
+bool dragging;
+int dragx, dragy;
+int figura;
 
 unsigned int id_textura=0;
 unsigned int textura_terra ;
@@ -109,93 +63,85 @@ VodkaCupVBO* vodkaCup;
 CubeVBO* cube;
 SphereVBO* sphere;
 ConeVBO* cone;
-
 WineCupVBO* wineCup;
 CocktailCupVBO* cocktailCup;
 ShotCupVBO* shotCup;
 BeerCupVBO* beerCup;
-
 WineBottleVBO* wineBottle;
 WiskyBottleVBO* wiskyBottle;
-
 ParallelepipedVBO* parallelepiped;
 ParallelepipedVBO* prateleira;
-
 ComputerVBO* computer;
-
 Sconce1VBO* sconce1;
 Sconce2VBO* sconce2;
 Sconce3VBO* sconce3;
-
 FloorVBO* floorv;
 WallsVBO* wallsv;
 CeilingVBO* ceilingv;
-
 ChairClassicaOneVBO *cadeira_um ;
 ChairClassicaTwoVBO *cadeira_dois ;
 ChairClassicaThreeVBO *cadeira_tres ;
 ChairPubVBO *cadeira_pub ;
-
 TableOneVBO *mesa_um ;
 TableTwoVBO *mesa_dois ;
 TableCircularVBO *mesa_circular ;
-
 Balcony* balcony;
-
 Mesa2Cadeiras *mesa2;
 Mesa4Cadeiras *mesa4;
 Mesa4Esplanada *mesa4e;
 
-int count;
-GLuint buffers[2];
-
-
-void initMatrix(){
-
-	glPushMatrix();
-	
-	glLoadIdentity();
-	gluPerspective(107, 1, 0.1, 20);
-	
-	glGetFloatv(GL_MODELVIEW_MATRIX, lightProjectionMatrix);
-	
-	glLoadIdentity();
-	gluLookAt(	pos[0], pos[1], pos[2],
-				pos[0]-1, 1,pos[2]+1,
-				0.0f, 1.0f, 0.0f);
-	
-	glGetFloatv(GL_MODELVIEW_MATRIX, lightViewMatrix);
-	
-	camDir[0]=cos(alpha)*sin(beta);
-	camDir[1]=cos(beta);
-	camDir[2]=sin(alpha)*sin(beta);
-
-	glLoadIdentity();
-	gluPerspective(45,(float)wWidth/wHeight,0.1,20);
-	glGetFloatv(GL_MODELVIEW_MATRIX, cameraProjectionMatrix);
-	
-	glLoadIdentity();
-	gluLookAt(	camX,camY,camZ,
-		camX+camDir[0],camY+camDir[1],camZ+camDir[2],
-		0.0f, 1.0f, 0.0f);
-	glGetFloatv(GL_MODELVIEW_MATRIX, cameraViewMatrix);
-	
-	glPopMatrix();
-
-}
-
-
 void changeSize(int w, int h) {
+    
+	if(h == 0)
+		h = 1;
 
-	wHeight=h;
-	wWidth=w;
+	float ratio = w * 1.0 / h;
+    
+	glMatrixMode(GL_PROJECTION);
+
+	glLoadIdentity();
+    
+    glViewport(0, 0, w, h);
+
+	gluPerspective(45.0f ,ratio, 1.0f ,1000.0f);
+    
+	glMatrixMode(GL_MODELVIEW);
 }
 
 
+void renderScene(void) {
+	float pos[4] = {0.0, 20.0, 0.0, 1};
+	float dif[] = {0.3,0.3,0.3,1};
 
-
-void drawScene() {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+	glLoadIdentity();
+    gluLookAt(20*sin(camx),2*camy,20*cos(camx),
+		      0.0,0.0,0.0,
+			  0.0f,1.0f,0.0f);
+    
+	glLightfv(GL_LIGHT0, GL_POSITION, pos);
+	glLightfv(GL_LIGHT0, GL_AMBIENT, dif);
 	
+	glEnable(GL_TEXTURE_2D) ;
+
+    glPolygonMode(face, modo);
+	if(cull) glEnable(GL_CULL_FACE);
+	else glDisable(GL_CULL_FACE);
+    
+    glTranslatef(px, py, pz);
+	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
+    glRotatef(rotationz, 1.0f,0.0f,0.0f);  
+
+	float cinzento[]={1,1,1};
+	float spec[]={0.33333,0.33333,0.33333,1.0};
+
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+	glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+	switch(figura){
+		case 0:
 				floorv->draw();
 				wallsv->draw();
 
@@ -305,179 +251,460 @@ void drawScene() {
 				mesa4e->draw4LugaresEspQuaFino();
 				glPopMatrix();
 
-	
-	
-}
+				break;
+		case 1:
+				cylinder->draw();
+				break;
+		case 2:
+				plane->draw();
+			break;
+		case 3:
+				cube->draw();
+			break;
+		case 4:
+				sphere->draw();
+			break ;
+		case 5:
+				cone->draw();
+			break;
 
+		case 9:
+			wineCup->draw();
+			break;
+		case 10:
 
+			cocktailCup->draw();
+			break;
+		case 11:
 
-void renderScene(void) {
-	initMatrix();
-	
-	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, mFBO);
-
-	//First pass - from light's point of view
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(lightProjectionMatrix);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	glLoadMatrixf(lightViewMatrix);
-
-	//Use viewport the same size as the shadow map
-	glViewport(0, 0, shadowMapSize, shadowMapSize);
-
-	//Draw back faces into the shadow map
-	glCullFace(GL_FRONT);
-	
-	//Draw the scene
-	drawScene();
-
-	//restore states
-	glCullFace(GL_BACK);
-	
-	glBindFramebuffer(GL_FRAMEBUFFER,0);
-
-	//2nd pass - Draw from camera's point of view
-	glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT);
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf(cameraProjectionMatrix);
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(cameraViewMatrix);
-
-	glViewport(0, 0, wWidth, wHeight);
-
-
-	//Use dim light to represent shadowed areas
-	glEnable(GL_LIGHT1);
-	glEnable(GL_LIGHTING);
-
-	glLightfv(GL_LIGHT1, GL_POSITION, pos);
-	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
-	
-
-	
-	
-	glEnable(GL_TEXTURE0);
-	glActiveTexture(GL_TEXTURE0);
-	glEnable(GL_TEXTURE_2D);
-
-	drawScene();
-	
-	
-	
-	//3rd pass
-	//Draw with bright light
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, white);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, white);
-
-	//Calculate texture matrix for projection
-	//This matrix takes us from eye space to the light's clip space
-	//It is postmultiplied by the inverse of the current view matrix when specifying texgen
-	static MATRIX4X4 biasMatrix(0.5f, 0.0f, 0.0f, 0.0f,
-								0.0f, 0.5f, 0.0f, 0.0f,
-								0.0f, 0.0f, 0.5f, 0.0f,
-								0.5f, 0.5f, 0.5f, 1.0f);	//bias from [-1, 1] to [0, 1]
-	MATRIX4X4 textureMatrix=biasMatrix*lightProjectionMatrix*lightViewMatrix;
-
-	//Set up texture coordinate generation.
-	glEnable(GL_TEXTURE1);
-	glActiveTexture(GL_TEXTURE1);
-	
-
-	glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
-
-
-
-	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	glTexGenfv(GL_S, GL_EYE_PLANE, textureMatrix.GetRow(0));
-	glEnable(GL_TEXTURE_GEN_S);
-
-	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	glTexGenfv(GL_T, GL_EYE_PLANE, textureMatrix.GetRow(1));
-	glEnable(GL_TEXTURE_GEN_T);
-
-	glTexGeni(GL_R, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	glTexGenfv(GL_R, GL_EYE_PLANE, textureMatrix.GetRow(2));
-	glEnable(GL_TEXTURE_GEN_R);
-
-	glTexGeni(GL_Q, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
-	glTexGenfv(GL_Q, GL_EYE_PLANE, textureMatrix.GetRow(3));
-	glEnable(GL_TEXTURE_GEN_Q);
-
-	//Bind & enable shadow map texture
-	glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
-	glEnable(GL_TEXTURE_2D);
-	
-
-	
-	glActiveTexture(GL_TEXTURE0);
-
-	
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-	
-
-
-	drawScene();
-	
-	glDisable(GL_BLEND);
-	glDisable(GL_TEXTURE1);
-	glDisable(GL_TEXTURE0);
-	glActiveTexture(GL_TEXTURE1);
-
-	//Disable textures and texgen
-	glDisable(GL_TEXTURE_2D);
-
-	glDisable(GL_TEXTURE_GEN_S);
-	glDisable(GL_TEXTURE_GEN_T);
-	glDisable(GL_TEXTURE_GEN_R);
-	glDisable(GL_TEXTURE_GEN_Q);
-
-	//Restore other states
-	glDisable(GL_LIGHTING);
-	glDisable(GL_ALPHA_TEST);
-
-	glActiveTexture(GL_TEXTURE0);
-	glDisable(GL_TEXTURE1);
-
-	
-
-// End of frame
+			beerCup->draw();
+			break;
+		case 12:
+				shotCup->draw();
+				break;
+		case 13:
+				vodkaCup->draw();
+				break;
+		case 14:
+				wineBottle->draw();
+				break;
+		case 15:
+				wiskyBottle->draw();
+				break;
+		case 16:
+			cadeira_um->draw() ;
+			break;
+		case 17:
+			cadeira_pub->draw();
+			break;
+		case 23:
+			cadeira_dois->draw();
+			break;
+		case 24:
+			cadeira_tres->draw();
+			break;
+        case 25:
+			mesa_um->draw();
+			break;
+		case 18:
+			mesa_circular->draw();
+			break;
+		case 19:
+			mesa_dois->draw();
+			break;
+		case 20:
+			sconce1->draw();
+			break;
+		case 21:
+			sconce2->draw();
+			break;
+		case 22:
+			sconce3->draw();
+			break;
+		case 26:
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
+				break;
+		case 27:
+				computer->draw();
+				break;
+		default:
+				floorv->draw();
+				wallsv->draw();
+				ceilingv->draw();
+			break;
+			}
+   
 	glutSwapBuffers();
-	
 }
 
+// escrever funcao de processamento do teclado
+void kb_special(int key, int x, int y){
+	switch(key)
+	{
+        case GLUT_KEY_LEFT:
+		{
+			if(px > -5.0f) px -= 0.1f;
+			break;
+		}
+        case GLUT_KEY_RIGHT:
+		{
+			if(px < 5.0f) px += 0.1f;
+			break;
+		}
+        case GLUT_KEY_DOWN:
+		{
+			if(pz < 5.0f) pz += 0.1f;
+			break;
+		}
+        case GLUT_KEY_UP:
+		{
+			if(pz > -5.0f) pz -= 0.1f;
+			break;
+		}
+            
+        default: return;
+	}
+	glutPostRedisplay();
+}
 
+void kb_normal(unsigned char key, int x, int y){
+    switch (key) {
+        case 'a':
+		{
+			rotation -= 1.5f;
+			break;
+		}
+        case 'd':
+		{
+			rotation += 1.5f;
+			break;
+		}
+        case 'w':
+		{
+			rotationz -= 1.5f;
+			break;
+		}
+        case 's':
+		{
+			rotationz += 1.5f;
+			break;
+		}
+        case 'i':
+		{
+			camy += 1.5f;
+			break;
+		}
+        case 'o':
+		{
+			camy -= 1.5f;
+			break;
+		}
+        case 'k':
+		{
+			camx += 1.5f;
+			break;
+		}
+        case 'l':
+		{
+			camx -= 1.5f;
+			break;
+		}
+        case 'n':
+		{
+			py += 1.5f;
+			break;
+		}
+        case 'm':
+		{
+			py -= 1.5f;
+			break;
+		}
+        default:
+            break;
+    }
+	glutPostRedisplay();
+}
 
-void processMouseButtons(int button, int state, int xx, int yy) 
+void mouse_click_handler(int botao, int estado, int x, int y)
 {
-	if(button==GLUT_LEFT_BUTTON){
-		startX=xx;
-		startY=yy;
+	if(botao == GLUT_LEFT_BUTTON)
+	{
+		switch(estado)
+		{
+            case GLUT_DOWN:
+			{
+				dragging = true;
+				dragx = x;
+				dragy = y;
+				break;
+			}
+            case GLUT_UP:
+			{
+				dragging = false;
+				break;
+			}
+		}
+		glutPostRedisplay();
+	}
+}
+
+void mouse_motion_handler(int x, int y)
+{
+	if(dragging)
+	{
+		if(dragx != x) camx = camx + 0.1 * ( dragx < x ? -1 : 1 );
+        
+		if(dragy != y) camy = camy + 0.1 * ( dragy < y ? 1 : -1 );
+        
+		dragx = x;
+		dragy = y;
+        
+		glutPostRedisplay();
+	}
+}
+
+// escrever funcao de processamento do menu
+
+void menu_opcoes_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			face = GL_FRONT;
+			break;
+		}
+        case 1:
+		{
+			face = GL_BACK;
+			break;
+		}
+        case 2:
+		{
+			face = GL_FRONT_AND_BACK;
+			break;
+		}
+        case 3:
+		{
+			modo = GL_FILL;
+			break;
+		}
+        case 4:
+		{
+			modo = GL_LINE;
+			break;
+		}
+        case 5:
+		{
+			cull = true;
+			break;
+		}
+        case 6:
+		{
+			cull = false;
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
+void menu_principal_handler(int op)
+{
+	switch (op)
+	{
+		case 5:
+			//estrutura
+			figura = 26 ;
+			break;
+
+		default:
+		break;
+	}
+	glutPostRedisplay();
+}
+
+void menu_objectos_handler(int op){
+
+	switch (op)
+	{
+		case 5:
+			//estrutura
+			figura = 27 ;
+			break;
+
+		default:
+		break;
+	}
+	glutPostRedisplay();
+}
+
+void menu_figuras_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 1; // Cilindro
+			break;
+		}
+        case 1:
+		{
+			figura = 2; // Plano
+			break;
+		}
+        case 2:
+		{
+			figura = 3; // Cubo
+			break;
+		}
+        case 3:
+		{
+			figura = 4; // Esfera
+			break;
+		}
+        case 4:
+		{
+			figura = 5; // Cilindro sem camadas
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
+void menu_copos_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 9; // Vinho
+			break;
+		}
+        case 1:
+		{
+			figura = 10; // Cocktail
+			break;
+		}
+        case 2:
+		{
+			figura = 11; // Fino
+			break;
+		}
+        case 3:
+		{
+			figura = 12; // Shot
+			break;
+		}
+        case 4:
+        {
+            figura = 13; // Bebida Branca
+            break;
+        }
+        default: return;
 	}
 	glutPostRedisplay();
 }
 
 
-void processMouseMotion(int xx, int yy)
+void menu_garrafas_handler(int op)
 {
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 14; 
+			break;
+		}
+        case 1:
+		{
+			figura = 15; 
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
 
-	int deltaX=startX-xx;
-	int deltaY=startY-yy;
-	startX=xx;
-	startY=yy;
+void menu_cadeiras_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 16; 
+			break;
+		}
+        case 1:
+		{
+			figura = 17; 
+			break;
+		}
+		case 2:
+		{
+			figura = 23; 
+			break;
+		}
+        case 3:
+		{
+			figura = 24; 
+			break;
+		}
+        default: return;
+	}
+	glutPostRedisplay();
+}
 
-	beta-=deltaY*SENS_RATO;
-	alpha+=deltaX*SENS_RATO;
+void menu_mesas_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 18; 
+			break;
+		}
+        case 1:
+		{
+			figura = 19; 
+			break;
+		}
+        case 2:{
+            figura=25;
+            break;
+        }
+        default: return;
+	}
+	glutPostRedisplay();
+}
 
+void menu_candeeiros_handler(int op)
+{
+	switch(op)
+	{
+        case 0:
+		{
+			figura = 20; 
+			break;
+		}
+        case 1:
+		{
+			figura = 21; 
+			break;
+		}
+		case 2:
+		{
+			figura = 22; 
+			break;
+		}
+        case 3:
+		{
+			figura = 23; 
+			break;
+		}
+        default: return;
+	}
 	glutPostRedisplay();
 }
 
@@ -502,9 +729,114 @@ void carregarTextura (char* nome_ficheiro, unsigned int* textura_id) {
 	GL_RGBA, GL_UNSIGNED_BYTE, texData);
 }
 
-void init() {
-	ilInit();
+int main(int argc, char **argv) {
+    
+    // inicializacao
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
+	glutInitWindowPosition(100,100);
+	glutInitWindowSize(800,800);
+	glutCreateWindow("CG@DI-UM");
+    
+	px = 0.0f; pz = 0.0f; py = 0.0f;
+	rotation = 0.0f;
+    rotationz = 0.0f;
+    camx = 0;
+	camy = 1;
+	face = GL_FRONT;
+	modo = GL_FILL;
+	cull = true;
+	dragging = false;
+	dragx = 0; dragy = 0;
+    figura = 0;
+    
+    
+    
+    // registo de funcoes
+	glutDisplayFunc(renderScene);
+	//glutIdleFunc(renderScene);
+	glutReshapeFunc(changeSize);
+    
+    // por aqui registo da funcoes do teclado e rato
+	glutSpecialFunc(kb_special);
+    glutKeyboardFunc(kb_normal);
+    glutMouseFunc(mouse_click_handler);
+	glutMotionFunc(mouse_motion_handler);
+    
+    
+    
+    // por aqui a criacao do menu
+    int mopcoes = glutCreateMenu(menu_opcoes_handler);
+        glutAddMenuEntry("GL_FRONT", 0);
+        glutAddMenuEntry("GL_BACK", 1);
+        glutAddMenuEntry("GL_FRONT_AND_BACK", 2);
+        glutAddMenuEntry("GL_FILL", 3);
+        glutAddMenuEntry("GL_LINE", 4);
+        glutAddMenuEntry("Enable Cull Face", 5);
+        glutAddMenuEntry("Disable Cull Face", 6);
+        glutAttachMenu(GLUT_RIGHT_BUTTON);
+    
+    int mfiguras = glutCreateMenu(menu_figuras_handler);
+        glutAddMenuEntry("CILINDRO", 0);
+        glutAddMenuEntry("PLANO", 1);
+        glutAddMenuEntry("CUBO", 2);
+        glutAddMenuEntry("ESFERA", 3);
+        glutAddMenuEntry("CONE", 4);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
 
+	int mcopos = glutCreateMenu(menu_copos_handler);
+        glutAddMenuEntry("Copo de Vinho", 0);
+        glutAddMenuEntry("Copo de Cocktail", 1);
+        glutAddMenuEntry("Copo de Fino", 2);
+        glutAddMenuEntry("Copo de Shot", 3);
+        glutAddMenuEntry("Codo de Bebida Branca", 4);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mgarrafas = glutCreateMenu(menu_garrafas_handler);
+        glutAddMenuEntry("Garrafa de Vinho", 0);
+		glutAddMenuEntry("Garrafa de Whisky", 1);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mcadeiras = glutCreateMenu(menu_cadeiras_handler);
+        glutAddMenuEntry("Cadeira Classica", 0);
+		glutAddMenuEntry("Cadeira de Pub", 1);
+		glutAddMenuEntry("Cadeira Classica 2", 2);
+		glutAddMenuEntry("Cadeira Classica 3", 3);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mmesas = glutCreateMenu(menu_mesas_handler);
+        glutAddMenuEntry("Mesa Circular", 0);
+		glutAddMenuEntry("Mesa Rectangular", 1);
+        glutAddMenuEntry("Mesa Rectangular 2", 2);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+	int mcandeeiros = glutCreateMenu(menu_candeeiros_handler);
+        glutAddMenuEntry("Candeeiro 1", 0);
+		glutAddMenuEntry("Candeeiro 2", 1);
+		glutAddMenuEntry("Candeeiro 3", 2);
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+
+
+	int mobjectos=  glutCreateMenu(menu_objectos_handler);
+		glutAddSubMenu("Copos", mcopos);
+		glutAddSubMenu("Garrafas", mgarrafas);
+		glutAddSubMenu("Cadeiras", mcadeiras);
+		glutAddSubMenu("Mesas", mmesas);
+		glutAddSubMenu("Candeeiros", mcandeeiros);
+		glutAddMenuEntry("Computador", 5);
+        glutAttachMenu(GLUT_RIGHT_BUTTON);
+    
+    
+    glutCreateMenu(menu_principal_handler);
+        glutAddSubMenu("Opcoes", mopcoes);
+        glutAddSubMenu("Primitivas", mfiguras);
+		glutAddSubMenu("Objectos", mobjectos);
+		glutAddMenuEntry("Estrutura", 5);
+        glutAttachMenu(GLUT_RIGHT_BUTTON);
+    
+	/* Iniciar glew e il */
+	glewInit();
+	ilInit();
 
 	/* Carregar textura */
 	carregarTextura("textures/terra.jpg", &textura_terra) ;
@@ -574,115 +906,10 @@ void init() {
 	mesa4 = new Mesa4Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass,textura_toalha);
 	mesa4e = new Mesa4Esplanada(textura_alum_pernas,id_textura,textura_green_glass,textura_alum_topo);
 
-
-
-
-	//Create the shadow map texture
-	glGenTextures(1, &shadowMapTexture);
-	glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	//Enable shadow comparison
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE_ARB, GL_COMPARE_R_TO_TEXTURE);
-	//Shadow comparison should be true (ie not in shadow) if r<=texture
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC_ARB, GL_LEQUAL);
-	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE_ARB, GL_ALPHA);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, shadowMapSize, shadowMapSize, 0,GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
-
-	//Load identity modelview
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-	//Shading states
-	glShadeModel(GL_SMOOTH);
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
-	glGenFramebuffers(1,&mFBO);
-	glBindFramebuffer(GL_DRAW_FRAMEBUFFER, mFBO);
-	glFramebufferTexture2D(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTexture, 0);
-
-	// Disable writes to the color buffer
-	glDrawBuffer(GL_NONE);
-
-	//Depth states
-	glClearDepth(1.0f);
-	glDepthFunc(GL_LEQUAL);
-	
-
-	//We use glScale when drawing the scene
-	glEnable(GL_NORMALIZE);
-
-// alguns settings para OpenGL
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_TEXTURE_2D);
-
-	glBindTexture(GL_TEXTURE_2D,0);
-}
-
-void teclado(unsigned char key, int x, int y){
-
-	switch(key){
-
-	case 'a': 
-	case'A':
-		alpha-=ANG;
-		break;
-	case 'd':
-	case 'D':
-		alpha+=ANG;
-		break;
-	case 'w':
-	case 'W':
-		camX+=MOV*camDir[0];
-		camY+=MOV*camDir[1];
-		camZ+=MOV*camDir[2];
-		break;
-
-	case 's':
-	case 'S':
-		camX-=MOV*camDir[0];
-		camY-=MOV*camDir[1];
-		camZ-=MOV*camDir[2];
-		break;
-
-	}
-	glutPostRedisplay();
-}
-
-
-void main(int argc, char **argv) {
-
-// inicializaÁ„o
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
-	glutInitWindowPosition(0,0);
-	wWidth=350;
-	wHeight=350;
-	glutInitWindowSize(wWidth,wHeight);
-	glutCreateWindow("CG@DI-UM");
-		
-
-// registo de funÁıes 
-	glutDisplayFunc(renderScene);
-	glutIdleFunc(renderScene);
-	glutReshapeFunc(changeSize);
-
-// registo da funÁıes do rato
-	glutMouseFunc(processMouseButtons);
-	glutMotionFunc(processMouseMotion);
-	glutKeyboardFunc(teclado);
-
-
-	glewInit();
-
-	init();	
-
-// entrar no ciclo do GLUT 
+    // entrar no ciclo do GLUT
 	glutMainLoop();
+    
+	return 1;
+
 }
 
