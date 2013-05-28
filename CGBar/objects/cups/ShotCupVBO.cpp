@@ -18,7 +18,8 @@ ShotCupVBO::ShotCupVBO(double argAlt,  int argVertex, int argLayers, unsigned in
 	radius=alt/6;
 
 	cylinder = new CylinderVBO(alt/7-alt/200, alt/30, vertex, layers, id_textura);
-
+	
+    drawShot_top();
 }
 
 void ShotCupVBO::drawShot_top()
@@ -174,7 +175,6 @@ void ShotCupVBO::draw(){
 	glPushMatrix();
     glTranslatef(0, alt/2-alt/5, 0);
     glRotatef(180, 1, 0, 0);
-    drawShot_top();
 
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);

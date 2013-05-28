@@ -443,12 +443,12 @@ ChairPubVBO::ChairPubVBO(float arg_tamanho, int arg_n_vertices, int arg_n_camada
 	largura_encosto = 0.03*tamanho ;
 	encosto = new ParallelepipedVBO(largura_encosto, comprimento_assento, altura_encosto, n_camadas, textura_encosto, textura_encosto, textura_encosto, textura_encosto, textura_encosto, textura_encosto) ;
 	/* Variáveis da almofada */
-	altura_almofada = 0.05*tamanho ;
+	altura_almofada = 0.03*tamanho ;
 	raio_almofada = ((comprimento_assento - largura_encosto)/2) ;
 	almofada = new CylinderVBO(raio_almofada, altura_almofada, n_vertices, n_camadas, textura_almofada) ;
 	/* Variáveis da base */
 	altura_base = 0.004*tamanho ;
-	raio_base = 0.4*tamanho ;	
+	raio_base = 0.3*tamanho ;	
 	base = new CylinderVBO(raio_base, altura_base, n_vertices, n_camadas, textura_pe) ;
 	/* Variáveis do suporte */
 	altura_suporte = (altura_pe / 2) ;

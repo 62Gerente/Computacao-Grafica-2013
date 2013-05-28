@@ -8,7 +8,7 @@ ComputerVBO::ComputerVBO(float argHeight, int argVertex, int argLayers, unsigned
 	vertex = argVertex;
 	layers = argLayers;
 
-	p1 = new ParallelepipedVBO(height/20, height - height/3, height-height/5,vertex,id_texturae,id_texturae,id_texturae,id_texturae,id_texturae,id_texturae);
+	p1 = new ParallelepipedVBO(height/20, height - height/3, height-height/5,vertex,id_texturam,id_texturam,id_texturae,id_texturam,id_texturam,id_texturam);
 	p2 = new ParallelepipedVBO(height/10, height - height/3 + height/7.5, height/15, vertex,id_texturam,id_texturam,id_texturam,id_texturam,id_texturam,id_texturam);
 	p3 = new ParallelepipedVBO(height/10, height - height/3 + height/7.5, height/15, vertex,id_texturam,id_texturam,id_texturam,id_texturam,id_texturam,id_texturam);
 	p4 = new ParallelepipedVBO(height/10, height/15, height - height/5, vertex,id_texturam,id_texturam,id_texturam,id_texturam,id_texturam,id_texturam);

@@ -24,6 +24,8 @@ WineCupVBO::WineCupVBO(double alt, int vertex, int layers, unsigned int id_textu
     cylinder = new CylinderVBO(altura/80, altura/2/2, vert, lay, id_textura);
 	cylinder1 = new CylinderVBO(altura/9, altura/200, vert, lay, id_textura);
 	cone1 = new ConeVBO(altura/20, altura/25, vert, lay, id_textura);
+
+	drawWineCup_top(altura/6, altura, vert, lay);
 }
 
 
@@ -170,8 +172,6 @@ void WineCupVBO::draw(){
 	glPushMatrix();
     glTranslatef(0, (altura/2)-rad/2, 0);
     glRotatef(180, 1, 0, 0);
-
-	drawWineCup_top(altura/6, altura, vert, lay);
 	
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);

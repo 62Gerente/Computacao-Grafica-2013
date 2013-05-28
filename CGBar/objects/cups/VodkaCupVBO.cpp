@@ -15,6 +15,8 @@ VodkaCupVBO::VodkaCupVBO(double argAlt,  int argVertex, int argLayers, unsigned 
 	id_textura = argId_textura;
 
 	cylinder = new CylinderVBO(alt/9 -alt/200, alt/40, vertex, layer, id_textura);
+
+	drawVodka_top((3*alt)/5, alt/9, vertex, layer);
 }
 
 
@@ -148,7 +150,6 @@ void VodkaCupVBO::drawVodka_top (float altura, float raio, int vertex, int layer
 void VodkaCupVBO::draw(){
 	glPushMatrix();
     glTranslatef(0, (3*alt)/10, 0);
-	drawVodka_top((3*alt)/5, alt/9, vertex, layer);
 
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);

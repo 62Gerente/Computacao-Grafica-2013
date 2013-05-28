@@ -56,6 +56,7 @@
     <ClCompile Include="objects\packs\Mesa2Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Esplanada.cpp" />
+    <ClCompile Include="objects\balcony\Balcony.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -112,5 +113,6 @@
     <ClInclude Include="objects\packs\Mesa2Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Esplanada.h" />
+    <ClInclude Include="objects\balcony\Balcony.h" />
   </ItemGroup>
 </Project>

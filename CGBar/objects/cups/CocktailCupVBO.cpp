@@ -19,6 +19,8 @@ CocktailCupVBO::CocktailCupVBO(double argAlt ,  int argVertex, int argLayers, un
 	cylinder = new CylinderVBO(alt/80, alt/5, vertex, layers/3, id_textura);
     cone = new ConeVBO(alt/20, alt/25, vertex, layers, id_textura);
     cyl = new CylinderVBO(alt/9, alt/200, vertex, layers, id_textura);
+
+	drawCocktailCup_top();
 }
 
 void CocktailCupVBO::drawCocktailCup_top (){
@@ -176,7 +178,6 @@ void CocktailCupVBO::draw(){
 	glPushMatrix();
     glTranslatef(0, (alt/2)-(2*rad/3), 0);
     glRotatef(180, 1, 0, 0);
-	drawCocktailCup_top();
 
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);

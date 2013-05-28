@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="objects\balcony\Balcony.cpp" />
     <ClCompile Include="objects\chair\chairVBO.cpp" />
     <ClCompile Include="objects\computer\ComputerVBO.cpp" />
     <ClCompile Include="objects\bancos\bancoVBO.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="objects\balcony\Balcony.h" />
     <ClInclude Include="objects\chair\chairVBO.h" />
     <ClInclude Include="objects\computer\ComputerVBO.h" />
     <ClInclude Include="objects\bancos\bancoVBO.h" />

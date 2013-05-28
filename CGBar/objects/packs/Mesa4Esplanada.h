@@ -16,6 +16,8 @@ private:
 public:
 	Mesa4Esplanada(unsigned int text_cad, unsigned int text_copo, unsigned int text_garr, unsigned int text_mesa);
 	void draw4LugaresEspRectFino();
+	void draw4LugaresEspRect();
 	void draw4LugaresEspQuaFino();
+	void draw4LugaresEspQuaCocktail();
 };
 

@@ -15,6 +15,9 @@ private:
 	int vertex,layers;
 	unsigned int id_textura;
 	int desenha, desenhabase;
+	int *aIndex2;
+	unsigned int buffers2[3];
+	int nrIndex2;
 };
 
 

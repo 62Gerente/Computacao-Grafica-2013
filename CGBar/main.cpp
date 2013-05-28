@@ -56,9 +56,10 @@
 #include "objects\estruturas\FloorVBO.h"
 #include "objects\estruturas\WallsVBO.h"
 #include "objects\estruturas\CeilingVBO.h"
-/* Mesas e cadeiras */
 #include "objects/table/tableVBO.h"
 #include "objects/chair/ChairVBO.h"
+
+#include "objects\balcony\Balcony.h"
 /* Packs */
 #include "objects\packs\Mesa2Cadeiras.h"
 #include "objects\packs\Mesa4Cadeiras.h"
@@ -91,6 +92,10 @@ unsigned int textura_white_glass;
 unsigned int textura_alum_pernas;
 unsigned int textura_alum_topo;
 unsigned int textura_toalha;
+unsigned int textura_ecra;
+unsigned int textura_pc;
+unsigned int textura_couro;
+unsigned int textura_beige;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
@@ -127,6 +132,8 @@ ChairPubVBO *cadeira_pub ;
 TableOneVBO *mesa_um ;
 TableTwoVBO *mesa_dois ;
 TableCircularVBO *mesa_circular ;
+
+Balcony* balcony;
 
 //PACKS
 
@@ -176,7 +183,7 @@ void renderScene(void) {
     
 	// set the camera
 	glLoadIdentity();
-    gluLookAt(20*sin(camx),2*camy,20*cos(camx),
+    gluLookAt(10*sin(camx),2*camy,10*cos(camx),
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     
@@ -212,25 +219,63 @@ void renderScene(void) {
 				floorv->draw();
 				wallsv->draw();
 
+				//Balcao
+
 				glPushMatrix();
-				glTranslatef(-5.9f,0,-3.0f);
+				glTranslatef(-4.5f,0,2.5f);
+				balcony->draw();
+				glPopMatrix();
+
+				//PC
+
+				glPushMatrix();
+				glTranslatef(-2.7f,1.2,2.5f);
+				computer->draw();
+				glPopMatrix();
+
+				// Cadeiras Balcao
+
+				glPushMatrix();
+				glTranslatef(-3.8f,0.9,1.5f);
+				glRotatef(-90,0,1,0);
+				cadeira_pub->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.3f,0.9,1.5f);
+				glRotatef(-90,0,1,0);
+				cadeira_pub->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.8f,0.9,1.5f);
+				glRotatef(-90,0,1,0);
+				cadeira_pub->draw();
+				glPopMatrix();
+
+				// Mesas Interior
+
+				glPushMatrix();
+				glTranslatef(-5.8f,0,-2.9f);
 				mesa2->draw2LugaresWine();
 				glPopMatrix();
 
 				glPushMatrix();
-				glTranslatef(-3.3f,0,-3.0f);
+				glTranslatef(-2.8f,0,-2.9f);
 				mesa2->draw2LugaresWisky();
 				glPopMatrix();
 
 				glPushMatrix();
-				glTranslatef(-3.3f,0,-0.4f);
+				glTranslatef(-2.8f,0,-0.8f);
 				mesa4->draw4LugaresWine();
 				glPopMatrix();
 
 				glPushMatrix();
-				glTranslatef(-5.9f,0,-0.4f);
+				glTranslatef(-5.8f,0,-0.8f);
 				mesa4->draw4LugaresShot();
 				glPopMatrix();
+
+				// Mesas Esplanada
 
 				glPushMatrix();
 				glTranslatef(-5.5f,0,-5.3f);
@@ -241,13 +286,13 @@ void renderScene(void) {
 				glPushMatrix();
 				glTranslatef(-2.7f,0,-5.3f);
 				glRotatef(180,0,1,0);
-				mesa4e->draw4LugaresEspRectFino();
+				mesa4e->draw4LugaresEspRect();
 				glPopMatrix();
 
 				glPushMatrix();
 				glTranslatef(-2.7f,0,-7.5f);
 				glRotatef(180,0,1,0);
-				mesa4e->draw4LugaresEspQuaFino();
+				mesa4e->draw4LugaresEspQuaCocktail();
 				glPopMatrix();
 
 				glPushMatrix();
@@ -255,6 +300,7 @@ void renderScene(void) {
 				glRotatef(180,0,1,0);
 				mesa4e->draw4LugaresEspQuaFino();
 				glPopMatrix();
+
 				break;
 		case 1:
 				cylinder->draw();
@@ -703,8 +749,6 @@ void carregarTextura (char* nome_ficheiro, unsigned int* textura_id) {
 	GL_RGBA, GL_UNSIGNED_BYTE, texData);
 }
 
-
-
 void lockCamera()
 {
         if(camPitch>90)
@@ -766,7 +810,6 @@ void keyboard_handler_explorer(unsigned char key, int x, int y){
             break;
     }
 }
-
 void mouse_motion_handler_explorer(int x, int y){
         int MidX=glutGet(GLUT_SCREEN_WIDTH)/2;
         int MidY=glutGet(GLUT_SCREEN_HEIGHT)/2;
@@ -774,7 +817,6 @@ void mouse_motion_handler_explorer(int x, int y){
         camPitch+=mousevel*(MidY-y); 
 		glutPostRedisplay();
 }
-
 void Control(bool mi)    
 {
         if(mi) 
@@ -790,7 +832,6 @@ void Control(bool mi)
         glRotatef(-camPitch,1.0,0.0,0.0);       
         glRotatef(-camYaw,0.0,1.0,0.0);
 }
-
 
 int main(int argc, char **argv) {
     
@@ -911,6 +952,10 @@ int main(int argc, char **argv) {
 	carregarTextura("textures/alumin.jpg", &textura_alum_pernas);
 	carregarTextura("textures/metal_mesa.jpg", &textura_alum_topo);
 	carregarTextura("textures/toalha2.jpg", &textura_toalha);
+	carregarTextura("textures/plastic_wht.jpg", &textura_pc);
+	carregarTextura("textures/text_pc.jpg", &textura_ecra);
+	carregarTextura("textures/couro.jpg", &textura_couro);
+	carregarTextura("textures/beige.jpg", &textura_beige);
 
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
@@ -929,14 +974,15 @@ int main(int argc, char **argv) {
 	cocktailCup = new CocktailCupVBO(5,30,30, id_textura);
 	shotCup = new ShotCupVBO(5,30,30,id_textura);
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
-	beerCup = new BeerCupVBO(5,30,30,id_textura);
+	beerCup = new BeerCupVBO(.4,30,30,id_textura);
 
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura, id_textura, id_textura, id_textura, id_textura, id_textura);
 	wineBottle = new WineBottleVBO(0.5,20,20, textura_green_glass);
 
-	parallelepiped = new ParallelepipedVBO(4,6,5,30,id_textura,id_textura,id_textura,id_textura,id_textura,id_textura);
+	parallelepiped = new ParallelepipedVBO(1,0.7,6,10,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis);
+	balcony = new Balcony(textura_madeira_chao,textura_alum_topo);;
 
-	computer = new ComputerVBO(5,20,30,id_textura,id_textura,id_textura,id_textura);
+	computer = new ComputerVBO(0.7,20,30,textura_ecra,textura_pc,textura_pc,textura_pc);
 
 	sconce1 = new Sconce1VBO(5,5,20,id_textura,id_textura,id_textura);
 	sconce2 = new Sconce2VBO(5,5,20,20,id_textura,0);
@@ -953,7 +999,7 @@ int main(int argc, char **argv) {
 	cadeira_um = new ChairClassicaOneVBO(1, 10, 10, textura_madeira_moveis, textura_madeira_moveis, textura_madeira_moveis) ;
 	cadeira_dois = new ChairClassicaTwoVBO(1, 10, 10, textura_alum_pernas, textura_alum_pernas, textura_alum_pernas) ;
 	cadeira_tres = new ChairClassicaThreeVBO(5, 20, 15, 0, 0, 0) ;
-	cadeira_pub = new ChairPubVBO(5, 20, 15, 0, 0, 0, 0) ;
+	cadeira_pub = new ChairPubVBO(1.1, 20, 15, textura_alum_pernas,textura_alum_pernas, textura_alum_pernas, textura_couro) ;
 
 	//PACKS
 

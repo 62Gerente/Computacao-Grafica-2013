@@ -7,7 +7,7 @@ CeilingVBO::CeilingVBO(double argRatio, unsigned int aId_textura){
 	id_textura = aId_textura;
 
 	c1 = new CubeVBO(5, 10, id_textura);
-	c2 = new CubeVBO(5, 40, id_textura);
+	c2 = new CubeVBO(5, 10, id_textura);
 	c3 = new CubeVBO(5, 10, id_textura);
 	c4 = new CubeVBO(5, 5, id_textura);
 	c5 = new CubeVBO(5, 2, id_textura);

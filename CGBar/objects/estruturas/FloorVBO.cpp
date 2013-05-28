@@ -6,14 +6,14 @@ FloorVBO::FloorVBO(double argRatio, unsigned int aId_textura){
 	ratio = argRatio;
 	id_textura = aId_textura;
 
-	cubeg1 = new CubeVBO(5, 30, id_textura);
+	cubeg1 = new CubeVBO(5, 20, id_textura);
 	cubeg2 = new CubeVBO(5, 20, id_textura);
-	cylinderg3 = new CylinderVBO(5, 0.1, 50, 20, id_textura);
+	cylinderg3 = new CylinderVBO(5, 0.1, 30, 15, id_textura);
 	cubeg4 = new CubeVBO(5, 20, id_textura);
 	cubeg5 = new CubeVBO(5, 10, id_textura);
 	cubecb = new CubeVBO(5, 10, id_textura);
-	cubep1 = new CubeVBO(5, 30, id_textura);
-	cubep2 = new CubeVBO(5, 30, id_textura);
+	cubep1 = new CubeVBO(5, 20, id_textura);
+	cubep2 = new CubeVBO(5, 20, id_textura);
 }
 
 void FloorVBO::draw(){		

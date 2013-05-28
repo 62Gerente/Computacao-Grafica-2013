@@ -20,6 +20,10 @@ BeerCupVBO::BeerCupVBO(double argAlt,  int argVertex, int argLayers, unsigned in
 	altura=alt/6;
 	raio= alt/9;
 	desenhabase = argVertex*0.5;
+
+	
+    drawBeer_top();
+	drawBeer_base();
 }
 
 void BeerCupVBO::drawBeer_top(){
@@ -173,7 +177,7 @@ void BeerCupVBO::drawBeer_base(){
 	glEnableClientState(GL_NORMAL_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	nrIndex = 6*((vertex+layers)*layers);
+	nrIndex2 = 6*((vertex+layers)*layers);
 	int arraySize = (3*((vertex+layers)*layers))*sizeof(float);
 	int textSize = (2*((vertex+layers)*layers))*sizeof(float);
 
@@ -181,7 +185,7 @@ void BeerCupVBO::drawBeer_base(){
 	float* aNormal = (float*) malloc(arraySize);
 	float* aTexture = (float*) malloc(textSize);
 
-	aIndex = (int*) malloc (sizeof(int)*nrIndex);
+	aIndex2 = (int*) malloc (sizeof(int)*nrIndex2);
 
 	float ang=0.0f;
 	float ang_inc=2*M_PI/((float) (layers-1));
@@ -257,18 +261,18 @@ void BeerCupVBO::drawBeer_base(){
 
 		for(int f=vertex-2; f>desenhabase;f--){
 			
-					aIndex[pos] = f+(vertex*i);
+					aIndex2[pos] = f+(vertex*i);
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*i);
+					aIndex2[pos] = (f+1)+(vertex*i);
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*(i+1));
+					aIndex2[pos] = (f+1)+(vertex*(i+1));
 					pos++;
 
-					aIndex[pos] = f+(vertex*i);
+					aIndex2[pos] = f+(vertex*i);
 					pos++;
-					aIndex[pos] = (f+1)+(vertex*(i+1));
+					aIndex2[pos] = (f+1)+(vertex*(i+1));
 					pos++;
-					aIndex[pos] = f+(vertex*(i+1));
+					aIndex2[pos] = f+(vertex*(i+1));
 					pos++;
             
 		}
@@ -280,30 +284,30 @@ void BeerCupVBO::drawBeer_base(){
 	for(int i=0; i<layers-1;i++){
 		for(int ri=0;ri<layers-1;ri++){
 
-					aIndex[pos] = ri+(layers*i) +inc;
+					aIndex2[pos] = ri+(layers*i) +inc;
 					pos++;
-					aIndex[pos] = (ri+1)+(layers*(i+1)) +inc;
-					pos++;
-
-					aIndex[pos] = (ri+1)+(layers*i) +inc;
+					aIndex2[pos] = (ri+1)+(layers*(i+1)) +inc;
 					pos++;
 
-					aIndex[pos] = ri+(layers*i) +inc;
+					aIndex2[pos] = (ri+1)+(layers*i) +inc;
 					pos++;
-					aIndex[pos] = ri+(layers*(i+1)) +inc;
+
+					aIndex2[pos] = ri+(layers*i) +inc;
 					pos++;
-					aIndex[pos] = (ri+1)+(layers*(i+1)) +inc;
+					aIndex2[pos] = ri+(layers*(i+1)) +inc;
+					pos++;
+					aIndex2[pos] = (ri+1)+(layers*(i+1)) +inc;
 					pos++;
 
 		}
     }
 
-	glGenBuffers(3, buffers);
-	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
+	glGenBuffers(3, buffers2);
+	glBindBuffer(GL_ARRAY_BUFFER,buffers2[0]);
 	glBufferData(GL_ARRAY_BUFFER, arraySize, aVertex, GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
+	glBindBuffer(GL_ARRAY_BUFFER,buffers2[1]);
 	glBufferData(GL_ARRAY_BUFFER, arraySize, aNormal, GL_STATIC_DRAW);
-	glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
+	glBindBuffer(GL_ARRAY_BUFFER,buffers2[2]);
 	glBufferData(GL_ARRAY_BUFFER, textSize, aTexture, GL_STATIC_DRAW);
 
 	free(aVertex);
@@ -319,7 +323,6 @@ void BeerCupVBO::draw(void)
 	glPushMatrix();
     glTranslatef(0, alt - alt/3.5, 0);
     glRotatef(180, 1, 0, 0);
-    drawBeer_top();
 
 	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);
@@ -335,17 +338,16 @@ void BeerCupVBO::draw(void)
     glPopMatrix();
 
 	glPushMatrix();
-	drawBeer_base();
 
-	glBindBuffer(GL_ARRAY_BUFFER,buffers[0]);
+	glBindBuffer(GL_ARRAY_BUFFER,buffers2[0]);
 	glVertexPointer(3,GL_FLOAT,0,0);
-	glBindBuffer(GL_ARRAY_BUFFER,buffers[1]);
+	glBindBuffer(GL_ARRAY_BUFFER,buffers2[1]);
 	glNormalPointer(GL_FLOAT,0,0);
-	glBindBuffer(GL_ARRAY_BUFFER,buffers[2]);
+	glBindBuffer(GL_ARRAY_BUFFER,buffers2[2]);
 	glTexCoordPointer(2,GL_FLOAT,0,0);
 
 	glBindTexture(GL_TEXTURE_2D, id_textura) ;
-	glDrawElements(GL_TRIANGLES, nrIndex ,GL_UNSIGNED_INT, aIndex);		
+	glDrawElements(GL_TRIANGLES, nrIndex ,GL_UNSIGNED_INT, aIndex2);		
 	/* Unbind da textura */
 	glBindTexture(GL_TEXTURE_2D, 0) ;
 	glPopMatrix();
