@@ -35,3 +35,9 @@ CGBar/Debug
 
 CGBar/CGBar.opensdf
 CGBar/CGBar.vcx*
+
+*.obj
+
+*.tlog
+
+*.lastbuildstate
