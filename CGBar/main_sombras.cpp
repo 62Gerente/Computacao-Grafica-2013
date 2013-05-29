@@ -48,11 +48,7 @@ int wWidth;
 MATRIX4X4 lightProjectionMatrix, lightViewMatrix;
 MATRIX4X4 cameraProjectionMatrix, cameraViewMatrix;
 
-float pos[4] = {0, 20, 20, 1};
 float salao1[4] = {-4.3f, 1.73f, -1.85, 1};
-float salao2[4] = {-4.3f, 1.73f, 2.5, 1};
-float salao3[4] = {-0.3f, 1.73f, -1.85, 1};
-float salao4[4] = {-0.3f, 1.73f, 2.5, 1};
 float ambLight=0.4;
 
 unsigned int id_textura=0;
@@ -96,8 +92,8 @@ void initMatrix(){
 	glGetFloatv(GL_MODELVIEW_MATRIX, lightProjectionMatrix);
 	
 	glLoadIdentity();
-	gluLookAt(	pos[0], pos[1], pos[2],
-				pos[0]-1, pos[1],pos[2]+1,
+	gluLookAt(	salao1[0], salao1[1], salao1[2],
+				salao1[0]-1, salao1[1],salao1[2]+1,
 				0.0f, 1.0f, 0.0f);
 	
 	glGetFloatv(GL_MODELVIEW_MATRIX, lightViewMatrix);
@@ -298,36 +294,12 @@ void renderScene(void) {
 	glViewport(0, 0, wWidth, wHeight);
 
 	glEnable(GL_LIGHT1);
-	glEnable(GL_LIGHT2);
-	glEnable(GL_LIGHT3);
-	glEnable(GL_LIGHT4);
-	glEnable(GL_LIGHT5);
 	glEnable(GL_LIGHTING);
 
-	glLightfv(GL_LIGHT1, GL_POSITION, pos);
+	glLightfv(GL_LIGHT1, GL_POSITION, salao1);
 	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
-	
-	glLightfv(GL_LIGHT2, GL_POSITION, salao1);
-	glLightfv(GL_LIGHT2, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT2, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT2, GL_SPECULAR, black);
-
-	glLightfv(GL_LIGHT3, GL_POSITION, salao2);
-	glLightfv(GL_LIGHT3, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT3, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT3, GL_SPECULAR, black);
-
-	glLightfv(GL_LIGHT4, GL_POSITION, salao3);
-	glLightfv(GL_LIGHT4, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT4, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT4, GL_SPECULAR, black);
-
-	glLightfv(GL_LIGHT5, GL_POSITION, salao4);
-	glLightfv(GL_LIGHT5, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT5, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT5, GL_SPECULAR, black);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, black);	
 
 	glEnable(GL_TEXTURE0);
 	glActiveTexture(GL_TEXTURE0);

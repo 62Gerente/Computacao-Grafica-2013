@@ -38,6 +38,30 @@
     <ClCompile Include="Maths\VECTOR3D.cpp" />
     <ClCompile Include="Maths\VECTOR4D.cpp" />
     <ClCompile Include="main_sombras.cpp" />
+    <ClCompile Include="objects\bancos\banco.cpp" />
+    <ClCompile Include="objects\bottles\wineBottle.cpp" />
+    <ClCompile Include="objects\bottles\wiskyBottle.cpp" />
+    <ClCompile Include="objects\chair\chair.cpp" />
+    <ClCompile Include="objects\cups\beerCup.cpp" />
+    <ClCompile Include="objects\cups\cocktailCup.cpp" />
+    <ClCompile Include="objects\cups\shotCup.cpp" />
+    <ClCompile Include="objects\cups\vodkaCup.cpp" />
+    <ClCompile Include="objects\cups\wineCup.cpp" />
+    <ClCompile Include="objects\estruturas\floor.cpp" />
+    <ClCompile Include="objects\estruturas\tecto.cpp" />
+    <ClCompile Include="objects\estruturas\walls.cpp" />
+    <ClCompile Include="objects\paralelepipedo\paralelepipedo.cpp" />
+    <ClCompile Include="objects\sconces\sconce1.cpp" />
+    <ClCompile Include="objects\sconces\sconce2.cpp" />
+    <ClCompile Include="objects\sconces\sconce3.cpp" />
+    <ClCompile Include="objects\sconces\simpleSconce.cpp" />
+    <ClCompile Include="objects\sconces\treeSconce.cpp" />
+    <ClCompile Include="objects\table\table.cpp" />
+    <ClCompile Include="primitives\cone\cone.cpp" />
+    <ClCompile Include="primitives\cube\cube.cpp" />
+    <ClCompile Include="primitives\cylinder\cylinder.cpp" />
+    <ClCompile Include="primitives\sphere\sphere.cpp" />
+    <ClCompile Include="primitives\plane\plane.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -77,5 +101,29 @@
     <ClInclude Include="Maths\VECTOR2D.h" />
     <ClInclude Include="Maths\VECTOR3D.h" />
     <ClInclude Include="Maths\VECTOR4D.h" />
+    <ClInclude Include="objects\bancos\banco.h" />
+    <ClInclude Include="objects\bottles\wineBottle.h" />
+    <ClInclude Include="objects\bottles\wiskyBottle.h" />
+    <ClInclude Include="objects\chair\chair.h" />
+    <ClInclude Include="objects\cups\beerCup.h" />
+    <ClInclude Include="objects\cups\cocktailCup.h" />
+    <ClInclude Include="objects\cups\shotCup.h" />
+    <ClInclude Include="objects\cups\vodkaCup.h" />
+    <ClInclude Include="objects\cups\wineCup.h" />
+    <ClInclude Include="objects\estruturas\floor.h" />
+    <ClInclude Include="objects\estruturas\tecto.h" />
+    <ClInclude Include="objects\estruturas\walls.h" />
+    <ClInclude Include="objects\paralelepipedo\paralelepipedo.h" />
+    <ClInclude Include="objects\sconces\sconce1.h" />
+    <ClInclude Include="objects\sconces\sconce2.h" />
+    <ClInclude Include="objects\sconces\sconce3.h" />
+    <ClInclude Include="objects\sconces\simpleSconce.h" />
+    <ClInclude Include="objects\sconces\treeSconce.h" />
+    <ClInclude Include="objects\table\table.h" />
+    <ClInclude Include="primitives\cone\cone.h" />
+    <ClInclude Include="primitives\cube\cube.h" />
+    <ClInclude Include="primitives\cylinder\cylinder.h" />
+    <ClInclude Include="primitives\plane\plane.h" />
+    <ClInclude Include="primitives\sphere\sphere.h" />
   </ItemGroup>
 </Project>
