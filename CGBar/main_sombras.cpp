@@ -13,6 +13,7 @@
 #include "objects\packs\Mesa2Cadeiras.h"
 #include "objects\packs\Mesa4Cadeiras.h"
 #include "objects\packs\Mesa4Esplanada.h"
+#include "objects\sconces\Sconce1VBO.h"
 
 #include <IL/il.h>
 #include <math.h>
@@ -20,16 +21,16 @@
 
 #define ANG2RAD 3.14159265358979323846/360.0 
 #define N_TEX 5
-#define SENS_RATO 0.01
-#define ANG 0.1
-#define MOV 0.7
+#define SENS_RATO 0.001
+#define ANG 0.05
+#define MOV 0.2
 
 float height = 2.0f;
 float x = 0.0f;
 float z = 0.0f;
 
-float camX = 0, camY = 0.5, camZ = 0;
-float camDir[3]={-2,0,0};
+float camX = 0, camY = 0, camZ = 0;
+float camDir[3]={0,0,0};
 float ang=0;
 int startX, startY;
 
@@ -47,8 +48,11 @@ int wWidth;
 MATRIX4X4 lightProjectionMatrix, lightViewMatrix;
 MATRIX4X4 cameraProjectionMatrix, cameraViewMatrix;
 
-float pos[4] = {0, 2.1, 0, 1};
-float sol[4] = {0, 20, 0, 1};
+float pos[4] = {0, 20, 20, 1};
+float salao1[4] = {-4.3f, 1.73f, -1.85, 1};
+float salao2[4] = {-4.3f, 1.73f, 2.5, 1};
+float salao3[4] = {-0.3f, 1.73f, -1.85, 1};
+float salao4[4] = {-0.3f, 1.73f, 2.5, 1};
 float ambLight=0.4;
 
 unsigned int id_textura=0;
@@ -77,6 +81,7 @@ Balcony* balcony;
 Mesa2Cadeiras *mesa2;
 Mesa4Cadeiras *mesa4;
 Mesa4Esplanada *mesa4e;
+Sconce1VBO *cand;
 
 int count;
 GLuint buffers[2];
@@ -86,13 +91,13 @@ void initMatrix(){
 	glPushMatrix();
 	
 	glLoadIdentity();
-	gluPerspective(107, 1, 0.1, 20);
+	gluPerspective(1, 1, 0.1, 20);
 	
 	glGetFloatv(GL_MODELVIEW_MATRIX, lightProjectionMatrix);
 	
 	glLoadIdentity();
 	gluLookAt(	pos[0], pos[1], pos[2],
-				pos[0]-1, 1,pos[2]+1,
+				pos[0]-1, pos[1],pos[2]+1,
 				0.0f, 1.0f, 0.0f);
 	
 	glGetFloatv(GL_MODELVIEW_MATRIX, lightViewMatrix);
@@ -126,6 +131,31 @@ void drawScene() {
 				floorv->draw();
 				wallsv->draw();
 				ceilingv->draw();
+
+				//Candeeiros
+
+				glPushMatrix();
+				glTranslatef(-4.3f,1.75,-1.85);
+				cand->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-4.3f,1.75,2.5);
+				cand->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-0.3f,1.75,-1.85);
+				cand->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-0.3f,1.75,2.5);
+				cand->draw();
+				glPopMatrix();
 
 				// Prateleiras
 
@@ -277,7 +307,22 @@ void renderScene(void) {
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
 	
-	glLightfv(GL_LIGHT1, GL_POSITION, sol);
+	glLightfv(GL_LIGHT1, GL_POSITION, salao1);
+	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
+
+	glLightfv(GL_LIGHT1, GL_POSITION, salao2);
+	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
+
+	glLightfv(GL_LIGHT1, GL_POSITION, salao3);
+	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
+
+	glLightfv(GL_LIGHT1, GL_POSITION, salao4);
 	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
@@ -371,7 +416,7 @@ void processMouseMotion(int xx, int yy)
 	startY=yy;
 
 	beta-=deltaY*SENS_RATO;
-	alpha+=deltaX*SENS_RATO;
+	alpha-=deltaX*SENS_RATO;
 
 	glutPostRedisplay();
 }
@@ -428,6 +473,7 @@ void init() {
 	mesa2 = new Mesa2Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass,textura_toalha);
 	mesa4 = new Mesa4Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass,textura_toalha);
 	mesa4e = new Mesa4Esplanada(textura_alum_pernas,id_textura,textura_green_glass,textura_alum_topo);
+	cand = new Sconce1VBO(1,5,20,id_textura,id_textura,id_textura);
 
 	glGenTextures(1, &shadowMapTexture);
 	glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
