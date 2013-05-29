@@ -91,7 +91,7 @@ void initMatrix(){
 	glPushMatrix();
 	
 	glLoadIdentity();
-	gluPerspective(1, 1, 0.1, 20);
+	gluPerspective(107, 1, 0.1, 20);
 	
 	glGetFloatv(GL_MODELVIEW_MATRIX, lightProjectionMatrix);
 	
@@ -130,30 +130,29 @@ void drawScene() {
 	
 				floorv->draw();
 				wallsv->draw();
-				ceilingv->draw();
 
 				//Candeeiros
 
 				glPushMatrix();
-				glTranslatef(-4.3f,1.75,-1.85);
+				glTranslatef(-4.3f,1.70,-1.85);
 				cand->draw();
 				glPopMatrix();
 
 
 				glPushMatrix();
-				glTranslatef(-4.3f,1.75,2.5);
+				glTranslatef(-4.3f,1.70,2.5);
 				cand->draw();
 				glPopMatrix();
 
 
 				glPushMatrix();
-				glTranslatef(-0.3f,1.75,-1.85);
+				glTranslatef(-0.3f,1.70,-1.85);
 				cand->draw();
 				glPopMatrix();
 
 
 				glPushMatrix();
-				glTranslatef(-0.3f,1.75,2.5);
+				glTranslatef(-0.3f,1.70,2.5);
 				cand->draw();
 				glPopMatrix();
 
@@ -300,6 +299,9 @@ void renderScene(void) {
 
 	glEnable(GL_LIGHT1);
 	glEnable(GL_LIGHT2);
+	glEnable(GL_LIGHT3);
+	glEnable(GL_LIGHT4);
+	glEnable(GL_LIGHT5);
 	glEnable(GL_LIGHTING);
 
 	glLightfv(GL_LIGHT1, GL_POSITION, pos);
@@ -307,25 +309,25 @@ void renderScene(void) {
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
 	
-	glLightfv(GL_LIGHT1, GL_POSITION, salao1);
-	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
+	glLightfv(GL_LIGHT2, GL_POSITION, salao1);
+	glLightfv(GL_LIGHT2, GL_AMBIENT, white*ambLight);
+	glLightfv(GL_LIGHT2, GL_DIFFUSE, white*ambLight);
+	glLightfv(GL_LIGHT2, GL_SPECULAR, black);
 
-	glLightfv(GL_LIGHT1, GL_POSITION, salao2);
-	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
+	glLightfv(GL_LIGHT3, GL_POSITION, salao2);
+	glLightfv(GL_LIGHT3, GL_AMBIENT, white*ambLight);
+	glLightfv(GL_LIGHT3, GL_DIFFUSE, white*ambLight);
+	glLightfv(GL_LIGHT3, GL_SPECULAR, black);
 
-	glLightfv(GL_LIGHT1, GL_POSITION, salao3);
-	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
+	glLightfv(GL_LIGHT4, GL_POSITION, salao3);
+	glLightfv(GL_LIGHT4, GL_AMBIENT, white*ambLight);
+	glLightfv(GL_LIGHT4, GL_DIFFUSE, white*ambLight);
+	glLightfv(GL_LIGHT4, GL_SPECULAR, black);
 
-	glLightfv(GL_LIGHT1, GL_POSITION, salao4);
-	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
-	glLightfv(GL_LIGHT1, GL_SPECULAR, black);
+	glLightfv(GL_LIGHT5, GL_POSITION, salao4);
+	glLightfv(GL_LIGHT5, GL_AMBIENT, white*ambLight);
+	glLightfv(GL_LIGHT5, GL_DIFFUSE, white*ambLight);
+	glLightfv(GL_LIGHT5, GL_SPECULAR, black);
 
 	glEnable(GL_TEXTURE0);
 	glActiveTexture(GL_TEXTURE0);
