@@ -82,7 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main_sombras.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Maths\COLOR.cpp" />
     <ClCompile Include="Maths\MATRIX4X4.cpp" />
     <ClCompile Include="Maths\PLANE.cpp" />

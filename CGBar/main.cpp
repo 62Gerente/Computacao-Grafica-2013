@@ -56,6 +56,7 @@ unsigned int textura_ecra;
 unsigned int textura_pc;
 unsigned int textura_couro;
 unsigned int textura_beige;
+unsigned int textura_abajur;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
@@ -90,6 +91,12 @@ Mesa2Cadeiras *mesa2;
 Mesa4Cadeiras *mesa4;
 Mesa4Esplanada *mesa4e;
 
+CocktailCupVBO* cc;
+WineCupVBO* wc;
+WineBottleVBO* wb; 
+VodkaCupVBO* vc;
+Sconce1VBO *cand;
+
 void changeSize(int w, int h) {
     
 	if(h == 0)
@@ -110,8 +117,14 @@ void changeSize(int w, int h) {
 
 
 void renderScene(void) {
-	float pos[4] = {0.0, 20.0, 0.0, 1};
-	float dif[] = {0.3,0.3,0.3,1};
+	float pos_0[4] = {0,20,0, 1};
+	float pos_1[4] = {-4.3f,1.9,-1.85, 1};
+	float pos_2[4] = {-4.3f,1.9,2.5, 1};
+	float pos_3[4] = {-0.3f,1.9,-1.85, 1};
+	float pos_4[4] = {-0.3f,1.9,2.5, 1};
+
+	GLfloat white[4] = {1., 1., 1., 1.};
+	float dif[] = {0.2,0.2,0.2,1};
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
@@ -120,9 +133,26 @@ void renderScene(void) {
 		      0.0,0.0,0.0,
 			  0.0f,1.0f,0.0f);
     
-	glLightfv(GL_LIGHT0, GL_POSITION, pos);
+	glLightfv(GL_LIGHT0, GL_POSITION, pos_0);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, dif);
-	
+
+	glLightfv(GL_LIGHT1, GL_POSITION, pos_1);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, white);
+
+	glLightfv(GL_LIGHT2, GL_POSITION, pos_2);
+	glLightfv(GL_LIGHT2, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT2, GL_SPECULAR, white);
+
+	glLightfv(GL_LIGHT3, GL_POSITION, pos_3);
+	glLightfv(GL_LIGHT3, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT3, GL_SPECULAR, white);
+
+	glLightfv(GL_LIGHT4, GL_POSITION, pos_4);
+	glLightfv(GL_LIGHT4, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT4, GL_SPECULAR, white);
+
+
 	glEnable(GL_TEXTURE_2D) ;
 
     glPolygonMode(face, modo);
@@ -144,6 +174,138 @@ void renderScene(void) {
 		case 0:
 				floorv->draw();
 				wallsv->draw();
+
+				//Candeeiros
+
+				glPushMatrix();
+				glTranslatef(-4.3f,1.70,-1.85);
+				cand->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-4.3f,1.70,2.5);
+				cand->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-0.3f,1.70,-1.85);
+				cand->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-0.3f,1.70,2.5);
+				cand->draw();
+				glPopMatrix();
+
+				// Copos Balcao
+
+				glPushMatrix();
+				glTranslatef(-3.8f,1.1,2.5f);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.3f,1.1,2.5f);
+				glRotatef(-90,0,1,0);
+				vc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.8f,1.1,2.5f);
+				glRotatef(-90,0,1,0);
+				wc->draw();
+				glPopMatrix();
+
+				// Garrafas Prateleiras
+
+				glPushMatrix();
+				glTranslatef(-6.9f,1.4,4.7);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.6f,1.4,4.7);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,4.7);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,3.95);
+				glRotatef(90,0,1,0);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,4.25);
+				glRotatef(90,0,1,0);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,3.65);
+				glRotatef(90,0,1,0);
+				wb->draw();
+				glPopMatrix();
+
+				// Copos Prateleiras
+
+				glPushMatrix();
+				glTranslatef(-5.7f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.5f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.3f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.9f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.1f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-4.5f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.7f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.9f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.3f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.1f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
 
 				// Prateleiras
 
@@ -852,6 +1014,7 @@ int main(int argc, char **argv) {
 	carregarTextura("textures/text_pc.jpg", &textura_ecra);
 	carregarTextura("textures/couro.jpg", &textura_couro);
 	carregarTextura("textures/beige.jpg", &textura_beige);
+	carregarTextura("textures/abajur.jpg", &textura_abajur);
 
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
@@ -859,6 +1022,10 @@ int main(int argc, char **argv) {
     
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+	glEnable(GL_LIGHT2);
+	glEnable(GL_LIGHT3);
+	glEnable(GL_LIGHT4);
 
 	plane = new PlaneVBO(5.0,7.0,30, id_textura);
 	cylinder = new CylinderVBO(5, 5, 20, 10, id_textura);
@@ -906,6 +1073,11 @@ int main(int argc, char **argv) {
 	mesa4 = new Mesa4Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass,textura_toalha);
 	mesa4e = new Mesa4Esplanada(textura_alum_pernas,id_textura,textura_green_glass,textura_alum_topo);
 
+	cc=new CocktailCupVBO(0.4,30,30, id_textura);
+	wc= new WineCupVBO(0.4,10,10, id_textura);
+	vc=new VodkaCupVBO(0.3,10,10, id_textura);
+	wb=new WineBottleVBO(0.5,10,10, textura_green_glass);
+	cand = new Sconce1VBO(1.2,5,20,textura_alum_pernas,textura_alum_pernas,textura_abajur);
     // entrar no ciclo do GLUT
 	glutMainLoop();
     

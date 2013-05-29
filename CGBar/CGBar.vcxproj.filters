@@ -27,9 +27,6 @@
     <ClCompile Include="objects\table\tableVBO.cpp" />
     <ClCompile Include="objects\cups\BeerCupVBO.cpp" />
     <ClCompile Include="objects\sconces\Sconce1VBO.cpp" />
-    <ClCompile Include="objects\packs\Mesa2Cadeiras.cpp" />
-    <ClCompile Include="objects\packs\Mesa4Cadeiras.cpp" />
-    <ClCompile Include="objects\packs\Mesa4Esplanada.cpp" />
     <ClCompile Include="objects\balcony\Balcony.cpp" />
     <ClCompile Include="Maths\COLOR.cpp" />
     <ClCompile Include="Maths\MATRIX4X4.cpp" />
@@ -37,7 +34,6 @@
     <ClCompile Include="Maths\VECTOR2D.cpp" />
     <ClCompile Include="Maths\VECTOR3D.cpp" />
     <ClCompile Include="Maths\VECTOR4D.cpp" />
-    <ClCompile Include="main_sombras.cpp" />
     <ClCompile Include="objects\bancos\banco.cpp" />
     <ClCompile Include="objects\bottles\wineBottle.cpp" />
     <ClCompile Include="objects\bottles\wiskyBottle.cpp" />
@@ -62,6 +58,10 @@
     <ClCompile Include="primitives\cylinder\cylinder.cpp" />
     <ClCompile Include="primitives\sphere\sphere.cpp" />
     <ClCompile Include="primitives\plane\plane.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="objects\packs\Mesa2Cadeiras.cpp" />
+    <ClCompile Include="objects\packs\Mesa4Cadeiras.cpp" />
+    <ClCompile Include="objects\packs\Mesa4Esplanada.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -90,9 +90,6 @@
     <ClInclude Include="objects\table\tableVBO.h" />
     <ClInclude Include="objects\cups\BeerCupVBO.h" />
     <ClInclude Include="objects\sconces\Sconce1VBO.h" />
-    <ClInclude Include="objects\packs\Mesa2Cadeiras.h" />
-    <ClInclude Include="objects\packs\Mesa4Cadeiras.h" />
-    <ClInclude Include="objects\packs\Mesa4Esplanada.h" />
     <ClInclude Include="objects\balcony\Balcony.h" />
     <ClInclude Include="Maths\COLOR.h" />
     <ClInclude Include="Maths\Maths.h" />
@@ -125,5 +122,8 @@
     <ClInclude Include="primitives\cylinder\cylinder.h" />
     <ClInclude Include="primitives\plane\plane.h" />
     <ClInclude Include="primitives\sphere\sphere.h" />
+    <ClInclude Include="objects\packs\Mesa2Cadeiras.h" />
+    <ClInclude Include="objects\packs\Mesa4Cadeiras.h" />
+    <ClInclude Include="objects\packs\Mesa4Esplanada.h" />
   </ItemGroup>
 </Project>
