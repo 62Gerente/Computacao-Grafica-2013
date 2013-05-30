@@ -18,7 +18,7 @@ private:
 	CubeVBO* cubep1;
 	CubeVBO* cubep2;
 public:
-	FloorVBO(double argRatio, unsigned int aId_textura);
+	FloorVBO(double argRatio, unsigned int aId_textura, unsigned int aId_textura_cb, unsigned int aId_textura_c);
 	void draw();
 	void draw(unsigned int id_texturag1,unsigned int id_texturag2,unsigned int id_texturag3,
 			  unsigned int id_texturag4,unsigned int id_texturag5,unsigned int id_texturacb,

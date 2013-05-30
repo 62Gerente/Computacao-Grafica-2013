@@ -34,6 +34,7 @@
 #include "objects\balcony\Kitchen.h"
 #include "objects\fridge\Fridge.h"
 #include "objects\oven\Oven.h"
+#include "objects\microwave\Microwave.h"
 
 #define _USE_MATH_DEFINES
 
@@ -66,6 +67,12 @@ unsigned int textura_cao;
 unsigned int textura_ultima_ceia;
 unsigned int textura_7;
 unsigned int textura_frigo;
+unsigned int textura_vidro_preto;
+unsigned int textura_cand_cozinha;
+unsigned int textura_chao_cozinha;
+unsigned int textura_chao_cb;
+unsigned int textura_chao_casacos;
+unsigned int textura_marmore;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
@@ -107,9 +114,11 @@ WineCupVBO* wc;
 WineBottleVBO* wb; 
 VodkaCupVBO* vc;
 Sconce1VBO *cand;
+Sconce1VBO *cand_cozinha;
 Kitchen* kitchen;
 Fridge* frigo;
 Oven* oven;
+Microwave* microwave;
 
 
 void changeSize(int w, int h) {
@@ -189,6 +198,25 @@ void renderScene(void) {
 		case 0:
 				floorv->draw();
 				wallsv->draw();
+
+				//Candeeiros Cozinha
+
+				glPushMatrix();
+				glTranslatef(-4.3f,1.70,7.5);
+				cand_cozinha->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-0.3f,1.70,7.5);
+				cand_cozinha->draw();
+				glPopMatrix();
+
+				//Microondas
+
+				glPushMatrix();
+				glTranslatef(-1,1.1,9.85f);
+				microwave->draw();
+				glPopMatrix();
 
 				//Fogao
 
@@ -1079,6 +1107,10 @@ int main(int argc, char **argv) {
 	carregarTextura("textures/ultimaceia.jpg", &textura_ultima_ceia);
 	carregarTextura("textures/7.jpeg", &textura_7);
 	carregarTextura("textures/frigo.jpg", &textura_frigo);
+	carregarTextura("textures/cozinha.png", &textura_chao_cozinha);
+	carregarTextura("textures/cbanho.jpg", &textura_chao_cb);
+	carregarTextura("textures/marmore.jpg", &textura_marmore);
+	carregarTextura("textures/vidropreto.jpg", &textura_vidro_preto);
 
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
@@ -1118,7 +1150,7 @@ int main(int argc, char **argv) {
 	sconce2 = new Sconce2VBO(5,5,20,20,id_textura,0);
 	sconce3 = new Sconce3VBO(5,20,20,id_textura,0);
 
-	floorv = new FloorVBO(1,textura_madeira_chao);
+	floorv = new FloorVBO(1,textura_madeira_chao,textura_chao_cb,textura_chao_cozinha);
 	wallsv = new WallsVBO(1,textura_paredes);
 	ceilingv = new CeilingVBO(1,0);
 
@@ -1142,15 +1174,17 @@ int main(int argc, char **argv) {
 	vc=new VodkaCupVBO(0.3,10,10, id_textura);
 	wb=new WineBottleVBO(0.5,10,10, textura_green_glass);
 	cand = new Sconce1VBO(1.2,5,20,textura_alum_pernas,textura_alum_pernas,textura_abajur);
+	cand_cozinha = new Sconce1VBO(1.2,5,20,textura_alum_pernas,textura_alum_pernas,textura_alum_pernas);
 
 	framecao = new FrameCoimbra(textura_madeira_moveis,textura_cao);
 	framee = new BigFrame(textura_madeira_moveis,textura_ultima_ceia);
 	framed = new BigFrame(textura_madeira_moveis,textura_7);
 
-	kitchen = new Kitchen(textura_madeira_chao,textura_alum_topo);;
+	kitchen = new Kitchen(textura_marmore,textura_alum_topo);;
 
 	frigo = new Fridge(textura_frigo);
-	oven = new Oven(textura_frigo,textura_alum_topo,textura_alum_topo);
+	oven = new Oven(textura_frigo,textura_vidro_preto,textura_vidro_preto);
+	microwave = new Microwave(textura_frigo,textura_vidro_preto,textura_vidro_preto);
 
     // entrar no ciclo do GLUT
 	glutMainLoop();

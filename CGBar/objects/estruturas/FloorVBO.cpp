@@ -2,15 +2,15 @@
 
 #include <GLUT/glut.h>
 
-FloorVBO::FloorVBO(double argRatio, unsigned int aId_textura){
+FloorVBO::FloorVBO(double argRatio, unsigned int aId_textura, unsigned int text_casabanho, unsigned int text_cozinha){
 	ratio = argRatio;
 	id_textura = aId_textura;
 
 	cubeg1 = new CubeVBO(5, 20, id_textura);
-	cubeg2 = new CubeVBO(5, 20, id_textura);
+	cubeg2 = new CubeVBO(5, 20, text_cozinha);
 	cylinderg3 = new CylinderVBO(5, 0.1, 30, 15, id_textura);
 	cubeg4 = new CubeVBO(5, 20, id_textura);
-	cubeg5 = new CubeVBO(5, 10, id_textura);
+	cubeg5 = new CubeVBO(5, 10, text_casabanho);
 	cubecb = new CubeVBO(5, 10, id_textura);
 	cubep1 = new CubeVBO(5, 20, id_textura);
 	cubep2 = new CubeVBO(5, 20, id_textura);
