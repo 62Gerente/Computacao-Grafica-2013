@@ -15,7 +15,6 @@
 #include "objects/bottles/WineBottleVBO.h"
 #include "objects/bottles/wiskyBottleVBO.h"
 #include "objects/bottles/WiskyBottleVBO.h"
-#include "objects\computer\ComputerVBO.h"
 #include "objects/paralelepipedo/ParallelepipedVBO.h"
 #include "objects\sconces\Sconce1VBO.h"
 #include "objects\sconces\Sconce2VBO.h"
@@ -35,6 +34,7 @@
 #include "objects\fridge\Fridge.h"
 #include "objects\oven\Oven.h"
 #include "objects\microwave\Microwave.h"
+#include "objects\computer\ComputerVBO.h"
 
 #define _USE_MATH_DEFINES
 
@@ -146,6 +146,8 @@ void renderScene(void) {
 	float pos_2[4] = {-4.3f,1.9,2.5, 1};
 	float pos_3[4] = {-0.3f,1.9,-1.85, 1};
 	float pos_4[4] = {-0.3f,1.9,2.5, 1};
+	float pos_5[4] = {-4.3f,1.9,7.5, 1};
+	float pos_6[4] = {-0.3f,1.9,7.5, 1};
 
 	GLfloat white[4] = {1., 1., 1., 1.};
 	float dif[] = {0.2,0.2,0.2,1};
@@ -176,6 +178,13 @@ void renderScene(void) {
 	glLightfv(GL_LIGHT4, GL_DIFFUSE, white);
 	glLightfv(GL_LIGHT4, GL_SPECULAR, white);
 
+	glLightfv(GL_LIGHT5, GL_POSITION, pos_5);
+	glLightfv(GL_LIGHT5, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT5, GL_SPECULAR, white);
+
+	glLightfv(GL_LIGHT6, GL_POSITION, pos_6);
+	glLightfv(GL_LIGHT6, GL_DIFFUSE, white);
+	glLightfv(GL_LIGHT6, GL_SPECULAR, white);
 
 	glEnable(GL_TEXTURE_2D) ;
 
@@ -572,17 +581,13 @@ void renderScene(void) {
 			sconce3->draw();
 			break;
 		case 26:
-				floorv->draw();
-				wallsv->draw();
-				ceilingv->draw();
+				figura=0;
 				break;
 		case 27:
 				computer->draw();
 				break;
 		default:
-				floorv->draw();
-				wallsv->draw();
-				ceilingv->draw();
+				figura=0;
 			break;
 			}
    
@@ -985,7 +990,7 @@ int main(int argc, char **argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
 	glutInitWindowPosition(100,100);
-	glutInitWindowSize(800,800);
+	glutInitWindowSize(1024,800);
 	glutCreateWindow("CG@DI-UM");
     
 	px = 0.0f; pz = 0.0f; py = 0.0f;
@@ -1122,6 +1127,8 @@ int main(int argc, char **argv) {
 	glEnable(GL_LIGHT2);
 	glEnable(GL_LIGHT3);
 	glEnable(GL_LIGHT4);
+	glEnable(GL_LIGHT5);
+	glEnable(GL_LIGHT6);
 
 	plane = new PlaneVBO(5.0,7.0,30, id_textura);
 	cylinder = new CylinderVBO(5, 5, 20, 10, id_textura);
@@ -1129,16 +1136,16 @@ int main(int argc, char **argv) {
 	sphere = new SphereVBO(6,100,120,id_textura);
 	cone = new ConeVBO(5,5.0,50,80,id_textura );
 
-	wineCup = new WineCupVBO(0.4,20,20, id_textura);
+	wineCup = new WineCupVBO(5,20,20, id_textura);
 	cocktailCup = new CocktailCupVBO(5,30,30, id_textura);
 	shotCup = new ShotCupVBO(5,30,30,id_textura);
 	vodkaCup = new VodkaCupVBO(5,30,30,id_textura);
-	beerCup = new BeerCupVBO(.4,30,30,id_textura);
+	beerCup = new BeerCupVBO(5,30,30,id_textura);
 
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura, id_textura, id_textura, id_textura, id_textura, id_textura);
 	wineBottle = new WineBottleVBO(5,20,20, textura_green_glass);
 
-	parallelepiped = new ParallelepipedVBO(1,0.7,6,10,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis);
+	parallelepiped = new ParallelepipedVBO(5,7,6,10,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis);
 	balcony = new Balcony(textura_madeira_chao,textura_alum_topo);;
 
 	prateleira = new ParallelepipedVBO(0.1,0.5,1,10,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo);
@@ -1154,12 +1161,12 @@ int main(int argc, char **argv) {
 	wallsv = new WallsVBO(1,textura_paredes);
 	ceilingv = new CeilingVBO(1,0);
 
-	mesa_um = new TableOneVBO(2, 1, 0.05, 0.8, 0.05, 30, 10, textura_alum_pernas, textura_alum_topo); 	
-	mesa_dois = new TableTwoVBO(0.9, 1.8, 0.05, 0.65, 0.05, 30, 10, textura_alum_pernas, textura_alum_topo); 
-	mesa_circular = new TableCircularVBO(0.7, 0.7, 20, 10, textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis) ;
+	mesa_um = new TableOneVBO(2, 1, 0.05, 0.8, 0.05, 30, 10, 0, 0); 	
+	mesa_dois = new TableTwoVBO(1, 2, 0.05, 0.8, 0.05, 30, 10, 0, 0);	
+	mesa_circular = new TableCircularVBO(5, 7, 20, 10, 0, 0, 0) ;
 
-	cadeira_um = new ChairClassicaOneVBO(1, 10, 10, textura_madeira_moveis, textura_madeira_moveis, textura_madeira_moveis) ;
-	cadeira_dois = new ChairClassicaTwoVBO(1, 10, 10, textura_alum_pernas, textura_alum_pernas, textura_alum_pernas) ;
+	cadeira_um = new ChairClassicaOneVBO(5, 20, 15, 0, 0, 0) ;
+	cadeira_dois = new ChairClassicaTwoVBO(5, 20, 15, 0, 0, 0) ;
 	cadeira_tres = new ChairClassicaThreeVBO(5, 20, 15, 0, 0, 0) ;
 	cadeira_pub = new ChairPubVBO(1.1, 20, 15, textura_alum_pernas,textura_alum_pernas, textura_alum_pernas, textura_couro) ;
 

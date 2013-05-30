@@ -3,17 +3,24 @@
 #include <GL/glut.h>
 #include "Maths\Maths.h"
 
-#include "objects\computer\ComputerVBO.h"
-#include "objects/paralelepipedo/ParallelepipedVBO.h"
+#include "objects\sconces\Sconce1VBO.h"
 #include "objects\estruturas\FloorVBO.h"
 #include "objects\estruturas\WallsVBO.h"
 #include "objects\estruturas\CeilingVBO.h"
+#include "objects/table/tableVBO.h"
 #include "objects/chair/ChairVBO.h"
 #include "objects\balcony\Balcony.h"
 #include "objects\packs\Mesa2Cadeiras.h"
 #include "objects\packs\Mesa4Cadeiras.h"
 #include "objects\packs\Mesa4Esplanada.h"
-#include "objects\sconces\Sconce1VBO.h"
+#include "objects\frame\FrameCoimbra.h"
+#include "objects\frame\BigFrame.h"
+#include "objects\balcony\Kitchen.h"
+#include "objects\fridge\Fridge.h"
+#include "objects\oven\Oven.h"
+#include "objects\microwave\Microwave.h"
+#include "objects\computer\ComputerVBO.h"
+
 
 #include <IL/il.h>
 #include <math.h>
@@ -65,19 +72,44 @@ unsigned int textura_ecra;
 unsigned int textura_pc;
 unsigned int textura_couro;
 unsigned int textura_beige;
-
-ParallelepipedVBO* prateleira;
-ComputerVBO* computer;
+unsigned int textura_abajur;
+unsigned int textura_cao;
+unsigned int textura_ultima_ceia;
+unsigned int textura_7;
+unsigned int textura_frigo;
+unsigned int textura_vidro_preto;
+unsigned int textura_cand_cozinha;
+unsigned int textura_chao_cozinha;
+unsigned int textura_chao_cb;
+unsigned int textura_chao_casacos;
+unsigned int textura_marmore;
 
 FloorVBO* floorv;
 WallsVBO* wallsv;
 CeilingVBO* ceilingv;
 ChairPubVBO *cadeira_pub ;
+TableOneVBO *mesa_um ;
+TableTwoVBO *mesa_dois ;
+TableCircularVBO *mesa_circular ;
 Balcony* balcony;
 Mesa2Cadeiras *mesa2;
 Mesa4Cadeiras *mesa4;
 Mesa4Esplanada *mesa4e;
+FrameCoimbra* framecao;
+BigFrame* framee;
+BigFrame* framed;
+CocktailCupVBO* cc;
+WineCupVBO* wc;
+WineBottleVBO* wb; 
+VodkaCupVBO* vc;
 Sconce1VBO *cand;
+Sconce1VBO *cand_cozinha;
+Kitchen* kitchen;
+Fridge* frigo;
+Oven* oven;
+Microwave* microwave;
+ParallelepipedVBO* prateleira;
+ComputerVBO* computer;
 
 int count;
 GLuint buffers[2];
@@ -123,9 +155,72 @@ void changeSize(int w, int h) {
 }
 
 void drawScene() {
-	
 				floorv->draw();
 				wallsv->draw();
+
+				//Candeeiros Cozinha
+
+				glPushMatrix();
+				glTranslatef(-4.3f,1.70,7.5);
+				cand_cozinha->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-0.3f,1.70,7.5);
+				cand_cozinha->draw();
+				glPopMatrix();
+
+				//Microondas
+
+				glPushMatrix();
+				glTranslatef(-1,1.1,9.85f);
+				microwave->draw();
+				glPopMatrix();
+
+				//Fogao
+
+				glPushMatrix();
+				glTranslatef(-6.66,0,9.8f);
+				oven->draw();
+				glPopMatrix();
+
+				// Frigorifico
+
+				glPushMatrix();
+				glTranslatef(1.75,0,9.85f);
+				frigo->draw();
+				glPopMatrix();
+				
+				// Balcao Cozinha
+
+				glPushMatrix();
+				glTranslatef(-2.4f,0,9.8f);
+				kitchen->draw();
+				glPopMatrix();
+
+				// Quadros
+
+				glPushMatrix();
+				glTranslatef(2.35,1.1,0.3);
+				glRotatef(90,0,1,0);
+				glRotatef(180,0,0,1);
+				framecao->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-4,1.1,-3.9);
+				glRotatef(180,0,1,0);
+				glRotatef(180,0,0,1);
+				framee->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.4,1.1,-1);
+				glRotatef(-90,0,1,0);
+				glRotatef(180,0,0,1);
+				framed->draw();
+				glPopMatrix();
 
 				//Candeeiros
 
@@ -150,6 +245,113 @@ void drawScene() {
 				glPushMatrix();
 				glTranslatef(-0.3f,1.70,2.5);
 				cand->draw();
+				glPopMatrix();
+
+				// Copos Balcao
+
+				glPushMatrix();
+				glTranslatef(-3.8f,1.1,2.5f);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.3f,1.1,2.5f);
+				glRotatef(-90,0,1,0);
+				vc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.8f,1.1,2.5f);
+				glRotatef(-90,0,1,0);
+				wc->draw();
+				glPopMatrix();
+
+				// Garrafas Prateleiras
+
+				glPushMatrix();
+				glTranslatef(-6.9f,1.4,4.7);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.6f,1.4,4.7);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,4.7);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,3.95);
+				glRotatef(90,0,1,0);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,4.25);
+				glRotatef(90,0,1,0);
+				wb->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,3.65);
+				glRotatef(90,0,1,0);
+				wb->draw();
+				glPopMatrix();
+
+				// Copos Prateleiras
+
+				glPushMatrix();
+				glTranslatef(-5.7f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.5f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.3f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.9f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.1f,1.35,4.7);
+				cc->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-4.5f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.7f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.9f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.3f,1.25,4.7);
+				wc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.1f,1.25,4.7);
+				wc->draw();
 				glPopMatrix();
 
 				// Prateleiras
@@ -430,6 +632,15 @@ void init() {
 	carregarTextura("textures/text_pc.jpg", &textura_ecra);
 	carregarTextura("textures/couro.jpg", &textura_couro);
 	carregarTextura("textures/beige.jpg", &textura_beige);
+	carregarTextura("textures/abajur.jpg", &textura_abajur);
+	carregarTextura("textures/cao.jpeg", &textura_cao);
+	carregarTextura("textures/ultimaceia.jpg", &textura_ultima_ceia);
+	carregarTextura("textures/7.jpeg", &textura_7);
+	carregarTextura("textures/frigo.jpg", &textura_frigo);
+	carregarTextura("textures/cozinha.png", &textura_chao_cozinha);
+	carregarTextura("textures/cbanho.jpg", &textura_chao_cb);
+	carregarTextura("textures/marmore.jpg", &textura_marmore);
+	carregarTextura("textures/vidropreto.jpg", &textura_vidro_preto);
 
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
@@ -439,16 +650,38 @@ void init() {
 	glEnable(GL_LIGHT1);
 
 	balcony = new Balcony(textura_madeira_chao,textura_alum_topo);;
+
 	prateleira = new ParallelepipedVBO(0.1,0.5,1,10,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo,textura_alum_topo);
+
 	computer = new ComputerVBO(0.7,20,30,textura_ecra,textura_pc,textura_pc,textura_pc);
-	floorv = new FloorVBO(1,textura_madeira_chao);
+
+	floorv = new FloorVBO(1,textura_madeira_chao,textura_chao_cb,textura_chao_cozinha);
 	wallsv = new WallsVBO(1,textura_paredes);
 	ceilingv = new CeilingVBO(1,0);
 	cadeira_pub = new ChairPubVBO(1.1, 20, 15, textura_alum_pernas,textura_alum_pernas, textura_alum_pernas, textura_couro) ;
+
+	//PACKS
+
 	mesa2 = new Mesa2Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass,textura_toalha);
 	mesa4 = new Mesa4Cadeiras(textura_madeira_moveis,id_textura,textura_green_glass,textura_toalha);
 	mesa4e = new Mesa4Esplanada(textura_alum_pernas,id_textura,textura_green_glass,textura_alum_topo);
-	cand = new Sconce1VBO(1,5,20,id_textura,id_textura,id_textura);
+
+	cc=new CocktailCupVBO(0.4,30,30, id_textura);
+	wc= new WineCupVBO(0.4,10,10, id_textura);
+	vc=new VodkaCupVBO(0.3,10,10, id_textura);
+	wb=new WineBottleVBO(0.5,10,10, textura_green_glass);
+	cand = new Sconce1VBO(1.2,5,20,textura_alum_pernas,textura_alum_pernas,textura_abajur);
+	cand_cozinha = new Sconce1VBO(1.2,5,20,textura_alum_pernas,textura_alum_pernas,textura_alum_pernas);
+
+	framecao = new FrameCoimbra(textura_madeira_moveis,textura_cao);
+	framee = new BigFrame(textura_madeira_moveis,textura_ultima_ceia);
+	framed = new BigFrame(textura_madeira_moveis,textura_7);
+
+	kitchen = new Kitchen(textura_marmore,textura_alum_topo);;
+
+	frigo = new Fridge(textura_frigo);
+	oven = new Oven(textura_frigo,textura_vidro_preto,textura_vidro_preto);
+	microwave = new Microwave(textura_frigo,textura_vidro_preto,textura_vidro_preto);
 
 	glGenTextures(1, &shadowMapTexture);
 	glBindTexture(GL_TEXTURE_2D, shadowMapTexture);

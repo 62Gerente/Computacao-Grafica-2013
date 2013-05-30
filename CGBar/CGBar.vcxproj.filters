@@ -58,7 +58,6 @@
     <ClCompile Include="primitives\cylinder\cylinder.cpp" />
     <ClCompile Include="primitives\sphere\sphere.cpp" />
     <ClCompile Include="primitives\plane\plane.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="objects\packs\Mesa2Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Esplanada.cpp" />
@@ -68,6 +67,7 @@
     <ClCompile Include="objects\oven\Oven.cpp" />
     <ClCompile Include="objects\fridge\Fridge.cpp" />
     <ClCompile Include="objects\microwave\Microwave.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
