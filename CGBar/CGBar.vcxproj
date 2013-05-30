@@ -90,6 +90,7 @@
     <ClCompile Include="Maths\VECTOR3D.cpp" />
     <ClCompile Include="Maths\VECTOR4D.cpp" />
     <ClCompile Include="objects\balcony\Balcony.cpp" />
+    <ClCompile Include="objects\balcony\Kitchen.cpp" />
     <ClCompile Include="objects\bancos\banco.cpp" />
     <ClCompile Include="objects\bottles\wineBottle.cpp" />
     <ClCompile Include="objects\bottles\wiskyBottle.cpp" />
@@ -114,6 +115,10 @@
     <ClCompile Include="objects\estruturas\tecto.cpp" />
     <ClCompile Include="objects\estruturas\walls.cpp" />
     <ClCompile Include="objects\estruturas\WallsVBO.cpp" />
+    <ClCompile Include="objects\frame\BigFrame.cpp" />
+    <ClCompile Include="objects\frame\FrameCoimbra.cpp" />
+    <ClCompile Include="objects\fridge\Fridge.cpp" />
+    <ClCompile Include="objects\oven\Oven.cpp" />
     <ClCompile Include="objects\packs\Mesa2Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Esplanada.cpp" />
@@ -153,6 +158,7 @@
     <ClInclude Include="Maths\VECTOR3D.h" />
     <ClInclude Include="Maths\VECTOR4D.h" />
     <ClInclude Include="objects\balcony\Balcony.h" />
+    <ClInclude Include="objects\balcony\Kitchen.h" />
     <ClInclude Include="objects\bancos\banco.h" />
     <ClInclude Include="objects\bottles\wineBottle.h" />
     <ClInclude Include="objects\bottles\wiskyBottle.h" />
@@ -177,6 +183,10 @@
     <ClInclude Include="objects\estruturas\tecto.h" />
     <ClInclude Include="objects\estruturas\walls.h" />
     <ClInclude Include="objects\estruturas\WallsVBO.h" />
+    <ClInclude Include="objects\frame\BigFrame.h" />
+    <ClInclude Include="objects\frame\FrameCoimbra.h" />
+    <ClInclude Include="objects\fridge\Fridge.h" />
+    <ClInclude Include="objects\oven\Oven.h" />
     <ClInclude Include="objects\packs\Mesa2Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Esplanada.h" />

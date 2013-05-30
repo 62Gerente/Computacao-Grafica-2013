@@ -62,6 +62,11 @@
     <ClCompile Include="objects\packs\Mesa2Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Esplanada.cpp" />
+    <ClCompile Include="objects\frame\FrameCoimbra.cpp" />
+    <ClCompile Include="objects\frame\BigFrame.cpp" />
+    <ClCompile Include="objects\balcony\Kitchen.cpp" />
+    <ClCompile Include="objects\oven\Oven.cpp" />
+    <ClCompile Include="objects\fridge\Fridge.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
@@ -125,5 +130,10 @@
     <ClInclude Include="objects\packs\Mesa2Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Esplanada.h" />
+    <ClInclude Include="objects\frame\FrameCoimbra.h" />
+    <ClInclude Include="objects\frame\BigFrame.h" />
+    <ClInclude Include="objects\balcony\Kitchen.h" />
+    <ClInclude Include="objects\oven\Oven.h" />
+    <ClInclude Include="objects\fridge\Fridge.h" />
   </ItemGroup>
 </Project>

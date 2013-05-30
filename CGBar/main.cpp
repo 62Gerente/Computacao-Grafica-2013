@@ -29,6 +29,11 @@
 #include "objects\packs\Mesa2Cadeiras.h"
 #include "objects\packs\Mesa4Cadeiras.h"
 #include "objects\packs\Mesa4Esplanada.h"
+#include "objects\frame\FrameCoimbra.h"
+#include "objects\frame\BigFrame.h"
+#include "objects\balcony\Kitchen.h"
+#include "objects\fridge\Fridge.h"
+#include "objects\oven\Oven.h"
 
 #define _USE_MATH_DEFINES
 
@@ -57,6 +62,10 @@ unsigned int textura_pc;
 unsigned int textura_couro;
 unsigned int textura_beige;
 unsigned int textura_abajur;
+unsigned int textura_cao;
+unsigned int textura_ultima_ceia;
+unsigned int textura_7;
+unsigned int textura_frigo;
 
 PlaneVBO* plane;
 CylinderVBO* cylinder;
@@ -90,12 +99,18 @@ Balcony* balcony;
 Mesa2Cadeiras *mesa2;
 Mesa4Cadeiras *mesa4;
 Mesa4Esplanada *mesa4e;
-
+FrameCoimbra* framecao;
+BigFrame* framee;
+BigFrame* framed;
 CocktailCupVBO* cc;
 WineCupVBO* wc;
 WineBottleVBO* wb; 
 VodkaCupVBO* vc;
 Sconce1VBO *cand;
+Kitchen* kitchen;
+Fridge* frigo;
+Oven* oven;
+
 
 void changeSize(int w, int h) {
     
@@ -174,6 +189,51 @@ void renderScene(void) {
 		case 0:
 				floorv->draw();
 				wallsv->draw();
+
+				//Fogao
+
+				glPushMatrix();
+				glTranslatef(-6.66,0,9.8f);
+				oven->draw();
+				glPopMatrix();
+
+				// Frigorifico
+
+				glPushMatrix();
+				glTranslatef(1.75,0,9.85f);
+				frigo->draw();
+				glPopMatrix();
+				
+				// Balcao Cozinha
+
+				glPushMatrix();
+				glTranslatef(-2.4f,0,9.8f);
+				kitchen->draw();
+				glPopMatrix();
+
+				// Quadros
+
+				glPushMatrix();
+				glTranslatef(2.35,1.1,0.3);
+				glRotatef(90,0,1,0);
+				glRotatef(180,0,0,1);
+				framecao->draw();
+				glPopMatrix();
+
+
+				glPushMatrix();
+				glTranslatef(-4,1.1,-3.9);
+				glRotatef(180,0,1,0);
+				glRotatef(180,0,0,1);
+				framee->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.4,1.1,-1);
+				glRotatef(-90,0,1,0);
+				glRotatef(180,0,0,1);
+				framed->draw();
+				glPopMatrix();
 
 				//Candeeiros
 
@@ -1015,6 +1075,10 @@ int main(int argc, char **argv) {
 	carregarTextura("textures/couro.jpg", &textura_couro);
 	carregarTextura("textures/beige.jpg", &textura_beige);
 	carregarTextura("textures/abajur.jpg", &textura_abajur);
+	carregarTextura("textures/cao.jpeg", &textura_cao);
+	carregarTextura("textures/ultimaceia.jpg", &textura_ultima_ceia);
+	carregarTextura("textures/7.jpeg", &textura_7);
+	carregarTextura("textures/frigo.jpg", &textura_frigo);
 
     // alguns settings para OpenGL
 	glEnable(GL_DEPTH_TEST);
@@ -1040,7 +1104,7 @@ int main(int argc, char **argv) {
 	beerCup = new BeerCupVBO(.4,30,30,id_textura);
 
 	wiskyBottle = new WiskyBottleVBO(5,30,30,id_textura, id_textura, id_textura, id_textura, id_textura, id_textura);
-	wineBottle = new WineBottleVBO(0.5,20,20, textura_green_glass);
+	wineBottle = new WineBottleVBO(5,20,20, textura_green_glass);
 
 	parallelepiped = new ParallelepipedVBO(1,0.7,6,10,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis,textura_madeira_moveis);
 	balcony = new Balcony(textura_madeira_chao,textura_alum_topo);;
@@ -1078,6 +1142,16 @@ int main(int argc, char **argv) {
 	vc=new VodkaCupVBO(0.3,10,10, id_textura);
 	wb=new WineBottleVBO(0.5,10,10, textura_green_glass);
 	cand = new Sconce1VBO(1.2,5,20,textura_alum_pernas,textura_alum_pernas,textura_abajur);
+
+	framecao = new FrameCoimbra(textura_madeira_moveis,textura_cao);
+	framee = new BigFrame(textura_madeira_moveis,textura_ultima_ceia);
+	framed = new BigFrame(textura_madeira_moveis,textura_7);
+
+	kitchen = new Kitchen(textura_madeira_chao,textura_alum_topo);;
+
+	frigo = new Fridge(textura_frigo);
+	oven = new Oven(textura_frigo,textura_alum_topo,textura_alum_topo);
+
     // entrar no ciclo do GLUT
 	glutMainLoop();
     
