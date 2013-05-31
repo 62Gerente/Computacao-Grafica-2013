@@ -6,6 +6,7 @@
 #include <math.h>
 #include "../paralelepipedo/paralelepipedo.h"
 #include "../paralelepipedo/ParallelepipedVBo.h"
+#include "../../utils/util.h"
 
 WiskyBottleVBO::WiskyBottleVBO(double argAlt,  int argVertex, int argLayers, unsigned int id_texturaposx, unsigned int id_texturanegx, unsigned int id_texturaposy, unsigned int id_texturanegy, unsigned int id_texturaposz, unsigned int id_texturanegz)
 {
@@ -30,7 +31,14 @@ WiskyBottleVBO::WiskyBottleVBO(double argAlt,  int argVertex, int argLayers, uns
 
 void WiskyBottleVBO::draw(){
 
+					float spec[]={0.33333,0.33333,0.33333,1.0} ;
 
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE, cinzentoAlphaGarrafa);				
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glPushMatrix();
     glRotatef(45, 0, 1, 0);
@@ -53,5 +61,7 @@ void WiskyBottleVBO::draw(){
     cylinder2->draw();
     glPopMatrix();
 
+	glDisable(GL_BLEND);
+	reiniciaMaterial();
 }
 

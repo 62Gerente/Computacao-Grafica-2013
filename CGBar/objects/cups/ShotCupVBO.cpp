@@ -5,6 +5,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
+#include "../../utils/util.h"
 
 ShotCupVBO::ShotCupVBO(double argAlt,  int argVertex, int argLayers, unsigned int argId_textura) : Primitivas(id_textura)
 {
@@ -172,6 +173,15 @@ void ShotCupVBO::drawShot_top()
 
 void ShotCupVBO::draw(){
 
+	float spec[]={0.33333,0.33333,0.33333,1.0} ;
+
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE, cinzentoAlphaCopo);				
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	glPushMatrix();
     glTranslatef(0, alt/2-alt/5, 0);
     glRotatef(180, 1, 0, 0);
@@ -191,6 +201,9 @@ void ShotCupVBO::draw(){
 
 	
 	cylinder->draw();
+
+	glDisable(GL_BLEND);
+	reiniciaMaterial();
 }
 
 

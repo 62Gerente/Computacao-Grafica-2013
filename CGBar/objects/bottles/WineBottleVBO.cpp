@@ -4,8 +4,7 @@
 #include <GLUT/glut.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
-
-
+#include "../../utils/util.h"
 
 WineBottleVBO::WineBottleVBO(double alt,  int vertex, int layers, unsigned int argId_textura)
 {
@@ -23,6 +22,16 @@ WineBottleVBO::WineBottleVBO(double alt,  int vertex, int layers, unsigned int a
 
 
 void WineBottleVBO::draw(){
+
+
+				float spec[]={0.33333,0.33333,0.33333,1.0} ;
+
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE, cinzentoAlphaGarrafa);				
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glPushMatrix();
     glTranslatef(0, ((2*al)/9), 0);
@@ -43,8 +52,7 @@ void WineBottleVBO::draw(){
    glTranslatef(0, (2*al)/3 + al/6, 0);
 	cyl->draw();
     glPopMatrix();
-
-	
-
-	
+		
+	glDisable(GL_BLEND);
+	reiniciaMaterial();
 }

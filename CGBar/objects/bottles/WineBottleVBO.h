@@ -4,6 +4,9 @@
 #include "../../primitives/cylinder/CylinderVBO.h"
 #include "../../primitives/sphere/SphereVBO.h"
 
+extern float cinzentoAlphaGarrafa[] ;
+
+
 class  WineBottleVBO 
 {
 public:
@@ -17,6 +20,6 @@ public:
 private:
 	double al;
 	int vrt,layer;
-	unsigned int id_textura;
+	unsigned int id_textura;	
 };
 

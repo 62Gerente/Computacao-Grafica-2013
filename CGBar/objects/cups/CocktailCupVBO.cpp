@@ -4,6 +4,7 @@
 #include <GLUT/glut.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "../../utils/util.h"
 
 
 
@@ -174,6 +175,14 @@ void CocktailCupVBO::drawCocktailCup_top (){
 
 void CocktailCupVBO::draw(){
     
+	float spec[]={0.33333,0.33333,0.33333,1.0} ;
+
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE, cinzentoAlphaCopo);				
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	glPushMatrix();
     glTranslatef(0, (alt/2)-(2*rad/3), 0);
@@ -206,5 +215,6 @@ void CocktailCupVBO::draw(){
 	cyl->draw();
     glPopMatrix();
     
-
+	glDisable(GL_BLEND);	
+	reiniciaMaterial();
 }

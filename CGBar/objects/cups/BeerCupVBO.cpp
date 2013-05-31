@@ -5,7 +5,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdio.h>
-
+#include "../../utils/util.h"
 
 BeerCupVBO::BeerCupVBO(double argAlt,  int argVertex, int argLayers, unsigned int argId_textura) : Primitivas(id_textura)
 {
@@ -320,6 +320,15 @@ void BeerCupVBO::drawBeer_base(){
 void BeerCupVBO::draw(void)
 {
 
+					float spec[]={0.33333,0.33333,0.33333,1.0} ;
+
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE, cinzentoAlphaCopo);				
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	glPushMatrix();
     glTranslatef(0, alt - alt/3.5, 0);
     glRotatef(180, 1, 0, 0);
@@ -351,4 +360,7 @@ void BeerCupVBO::draw(void)
 	/* Unbind da textura */
 	glBindTexture(GL_TEXTURE_2D, 0) ;
 	glPopMatrix();
+
+	glDisable(GL_BLEND);	
+	reiniciaMaterial();
 }

@@ -41,6 +41,9 @@ float camDir[3]={0,0,0};
 float ang=0;
 int startX, startY;
 
+float cinzentoAlphaCopo[]={1,1,1,0.6};
+float cinzentoAlphaGarrafa[]={1,1,1,0.8};
+
 float alpha = 0.0f, beta = 45;
 
 unsigned char *imageData[N_TEX];
@@ -155,6 +158,7 @@ void changeSize(int w, int h) {
 }
 
 void drawScene() {
+		
 				floorv->draw();
 				wallsv->draw();
 
@@ -247,24 +251,7 @@ void drawScene() {
 				cand->draw();
 				glPopMatrix();
 
-				// Copos Balcao
-
-				glPushMatrix();
-				glTranslatef(-3.8f,1.1,2.5f);
-				cc->draw();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-5.3f,1.1,2.5f);
-				glRotatef(-90,0,1,0);
-				vc->draw();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-6.8f,1.1,2.5f);
-				glRotatef(-90,0,1,0);
-				wc->draw();
-				glPopMatrix();
+				
 
 				// Garrafas Prateleiras
 
@@ -458,6 +445,25 @@ void drawScene() {
 				glTranslatef(-5.5f,0,-7.5f);
 				glRotatef(180,0,1,0);
 				mesa4e->draw4LugaresEspQuaFino();
+				glPopMatrix();
+
+				// Copos Balcao
+
+				glPushMatrix();
+				glTranslatef(-3.8f,1.1,2.5f);
+				cc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.3f,1.1,2.5f);
+				glRotatef(-90,0,1,0);
+				vc->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.8f,1.1,2.5f);
+				glRotatef(-90,0,1,0);
+				wc->draw();
 				glPopMatrix();
 }
 
@@ -763,7 +769,7 @@ void main(int argc, char **argv) {
 	glutCreateWindow("CG@DI-UM");
 		
 	glutDisplayFunc(renderScene);
-	glutIdleFunc(renderScene);
+	//glutIdleFunc(renderScene);
 	glutReshapeFunc(changeSize);
 
 	glutMouseFunc(processMouseButtons);

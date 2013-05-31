@@ -149,6 +149,7 @@
     <ClCompile Include="utils\axis.cpp" />
     <ClCompile Include="utils\cores.cpp" />
     <ClCompile Include="objects\cups\VodkaCupVBO.cpp" />
+    <ClCompile Include="utils\util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Maths\COLOR.h" />
@@ -218,6 +219,7 @@
     <ClInclude Include="utils\axis.h" />
     <ClInclude Include="utils\cores.h" />
     <ClInclude Include="objects\cups\VodkaCupVBO.h" />
+    <ClInclude Include="utils\util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

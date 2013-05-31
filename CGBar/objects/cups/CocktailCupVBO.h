@@ -4,6 +4,7 @@
 #include "../../primitives/cylinder/CylinderVBO.h"
 #include "../../primitives/cone/ConeVBO.h"
 
+extern float cinzentoAlphaCopo[] ;
 
 class  CocktailCupVBO : public Primitivas
 {

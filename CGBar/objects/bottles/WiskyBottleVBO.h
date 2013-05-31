@@ -6,6 +6,8 @@
 #include "../../primitives/cone/ConeVBO.h"
 #include "../../objects/paralelepipedo/ParallelepipedVBO.h"
 
+extern float cinzentoAlphaGarrafa[] ;
+
 class  WiskyBottleVBO 
 {
 public:

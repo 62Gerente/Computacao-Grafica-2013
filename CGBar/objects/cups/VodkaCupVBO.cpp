@@ -5,6 +5,7 @@
 #include <IL/il.h>
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include "../../utils/util.h"
 
 
 VodkaCupVBO::VodkaCupVBO(double argAlt,  int argVertex, int argLayers, unsigned int argId_textura) : Primitivas(id_textura)
@@ -148,6 +149,16 @@ void VodkaCupVBO::drawVodka_top (float altura, float raio, int vertex, int layer
 }
 
 void VodkaCupVBO::draw(){
+
+	float spec[]={0.33333,0.33333,0.33333,1.0} ;
+
+				glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE, cinzentoAlphaCopo);				
+				glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+				glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
+				glEnable(GL_BLEND);
+				glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	glPushMatrix();
     glTranslatef(0, (3*alt)/10, 0);
 
@@ -163,9 +174,10 @@ void VodkaCupVBO::draw(){
 	/* Unbind da textura */
 	glBindTexture(GL_TEXTURE_2D, 0) ;
     glPopMatrix();
-
-
 	
 	cylinder->draw();
+
+	glDisable(GL_BLEND);	
+	reiniciaMaterial();
 }
 

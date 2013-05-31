@@ -47,6 +47,12 @@ bool cull;
 bool dragging;
 int dragx, dragy;
 int figura;
+//
+//float cinzento[]={1,1,1};
+//float cinzentoAlpha[]={1,1,1,0.9};
+
+float cinzentoAlphaCopo[]={1,1,1,0.6};
+float cinzentoAlphaGarrafa[]={1,1,1,0.8};
 
 unsigned int id_textura=0;
 unsigned int textura_terra ;
@@ -196,12 +202,6 @@ void renderScene(void) {
 	glRotatef(rotation, 0.0f, 1.0f, 0.0f);
     glRotatef(rotationz, 1.0f,0.0f,0.0f);  
 
-	float cinzento[]={1,1,1};
-	float spec[]={0.33333,0.33333,0.33333,1.0};
-
-	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
-	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
-	glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 
 	switch(figura){
 		case 0:
@@ -297,6 +297,114 @@ void renderScene(void) {
 				cand->draw();
 				glPopMatrix();
 
+				
+				// Prateleiras
+
+				glPushMatrix();
+				glTranslatef(-5.7f,1.3,4.7);
+				prateleira->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-4.5f,1.2,4.7);
+				prateleira->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.9f,1.4,4.7);
+				prateleira->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-7.2f,1.4,3.95);
+				glRotatef(90,0,1,0);
+				prateleira->draw();
+				glPopMatrix();
+
+				//Balcao
+
+				glPushMatrix();
+				glTranslatef(-4.5f,0,2.5f);
+				balcony->draw();
+				glPopMatrix();
+
+				//PC
+
+				glPushMatrix();
+				glTranslatef(-2.7f,1.2,2.5f);
+				computer->draw();
+				glPopMatrix();
+
+				// Cadeiras Balcao
+
+
+				glPushMatrix();
+				glTranslatef(-3.8f,0.9,1.5f);
+				glRotatef(-90,0,1,0);
+				cadeira_pub->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.3f,0.9,1.5f);
+				glRotatef(-90,0,1,0);
+				cadeira_pub->draw();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-6.8f,0.9,1.5f);
+				glRotatef(-90,0,1,0);
+				cadeira_pub->draw();
+				glPopMatrix();
+
+				// Mesas Interior
+
+				glPushMatrix();
+				glTranslatef(-5.8f,0,-2.9f);
+				mesa2->draw2LugaresWine();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-2.8f,0,-2.9f);
+				mesa2->draw2LugaresWisky();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-2.8f,0,-0.8f);
+				mesa4->draw4LugaresWine();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.8f,0,-0.8f);
+				mesa4->draw4LugaresShot();
+				glPopMatrix();
+
+				// Mesas Esplanada
+
+				glPushMatrix();
+				glTranslatef(-5.5f,0,-5.3f);
+				glRotatef(180,0,1,0);
+				mesa4e->draw4LugaresEspRectFino();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-2.7f,0,-5.3f);
+				glRotatef(180,0,1,0);
+				mesa4e->draw4LugaresEspRect();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-2.7f,0,-7.5f);
+				glRotatef(180,0,1,0);
+				mesa4e->draw4LugaresEspQuaCocktail();
+				glPopMatrix();
+
+				glPushMatrix();
+				glTranslatef(-5.5f,0,-7.5f);
+				glRotatef(180,0,1,0);
+				mesa4e->draw4LugaresEspQuaFino();
+				glPopMatrix();
+
+				
 				// Copos Balcao
 
 				glPushMatrix();
@@ -404,111 +512,6 @@ void renderScene(void) {
 				wc->draw();
 				glPopMatrix();
 
-				// Prateleiras
-
-				glPushMatrix();
-				glTranslatef(-5.7f,1.3,4.7);
-				prateleira->draw();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-4.5f,1.2,4.7);
-				prateleira->draw();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-6.9f,1.4,4.7);
-				prateleira->draw();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-7.2f,1.4,3.95);
-				glRotatef(90,0,1,0);
-				prateleira->draw();
-				glPopMatrix();
-
-				//Balcao
-
-				glPushMatrix();
-				glTranslatef(-4.5f,0,2.5f);
-				balcony->draw();
-				glPopMatrix();
-
-				//PC
-
-				glPushMatrix();
-				glTranslatef(-2.7f,1.2,2.5f);
-				computer->draw();
-				glPopMatrix();
-
-				// Cadeiras Balcao
-
-
-				glPushMatrix();
-				glTranslatef(-3.8f,0.9,1.5f);
-				glRotatef(-90,0,1,0);
-				cadeira_pub->draw();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-5.3f,0.9,1.5f);
-				glRotatef(-90,0,1,0);
-				cadeira_pub->draw();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-6.8f,0.9,1.5f);
-				glRotatef(-90,0,1,0);
-				cadeira_pub->draw();
-				glPopMatrix();
-
-				// Mesas Interior
-
-				glPushMatrix();
-				glTranslatef(-5.8f,0,-2.9f);
-				mesa2->draw2LugaresWine();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-2.8f,0,-2.9f);
-				mesa2->draw2LugaresWisky();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-2.8f,0,-0.8f);
-				mesa4->draw4LugaresWine();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-5.8f,0,-0.8f);
-				mesa4->draw4LugaresShot();
-				glPopMatrix();
-
-				// Mesas Esplanada
-
-				glPushMatrix();
-				glTranslatef(-5.5f,0,-5.3f);
-				glRotatef(180,0,1,0);
-				mesa4e->draw4LugaresEspRectFino();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-2.7f,0,-5.3f);
-				glRotatef(180,0,1,0);
-				mesa4e->draw4LugaresEspRect();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-2.7f,0,-7.5f);
-				glRotatef(180,0,1,0);
-				mesa4e->draw4LugaresEspQuaCocktail();
-				glPopMatrix();
-
-				glPushMatrix();
-				glTranslatef(-5.5f,0,-7.5f);
-				glRotatef(180,0,1,0);
-				mesa4e->draw4LugaresEspQuaFino();
-				glPopMatrix();
 
 				break;
 		case 1:

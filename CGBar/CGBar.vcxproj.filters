@@ -67,6 +67,7 @@
     <ClCompile Include="objects\oven\Oven.cpp" />
     <ClCompile Include="objects\fridge\Fridge.cpp" />
     <ClCompile Include="objects\microwave\Microwave.cpp" />
+    <ClCompile Include="utils\util.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,5 +138,6 @@
     <ClInclude Include="objects\oven\Oven.h" />
     <ClInclude Include="objects\fridge\Fridge.h" />
     <ClInclude Include="objects\microwave\Microwave.h" />
+    <ClInclude Include="utils\util.h" />
   </ItemGroup>
 </Project>
