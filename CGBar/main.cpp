@@ -203,6 +203,12 @@ void renderScene(void) {
     glRotatef(rotationz, 1.0f,0.0f,0.0f);  
 
 
+	float cinzento[]={1,1,1};
+	float spec[]={1,1,1,1.0};
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+	glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
+
 	switch(figura){
 		case 0:
 				floorv->draw();

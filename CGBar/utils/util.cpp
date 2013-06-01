@@ -2,7 +2,7 @@
 #include "util.h"
 
 void reiniciaMaterial() {
-
+/*
 	float ambiente[] = {0.2, 0.2, 0.2, 1.0} ;
 	float diffuse[] = {0.8, 0.8, 0.8, 1.0} ;
 	float specular[] = {0.0, 0.0, 0.0, 1.0} ;
@@ -14,4 +14,11 @@ void reiniciaMaterial() {
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular) ; 
 	glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emission) ; 
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, shininess) ; 
+*/
+
+	float cinzento[]={1,1,1};
+	float spec[]={1,1,1,1.0};
+	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT_AND_DIFFUSE,cinzento);
+	glMaterialfv(GL_FRONT_AND_BACK,GL_SPECULAR,spec);
+	glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,128);
 }
