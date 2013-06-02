@@ -1,0 +1,83 @@
+﻿Build started 02-06-2013 15:03:05.
+     1>Project "C:\Users\Cesar\Documents\GitHub\CG13\CGBar\CGBar.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Ox /Oi /Ot /Oy- /GT /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main_sombras.cpp
+         main_sombras.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Cesar\Documents\GitHub\CG13\CGBar\Release\CGBar.exe" /INCREMENTAL:NO /NOLOGO glew32.lib DevIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Cesar\Documents\GitHub\CG13\CGBar\Release\CGBar.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Cesar\Documents\GitHub\CG13\CGBar\Release\CGBar.lib" /MACHINE:X86 /SAFESEH Release\main_sombras.obj
+         Release\COLOR.obj
+         Release\MATRIX4X4.obj
+         Release\PLANE.obj
+         Release\VECTOR2D.obj
+         Release\VECTOR3D.obj
+         Release\VECTOR4D.obj
+         Release\Balcony.obj
+         Release\Kitchen.obj
+         Release\banco.obj
+         Release\wineBottle.obj
+         Release\wiskyBottle.obj
+         Release\chair.obj
+         Release\chairVBO.obj
+         Release\ComputerVBO.obj
+         Release\bancoVBO.obj
+         Release\beerCup.obj
+         Release\BeerCupVBO.obj
+         Release\cocktailCup.obj
+         Release\shotCup.obj
+         Release\vodkaCup.obj
+         Release\wineCup.obj
+         Release\CeilingVBO.obj
+         Release\WineBottleVBO.obj
+         Release\WiskyBottleVBO.obj
+         Release\CocktailCupVBO.obj
+         Release\ShotCupVBO.obj
+         Release\WineCupVBO.obj
+         Release\floor.obj
+         Release\FloorVBO.obj
+         Release\tecto.obj
+         Release\walls.obj
+         Release\WallsVBO.obj
+         Release\BigFrame.obj
+         Release\FrameCoimbra.obj
+         Release\Fridge.obj
+         Release\Microwave.obj
+         Release\Oven.obj
+         Release\Mesa2Cadeiras.obj
+         Release\Mesa4Cadeiras.obj
+         Release\Mesa4Esplanada.obj
+         Release\paralelepipedo.obj
+         Release\ParallelepipedVBO.obj
+         Release\sconce1.obj
+         Release\Sconce1VBO.obj
+         Release\sconce2.obj
+         Release\Sconce2VBO.obj
+         Release\sconce3.obj
+         Release\Sconce3VBO.obj
+         Release\simpleSconce.obj
+         Release\treeSconce.obj
+         Release\table.obj
+         Release\tableVBO.obj
+         Release\cone.obj
+         Release\ConeVBO.obj
+         Release\cube.obj
+         Release\CubeVBO.obj
+         Release\cylinder.obj
+         Release\CylinderVBO.obj
+         Release\Primitivas.obj
+         Release\plane.obj
+         Release\PlaneVBO.obj
+         Release\sphere.obj
+         Release\SphereVBO.obj
+         Release\axis.obj
+         Release\cores.obj
+         Release\VodkaCupVBO.obj
+         Release\util.obj
+     1>Release\plane.obj : warning LNK4042: object specified more than once; extras ignored
+         Generating code
+         Finished generating code
+         CGBar.vcxproj -> C:\Users\Cesar\Documents\GitHub\CG13\CGBar\Release\CGBar.exe
+     1>Done Building Project "C:\Users\Cesar\Documents\GitHub\CG13\CGBar\CGBar.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.54

@@ -68,10 +68,12 @@
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,7 +84,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="main_sombras.cpp" />
     <ClCompile Include="Maths\COLOR.cpp" />
     <ClCompile Include="Maths\MATRIX4X4.cpp" />
     <ClCompile Include="Maths\PLANE.cpp" />
@@ -93,8 +99,12 @@
     <ClCompile Include="objects\balcony\Kitchen.cpp" />
     <ClCompile Include="objects\bancos\banco.cpp" />
     <ClCompile Include="objects\bottles\wineBottle.cpp" />
-    <ClCompile Include="objects\bottles\wiskyBottle.cpp" />
-    <ClCompile Include="objects\chair\chair.cpp" />
+    <ClCompile Include="objects\bottles\wiskyBottle.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="objects\chair\chair.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="objects\chair\chairVBO.cpp" />
     <ClCompile Include="objects\computer\ComputerVBO.cpp" />
     <ClCompile Include="objects\bancos\bancoVBO.cpp" />
@@ -123,7 +133,9 @@
     <ClCompile Include="objects\packs\Mesa2Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Cadeiras.cpp" />
     <ClCompile Include="objects\packs\Mesa4Esplanada.cpp" />
-    <ClCompile Include="objects\paralelepipedo\paralelepipedo.cpp" />
+    <ClCompile Include="objects\paralelepipedo\paralelepipedo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="objects\paralelepipedo\ParallelepipedVBO.cpp" />
     <ClCompile Include="objects\sconces\sconce1.cpp" />
     <ClCompile Include="objects\sconces\Sconce1VBO.cpp" />
@@ -133,7 +145,9 @@
     <ClCompile Include="objects\sconces\Sconce3VBO.cpp" />
     <ClCompile Include="objects\sconces\simpleSconce.cpp" />
     <ClCompile Include="objects\sconces\treeSconce.cpp" />
-    <ClCompile Include="objects\table\table.cpp" />
+    <ClCompile Include="objects\table\table.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="objects\table\tableVBO.cpp" />
     <ClCompile Include="primitives\cone\cone.cpp" />
     <ClCompile Include="primitives\cone\ConeVBO.cpp" />
@@ -163,8 +177,12 @@
     <ClInclude Include="objects\balcony\Kitchen.h" />
     <ClInclude Include="objects\bancos\banco.h" />
     <ClInclude Include="objects\bottles\wineBottle.h" />
-    <ClInclude Include="objects\bottles\wiskyBottle.h" />
-    <ClInclude Include="objects\chair\chair.h" />
+    <ClInclude Include="objects\bottles\wiskyBottle.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="objects\chair\chair.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="objects\chair\chairVBO.h" />
     <ClInclude Include="objects\computer\ComputerVBO.h" />
     <ClInclude Include="objects\bancos\bancoVBO.h" />
@@ -193,7 +211,9 @@
     <ClInclude Include="objects\packs\Mesa2Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Cadeiras.h" />
     <ClInclude Include="objects\packs\Mesa4Esplanada.h" />
-    <ClInclude Include="objects\paralelepipedo\paralelepipedo.h" />
+    <ClInclude Include="objects\paralelepipedo\paralelepipedo.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="objects\paralelepipedo\ParallelepipedVBO.h" />
     <ClInclude Include="objects\sconces\sconce1.h" />
     <ClInclude Include="objects\sconces\Sconce1VBO.h" />
@@ -203,7 +223,9 @@
     <ClInclude Include="objects\sconces\Sconce3VBO.h" />
     <ClInclude Include="objects\sconces\simpleSconce.h" />
     <ClInclude Include="objects\sconces\treeSconce.h" />
-    <ClInclude Include="objects\table\table.h" />
+    <ClInclude Include="objects\table\table.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="objects\table\tableVBO.h" />
     <ClInclude Include="primitives\cone\cone.h" />
     <ClInclude Include="primitives\cone\ConeVBO.h" />

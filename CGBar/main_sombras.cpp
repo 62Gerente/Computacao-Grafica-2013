@@ -59,7 +59,8 @@ MATRIX4X4 lightProjectionMatrix, lightViewMatrix;
 MATRIX4X4 cameraProjectionMatrix, cameraViewMatrix;
 
 float salao1[4] = {-4.3f, 1.73f, -1.85, 1};
-float ambLight=0.4;
+float spotDir[]={0.01,-1,0.01};
+float ambLight=0.2;
 
 unsigned int id_textura=0;
 unsigned int textura_terra ;
@@ -122,13 +123,13 @@ void initMatrix(){
 	glPushMatrix();
 	
 	glLoadIdentity();
-	gluPerspective(107, 1, 0.1, 20);
+	gluPerspective(160, 1, 0.1, 20);
 	
 	glGetFloatv(GL_MODELVIEW_MATRIX, lightProjectionMatrix);
 	
 	glLoadIdentity();
 	gluLookAt(	salao1[0], salao1[1], salao1[2],
-				salao1[0]-1, salao1[1],salao1[2]+1,
+				salao1[0]+0.01, salao1[1]-1,salao1[2]+0.01,
 				0.0f, 1.0f, 0.0f);
 	
 	glGetFloatv(GL_MODELVIEW_MATRIX, lightViewMatrix);
@@ -508,6 +509,10 @@ void renderScene(void) {
 	glLightfv(GL_LIGHT1, GL_AMBIENT, white*ambLight);
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, white*ambLight);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, black);	
+	glLightf(GL_LIGHT1,GL_SPOT_CUTOFF,75.0);
+	glLightf(GL_LIGHT1,GL_SPOT_EXPONENT,1);
+	glLightfv(GL_LIGHT1,GL_SPOT_DIRECTION,spotDir);
+	
 
 	glEnable(GL_TEXTURE0);
 	glActiveTexture(GL_TEXTURE0);
@@ -651,9 +656,9 @@ void init() {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
     
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
+	//glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHT0);
+	//glEnable(GL_LIGHT1);
 
 	balcony = new Balcony(textura_madeira_chao,textura_alum_topo);;
 

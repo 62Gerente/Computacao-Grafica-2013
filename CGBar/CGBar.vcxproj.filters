@@ -69,6 +69,7 @@
     <ClCompile Include="objects\microwave\Microwave.cpp" />
     <ClCompile Include="utils\util.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="main_sombras.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="objects\cups\WineCupVBO.h" />
