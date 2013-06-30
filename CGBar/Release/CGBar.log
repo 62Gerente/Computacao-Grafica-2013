@@ -1,10 +1,80 @@
-﻿Build started 02-06-2013 15:03:05.
-     1>Project "C:\Users\Cesar\Documents\GitHub\CG13\CGBar\CGBar.vcxproj" on node 2 (Build target(s)).
+﻿Build started 02-06-2013 16:33:26.
+     1>Project "\\vmware-host\Shared Folders\gerente\Aulas\CG\CGBar\CGBar\CGBar.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Ox /Oi /Ot /Oy- /GT /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main_sombras.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Ox /Oi /Ot /Oy- /GT /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main_sombras.cpp Maths\COLOR.cpp Maths\MATRIX4X4.cpp Maths\PLANE.cpp Maths\VECTOR2D.cpp Maths\VECTOR3D.cpp Maths\VECTOR4D.cpp objects\balcony\Balcony.cpp objects\balcony\Kitchen.cpp objects\bancos\banco.cpp objects\bottles\wineBottle.cpp objects\bottles\wiskyBottle.cpp objects\chair\chair.cpp objects\chair\chairVBO.cpp objects\computer\ComputerVBO.cpp objects\bancos\bancoVBO.cpp objects\cups\beerCup.cpp objects\cups\BeerCupVBO.cpp objects\cups\cocktailCup.cpp objects\cups\shotCup.cpp objects\cups\vodkaCup.cpp objects\cups\wineCup.cpp objects\estruturas\CeilingVBO.cpp objects\bottles\WineBottleVBO.cpp objects\bottles\WiskyBottleVBO.cpp objects\cups\CocktailCupVBO.cpp objects\cups\ShotCupVBO.cpp objects\cups\WineCupVBO.cpp objects\estruturas\floor.cpp objects\estruturas\FloorVBO.cpp objects\estruturas\tecto.cpp objects\estruturas\walls.cpp objects\estruturas\WallsVBO.cpp objects\frame\BigFrame.cpp objects\frame\FrameCoimbra.cpp objects\fridge\Fridge.cpp objects\microwave\Microwave.cpp objects\oven\Oven.cpp objects\packs\Mesa2Cadeiras.cpp objects\packs\Mesa4Cadeiras.cpp objects\packs\Mesa4Esplanada.cpp objects\paralelepipedo\paralelepipedo.cpp objects\paralelepipedo\ParallelepipedVBO.cpp objects\sconces\sconce1.cpp objects\sconces\Sconce1VBO.cpp objects\sconces\sconce2.cpp objects\sconces\Sconce2VBO.cpp objects\sconces\sconce3.cpp objects\sconces\Sconce3VBO.cpp objects\sconces\simpleSconce.cpp objects\sconces\treeSconce.cpp objects\table\table.cpp objects\table\tableVBO.cpp primitives\cone\cone.cpp primitives\cone\ConeVBO.cpp primitives\cube\cube.cpp primitives\cube\CubeVBO.cpp primitives\cylinder\cylinder.cpp primitives\cylinder\CylinderVBO.cpp Primitivas.cpp primitives\plane\plane.cpp primitives\plane\PlaneVBO.cpp primitives\sphere\sphere.cpp primitives\sphere\SphereVBO.cpp utils\axis.cpp utils\cores.cpp objects\cups\VodkaCupVBO.cpp utils\util.cpp
          main_sombras.cpp
+         COLOR.cpp
+         MATRIX4X4.cpp
+         PLANE.cpp
+         VECTOR2D.cpp
+         VECTOR3D.cpp
+         VECTOR4D.cpp
+         Balcony.cpp
+         Kitchen.cpp
+         banco.cpp
+         wineBottle.cpp
+         wiskyBottle.cpp
+         chair.cpp
+         chairVBO.cpp
+         ComputerVBO.cpp
+         bancoVBO.cpp
+         beerCup.cpp
+         BeerCupVBO.cpp
+         cocktailCup.cpp
+         shotCup.cpp
+         Compiling...
+         vodkaCup.cpp
+         wineCup.cpp
+         CeilingVBO.cpp
+         WineBottleVBO.cpp
+         WiskyBottleVBO.cpp
+         CocktailCupVBO.cpp
+         ShotCupVBO.cpp
+         WineCupVBO.cpp
+         floor.cpp
+         FloorVBO.cpp
+         tecto.cpp
+         walls.cpp
+         WallsVBO.cpp
+         BigFrame.cpp
+         FrameCoimbra.cpp
+         Fridge.cpp
+         Microwave.cpp
+         Oven.cpp
+         Mesa2Cadeiras.cpp
+         Mesa4Cadeiras.cpp
+         Compiling...
+         Mesa4Esplanada.cpp
+         paralelepipedo.cpp
+         ParallelepipedVBO.cpp
+         sconce1.cpp
+         Sconce1VBO.cpp
+         sconce2.cpp
+         Sconce2VBO.cpp
+         sconce3.cpp
+         Sconce3VBO.cpp
+         simpleSconce.cpp
+         treeSconce.cpp
+         table.cpp
+         tableVBO.cpp
+         cone.cpp
+         ConeVBO.cpp
+         cube.cpp
+         CubeVBO.cpp
+         cylinder.cpp
+         CylinderVBO.cpp
+         Primitivas.cpp
+         Compiling...
+         plane.cpp
+         PlaneVBO.cpp
+         sphere.cpp
+         SphereVBO.cpp
+         axis.cpp
+         cores.cpp
+         VodkaCupVBO.cpp
+         util.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Cesar\Documents\GitHub\CG13\CGBar\Release\CGBar.exe" /INCREMENTAL:NO /NOLOGO glew32.lib DevIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Cesar\Documents\GitHub\CG13\CGBar\Release\CGBar.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Cesar\Documents\GitHub\CG13\CGBar\Release\CGBar.lib" /MACHINE:X86 /SAFESEH Release\main_sombras.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"\\vmware-host\Shared Folders\gerente\Aulas\CG\CGBar\CGBar\Release\CGBar.exe" /INCREMENTAL:NO /NOLOGO glew32.lib DevIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"\\vmware-host\Shared Folders\gerente\Aulas\CG\CGBar\CGBar\Release\CGBar.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"\\vmware-host\Shared Folders\gerente\Aulas\CG\CGBar\CGBar\Release\CGBar.lib" /MACHINE:X86 /SAFESEH Release\main_sombras.obj
          Release\COLOR.obj
          Release\MATRIX4X4.obj
          Release\PLANE.obj
@@ -75,9 +145,9 @@
      1>Release\plane.obj : warning LNK4042: object specified more than once; extras ignored
          Generating code
          Finished generating code
-         CGBar.vcxproj -> C:\Users\Cesar\Documents\GitHub\CG13\CGBar\Release\CGBar.exe
-     1>Done Building Project "C:\Users\Cesar\Documents\GitHub\CG13\CGBar\CGBar.vcxproj" (Build target(s)).
+         CGBar.vcxproj -> \\vmware-host\Shared Folders\gerente\Aulas\CG\CGBar\CGBar\Release\CGBar.exe
+     1>Done Building Project "\\vmware-host\Shared Folders\gerente\Aulas\CG\CGBar\CGBar\CGBar.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.54
+Time Elapsed 00:00:09.17
